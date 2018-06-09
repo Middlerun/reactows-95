@@ -1,10 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import Desktop from '../src/Desktop';
-import DesktopIconArea from '../src/DesktopIconArea';
-import Taskbar from '../src/Taskbar';
-import TaskbarItem from '../src/TaskbarItem';
+import {
+  Desktop,
+  DesktopIconArea,
+  Taskbar,
+  TaskbarItem,
+}from '../src';
 
 storiesOf('Desktop', module)
   .add('with icon area and taskbar', () => (

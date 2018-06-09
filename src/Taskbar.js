@@ -5,7 +5,7 @@ import GreyBox from './atoms/GreyBox'
 import StartButton from './StartButton'
 import SystemTray from './SystemTray'
 
-const borderImage = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACCAYAAABhYU3QAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gYHCjkuWgrYkwAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAAXSURBVAjXY7x///5/BiIA4////4lSCAC5BAebe4dEZAAAAABJRU5ErkJggg==`
+import borderImage from './img/taksbar-top.png'
 
 const Root = GreyBox.extend`
   width: 100%;
