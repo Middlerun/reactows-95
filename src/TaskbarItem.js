@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import RidgedGreyButton from './atoms/RidgedGreyButton'
+import RidgedButton from './atoms/RidgedButton'
 
 const Text = styled.span`
   overflow: hidden;
@@ -14,9 +14,9 @@ class TaskbarItem extends Component {
     const { title } = this.props
 
     return (
-      <RidgedGreyButton className="TaskbarItem">
+      <RidgedButton className="TaskbarItem">
         <Text>{title}</Text>
-      </RidgedGreyButton>
+      </RidgedButton>
     )
   }
 }

@@ -5,56 +5,67 @@ import {
   Desktop,
   IconArea,
   IconRegular,
+  RidgedButton,
+  Shell,
   Taskbar,
   TaskbarItem,
-  RidgedGreyButton,
+  Window,
 } from '../src'
 
-storiesOf('Desktop', module)
-  .add('with icons and taskbar', () => (
-    <Desktop>
-      <IconArea desktop iconTextColor="white">
-        <IconRegular label="An icon" onDoubleClick={action('icon double clicked')}/>
-        <IconRegular label="Another icon" onDoubleClick={action('icon double clicked')}/>
-        <IconRegular label="A third icon" onDoubleClick={action('icon double clicked')}/>
-      </IconArea>
+storiesOf('Shell', module)
+  .add('with a window', () => (
+    <Shell>
+      <Desktop>
+        <IconArea desktop iconTextColor="white">
+          <IconRegular label="An icon" onDoubleClick={action('icon double clicked')}/>
+          <IconRegular label="Another icon" onDoubleClick={action('icon double clicked')}/>
+          <IconRegular label="A third icon" onDoubleClick={action('icon double clicked')}/>
+        </IconArea>
+        <div>
+          <Window/>
+        </div>
+      </Desktop>
       <Taskbar onStartButtonClick={action('start button clicked')}>
-        <TaskbarItem title="A window"/>
-        <TaskbarItem title="Another window"/>
-        <TaskbarItem title="Long title on another window"/>
+        <TaskbarItem title="A taskbar item"/>
+        <TaskbarItem title="Another taskbar item"/>
+        <TaskbarItem title="Long title on another taskbar item"/>
       </Taskbar>
-    </Desktop>
+    </Shell>
   ))
   .add('with lots of icons', () => (
-    <Desktop>
-      <IconArea desktop iconTextColor="white">
-        {(new Array(30)).fill(1).map((val, i) => <IconRegular label="And YOU get an icon!" key={i}/>)}
-      </IconArea>
+    <Shell>
+      <Desktop>
+        <IconArea desktop iconTextColor="white">
+          {(new Array(30)).fill(1).map((val, i) => <IconRegular label="And YOU get an icon!" key={i}/>)}
+        </IconArea>
+      </Desktop>
       <Taskbar/>
-    </Desktop>
+    </Shell>
   ))
   .add('with lots of taskbar items', () => (
-    <Desktop>
-      <IconArea desktop/>
+    <Shell>
+      <Desktop>
+        <IconArea desktop/>
+      </Desktop>
       <Taskbar>
         {(new Array(30)).fill(1).map((val, i) => <TaskbarItem title="A taskbar item" key={i}/>)}
       </Taskbar>
-    </Desktop>
+    </Shell>
   ))
 
-storiesOf('RidgedGreyButton', module)
+storiesOf('RidgedButton', module)
   .add('normal', () => (
-    <RidgedGreyButton>
+    <RidgedButton>
       <span>Button</span>
-    </RidgedGreyButton>
+    </RidgedButton>
   ))
   .add('strong', () => (
-    <RidgedGreyButton strongBorder>
+    <RidgedButton strongBorder>
       <span>Button</span>
-    </RidgedGreyButton>
+    </RidgedButton>
   ))
   .add('disabled', () => (
-    <RidgedGreyButton disabled>
+    <RidgedButton disabled>
       <span>Button</span>
-    </RidgedGreyButton>
+    </RidgedButton>
   ))

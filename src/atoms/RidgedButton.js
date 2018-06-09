@@ -1,6 +1,6 @@
-import RidgedGreyBox, { borderImageInset } from './RidgedGreyBox'
+import RidgedBox, { borderImageInset } from './RidgedBox'
 
-export default RidgedGreyBox.extend`
+export default RidgedBox.extend`
   display: flex;
   align-items: center;
   color: black;

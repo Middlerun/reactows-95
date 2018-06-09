@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import LightlyInsetGreyBox from './atoms/LightlyInsetGreyBox'
+import LightlyInsetBox from './atoms/LightlyInsetBox'
 
-const Root = LightlyInsetGreyBox.extend`
+const Root = LightlyInsetBox.extend`
   display: flex;
   align-items: center;
   padding: 0 11px;

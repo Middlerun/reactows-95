@@ -16,6 +16,7 @@ const Root = GreyBox.extend`
   padding: 2px;
   display: flex;
   align-items: stretch;
+  z-index: 2;
 `
 
 const Inner = styled.div`
