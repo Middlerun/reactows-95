@@ -1,15 +1,17 @@
 import Desktop from './Desktop'
-import DesktopIconArea from './DesktopIconArea'
+import IconArea from './IconArea'
 import StartButton from './StartButton'
 import SystemTray from './SystemTray'
 import Taskbar from './Taskbar'
 import TaskbarItem from './TaskbarItem'
+import RidgedGreyButton from './atoms/RidgedGreyButton'
 
 export {
   Desktop,
-  DesktopIconArea,
+  IconArea,
   StartButton,
   SystemTray,
   Taskbar,
   TaskbarItem,
+  RidgedGreyButton,
 }

@@ -8,16 +8,21 @@ export default RidgedGreyBox.extend`
   white-space: nowrap;
   text-overflow: ellipsis;
   
+  :disabled {
+    color: #808080;
+    text-shadow: white 1px 1px;
+  }
+  
   > * {
     transform: translate(-1px, -1px);
   }
   
-  &:focus {
+  :focus {
     outline: 1px dotted black;
-    outline-offset: -4px;
+    outline-offset: -${({strongBorder}) => strongBorder ? 5 : 4}px;
   }
   
-  &:active {
+  :active:enabled {
     border-image: url('${borderImageInset}') 2;
     
     > * {

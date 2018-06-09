@@ -6,14 +6,14 @@ const Root = styled.div`
   flex: 1;
 `
 
-class DesktopIconArea extends Component {
+class IconArea extends Component {
   render() {
     return (
-      <Root className="ninefive-DesktopIconArea">
+      <Root className="ninefive-IconArea">
         {this.props.children}
       </Root>
     )
   }
 }
 
-export default DesktopIconArea
+export default IconArea

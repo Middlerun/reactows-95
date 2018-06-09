@@ -1,12 +1,13 @@
 import GreyBox from './GreyBox'
 
 import borderImage from '../img/border.png'
+import borderImageStrong from '../img/border-strong.png'
 import borderImageInset from '../img/border-inset.png'
 
 export default GreyBox.extend`
-  border-width: 2px;
+  border-width: 3px;
   border-style: solid;
-  border-image: url('${({inset}) => inset ? borderImageInset : borderImage}') 2;
+  border-image: url('${({inset, strongBorder}) => inset ? borderImageInset : (strongBorder ? borderImageStrong : borderImage)}') 3;
 `
 
 export { borderImage }
