@@ -1,17 +1,20 @@
-import React, { Component } from 'react'
-
 import RidgedGreyBox, { borderImageInset } from './RidgedGreyBox'
 
 export default RidgedGreyBox.extend`
   display: flex;
   align-items: center;
+  color: black;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   
   > * {
     transform: translate(-1px, -1px);
   }
   
   &:focus {
-    outline: none;
+    outline: 1px dotted black;
+    outline-offset: -4px;
   }
   
   &:active {

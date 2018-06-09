@@ -7,10 +7,11 @@ const Root = LightlyInsetGreyBox.extend`
   align-items: center;
   padding: 0 11px;
   user-select: none;
+  white-space: nowrap;
 `
 
 class SystemTray extends Component {
-  getTime() {
+  static getTime() {
     const date = new Date()
     let hours = date.getHours()
     const amPm = hours >= 12 ? 'PM' : 'AM'
@@ -51,7 +52,7 @@ class SystemTray extends Component {
   render() {
     return (
       <Root className="ninefive-SystemTray">
-        {this.getTime()}
+        {SystemTray.getTime()}
       </Root>
     )
   }

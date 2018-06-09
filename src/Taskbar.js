@@ -19,18 +19,31 @@ const Root = GreyBox.extend`
 `
 
 const Inner = styled.div`
+  display: flex;
+  justify-content: flex-start;
   flex: 1;
+  padding: 0 4px;
+  
+  > * {
+    flex: 1;
+    width: 0;
+    max-width: 160px;
+  
+    + * {
+      margin-left: 3px;
+    }
+  }
 `
 
 class Taskbar extends Component {
   render() {
-    const { onStartButtonClick } = this.props
+    const { onStartButtonClick, children } = this.props
 
     return (
       <Root className="ninefive-Taskbar">
         <StartButton onClick={onStartButtonClick}/>
         <Inner>
-          {this.props.children}
+          {children}
         </Inner>
         <SystemTray/>
       </Root>

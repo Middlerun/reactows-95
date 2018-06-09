@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 
 import RidgedGreyButton from './atoms/RidgedGreyButton'
 
 const StyledStartButton = RidgedGreyButton.extend`
   padding: 0 3px;
   font-weight: bold;
+  white-space: nowrap;
 `
 
 class StartButton extends Component {
