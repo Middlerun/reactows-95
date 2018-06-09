@@ -1,12 +1,12 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 import {
   Desktop,
   DesktopIconArea,
   Taskbar,
   TaskbarItem,
-}from '../src';
+} from '../src'
 
 storiesOf('Desktop', module)
   .add('with icon area and taskbar', () => (
@@ -26,4 +26,4 @@ storiesOf('Desktop', module)
         {(new Array(30)).fill(1).map((val, i) => <TaskbarItem title="A window" key={i}/>)}
       </Taskbar>
     </Desktop>
-  ));
+  ))
