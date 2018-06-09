@@ -11,7 +11,7 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   font-family: "Microsoft Sans Serif", Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   
   * {
     box-sizing: border-box;
