@@ -2,12 +2,20 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import RidgedBox from './atoms/RidgedBox'
+import RidgedButton from './atoms/RidgedButton'
+
+import minimizeIcon from './img/minimize.png'
+import maximizeIcon from './img/maximize.png'
+import closeIcon from './img/close.png'
+
+const LEFT_MOUSE_BUTTON = 0
 
 const Root = RidgedBox.extend`+++
   display: flex;
   flex-direction: column;
   position: absolute;
   padding: 1px;
+  pointer-events: all;
 `
 
 const TitleBar = styled.div`
@@ -23,9 +31,21 @@ const TitleBar = styled.div`
   user-select: none;
 `
 
+const TitleWrapper = styled.div`
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`
+
 const WindowContent = styled.div`
   width: 100%;
   flex: 1;
+`
+
+const WindowButton = RidgedButton.extend`
+  padding: 1px 1px 0 2px;
+  margin-left: ${({leftMargin}) => leftMargin ? '2px' : '0'};
 `
 
 class Window extends Component {
@@ -44,7 +64,9 @@ class Window extends Component {
   }
 
   dragStart = (e) => {
-    if (this.state.dragging) return
+    if (this.state.dragging || e.button !== LEFT_MOUSE_BUTTON) {
+      return
+    }
 
     const mouseCoords = { x: e.screenX, y: e.screenY }
     this.setState(state => ({
@@ -79,13 +101,35 @@ class Window extends Component {
   }
 
   render() {
+    const { title, hasFocus, onClose } = this.props
     const { geometry } = this.state
 
     return (
       <Root style={geometry}>
-        <TitleBar onMouseDown={this.dragStart}>
-          Title
+        <TitleBar hasFocus={hasFocus} onMouseDown={this.dragStart}>
+          <TitleWrapper>{title}</TitleWrapper>
+
+          <WindowButton
+            onMouseDown={e => {e.stopPropagation()}}
+          >
+            <img src={minimizeIcon}/>
+          </WindowButton>
+
+          <WindowButton
+            onMouseDown={e => {e.stopPropagation()}}
+          >
+            <img src={maximizeIcon}/>
+          </WindowButton>
+
+          <WindowButton
+            onClick={onClose}
+            onMouseDown={e => {e.stopPropagation()}}
+            leftMargin
+          >
+            <img src={closeIcon}/>
+          </WindowButton>
         </TitleBar>
+
         <WindowContent>
           Some content
         </WindowContent>

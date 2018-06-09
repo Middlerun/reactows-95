@@ -10,6 +10,7 @@ import {
   Taskbar,
   TaskbarItem,
   Window,
+  WindowLayer,
 } from '../src'
 
 storiesOf('Shell', module)
@@ -21,9 +22,9 @@ storiesOf('Shell', module)
           <IconRegular label="Another icon" onDoubleClick={action('icon double clicked')}/>
           <IconRegular label="A third icon" onDoubleClick={action('icon double clicked')}/>
         </IconArea>
-        <div>
-          <Window/>
-        </div>
+        <WindowLayer>
+          <Window title="A window" hasFocus/>
+        </WindowLayer>
       </Desktop>
       <Taskbar onStartButtonClick={action('start button clicked')}>
         <TaskbarItem title="A taskbar item"/>

@@ -9,6 +9,7 @@ import SystemTray from './SystemTray'
 import Taskbar from './Taskbar'
 import TaskbarItem from './TaskbarItem'
 import Window from './Window'
+import WindowLayer from './WindowLayer'
 
 export {
   RidgedButton,
@@ -21,4 +22,5 @@ export {
   Taskbar,
   TaskbarItem,
   Window,
+  WindowLayer,
 }
