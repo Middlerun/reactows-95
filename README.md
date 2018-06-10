@@ -20,6 +20,7 @@ yarn storybook
 - Example app
 - Start menu
 - Window menus
+- Documentation of components and their props
 
 ## License
 

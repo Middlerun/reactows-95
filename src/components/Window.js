@@ -6,6 +6,7 @@ import RidgedButton from '../atoms/RidgedButton'
 
 import minimizeIcon from '../img/minimize.png'
 import maximizeIcon from '../img/maximize.png'
+import unmaximizeIcon from '../img/unmaximize.png'
 import closeIcon from '../img/close.png'
 import resizeHandleImage from '../img/resize-handle.png'
 
@@ -14,11 +15,12 @@ const MIN_WIDTH = 200
 const MIN_HEIGHT = 200
 
 const Root = RidgedBox.extend`
-  display: flex;
+  display: ${({minimized}) => minimized ? 'none' : 'flex'};
   flex-direction: column;
   position: absolute;
   padding: 2px;
   pointer-events: all;
+  ${({maximized}) => maximized && 'border: 0;'}
 `
 
 const TitleBar = styled.div`
@@ -72,6 +74,17 @@ const ResizeHandle = styled.img`
   cursor: se-resize;
 `
 
+const ButtonImage = styled.img`
+  pointer-events: none;
+`
+
+const maximizedGeometry = {
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+}
+
 class Window extends Component {
   constructor(props) {
     super(props)
@@ -88,11 +101,13 @@ class Window extends Component {
         width: initialGeometry.width || 420,
         height: initialGeometry.height || 400,
       },
+      maximized: props.startMaximized || false,
+      minimized: false,
     }
   }
 
   dragStart = (e) => {
-    if (this.state.dragging || e.button !== LEFT_MOUSE_BUTTON) {
+    if (this.state.dragging || this.state.maximized || e.button !== LEFT_MOUSE_BUTTON) {
       return
     }
 
@@ -129,7 +144,7 @@ class Window extends Component {
   }
 
   resizeStart = (e) => {
-    if (this.state.resizing || e.button !== LEFT_MOUSE_BUTTON) {
+    if (this.state.resizing || this.state.maximized || e.button !== LEFT_MOUSE_BUTTON) {
       return
     }
     e.preventDefault()
@@ -166,6 +181,24 @@ class Window extends Component {
     removeEventListener('mouseup', this.onResizeEnd)
   }
 
+  toggleMaximized = (e) => {
+    e.target.blur()
+    this.setState(state => ({
+      maximized: !state.maximized,
+    }))
+  }
+
+  toggleMinimized = (e) => {
+    e.target.blur()
+    this.setState(state => ({
+      minimized: !state.minimized,
+    }))
+  }
+
+  isResizable() {
+    return !this.props.hasOwnProperty('resizable') || this.props.resizable
+  }
+
   render() {
     const {
       title,
@@ -173,36 +206,47 @@ class Window extends Component {
       hasFocus,
       onClose,
       bottomAreaContent,
-      resizable,
       children,
     } = this.props
-    const { geometry } = this.state
+    const {
+      geometry,
+      maximized,
+      minimized,
+    } = this.state
+
+    const isResizable = this.isResizable()
 
     return (
-      <Root style={geometry}>
+      <Root
+        style={maximized ? maximizedGeometry : geometry}
+        maximized={maximized}
+        minimized={minimized}
+      >
         <TitleBar hasFocus={hasFocus} onMouseDown={this.dragStart}>
           {icon && <IconImage src={icon}/>}
 
           <TitleWrapper>{title}</TitleWrapper>
 
           <WindowButton
+            onClick={this.toggleMinimized}
             onMouseDown={e => {e.stopPropagation()}}
           >
-            <img src={minimizeIcon}/>
+            <ButtonImage src={minimizeIcon}/>
           </WindowButton>
 
-          <WindowButton
+          {isResizable && <WindowButton
+            onClick={this.toggleMaximized}
             onMouseDown={e => {e.stopPropagation()}}
           >
-            <img src={maximizeIcon}/>
-          </WindowButton>
+            <ButtonImage src={maximized ? unmaximizeIcon : maximizeIcon}/>
+          </WindowButton>}
 
           <WindowButton
             onClick={onClose}
             onMouseDown={e => {e.stopPropagation()}}
             leftMargin
           >
-            <img src={closeIcon}/>
+            <ButtonImage src={closeIcon}/>
           </WindowButton>
         </TitleBar>
 
@@ -210,9 +254,9 @@ class Window extends Component {
           {children}
         </WindowContent>
 
-        {(bottomAreaContent || resizable) && <BottomArea>
+        {(bottomAreaContent || isResizable) && <BottomArea>
           {bottomAreaContent}
-          {resizable && <ResizeHandle
+          {isResizable && !maximized && <ResizeHandle
             src={resizeHandleImage}
             draggable={false}
             onMouseDown={this.resizeStart}

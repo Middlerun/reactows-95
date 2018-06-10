@@ -33,7 +33,7 @@ class Folder extends Component {
     </BottomContentArea>
 
     return (
-      <Window {...props} bottomAreaContent={bottomAreaContent} icon={icon} resizable={true}>
+      <Window {...props} bottomAreaContent={bottomAreaContent} icon={icon}>
         <ContentRoot inset>
           <IconArea>
             {children}
