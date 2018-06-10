@@ -96,7 +96,7 @@ class IconRegular extends Component {
     const { hasFocus } = this.state
 
     return (
-      <Root className="ninefive-Icon ninefive-IconRegular">
+      <Root className="reactows95-Icon reactows95-IconRegular">
         <ImageContainer>
           <IconImage
             onClick={this.onClick}

@@ -13,7 +13,7 @@ class StartButton extends Component {
     const { onClick } = this.props
 
     return (
-      <StyledStartButton className="ninefive-StartButton" onClick={onClick}>
+      <StyledStartButton className="reactows95-StartButton" onClick={onClick}>
         <span>🔥 Start</span>
       </StyledStartButton>
     )

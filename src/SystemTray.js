@@ -51,7 +51,7 @@ class SystemTray extends Component {
 
   render() {
     return (
-      <Root className="ninefive-SystemTray">
+      <Root className="reactows95-SystemTray">
         {SystemTray.getTime()}
       </Root>
     )

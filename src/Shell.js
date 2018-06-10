@@ -72,7 +72,7 @@ const Root = styled.div`
 class Shell extends Component {
   render() {
     return (
-      <Root className="ninefive-Shell">
+      <Root className="reactows95-Shell">
         {this.props.children}
       </Root>
     )

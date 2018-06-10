@@ -41,7 +41,7 @@ class Taskbar extends Component {
     const { onStartButtonClick, children } = this.props
 
     return (
-      <Root className="ninefive-Taskbar">
+      <Root className="reactows95-Taskbar">
         <StartButton onClick={onStartButtonClick}/>
         <Inner>
           {children}

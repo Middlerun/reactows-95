@@ -11,7 +11,7 @@ export default styled.div`
   padding-top: 4px;
   overflow: ${({desktop}) => desktop ? 'hidden' : 'auto'};
   
-  > .ninefive-Icon {
+  > .reactows95-Icon {
     ${({ iconTextColor }) => iconTextColor && `
       color: ${iconTextColor}
     `};
