@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import RidgedButton from './atoms/RidgedButton'
+import RidgedButton from '../atoms/RidgedButton'
 
 const StyledStartButton = RidgedButton.extend`
   padding: 0 3px;

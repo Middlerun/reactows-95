@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import RidgedBox from './atoms/RidgedBox'
-import RidgedButton from './atoms/RidgedButton'
+import RidgedBox from '../atoms/RidgedBox'
+import RidgedButton from '../atoms/RidgedButton'
 
-import minimizeIcon from './img/minimize.png'
-import maximizeIcon from './img/maximize.png'
-import closeIcon from './img/close.png'
-import resizeHandleImage from './img/resize-handle.png'
+import minimizeIcon from '../img/minimize.png'
+import maximizeIcon from '../img/maximize.png'
+import closeIcon from '../img/close.png'
+import resizeHandleImage from '../img/resize-handle.png'
 
 const LEFT_MOUSE_BUTTON = 0
 const MIN_WIDTH = 200

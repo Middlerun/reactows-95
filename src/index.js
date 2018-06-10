@@ -1,16 +1,16 @@
 import RidgedButton from './atoms/RidgedButton'
 
-import Desktop from './Desktop'
+import Desktop from './components/Desktop'
 import Folder from './apps/Folder'
-import IconArea from './IconArea'
-import IconRegular from './IconRegular'
-import Shell from './Shell'
-import StartButton from './StartButton'
-import SystemTray from './SystemTray'
-import Taskbar from './Taskbar'
-import TaskbarItem from './TaskbarItem'
-import Window from './Window'
-import WindowLayer from './WindowLayer'
+import IconArea from './components/IconArea'
+import IconRegular from './components/IconRegular'
+import Shell from './components/Shell'
+import StartButton from './components/StartButton'
+import SystemTray from './components/SystemTray'
+import Taskbar from './components/Taskbar'
+import TaskbarItem from './components/TaskbarItem'
+import Window from './components/Window'
+import WindowLayer from './components/WindowLayer'
 
 export {
   RidgedButton,

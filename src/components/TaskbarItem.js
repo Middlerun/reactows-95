@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import RidgedButton from './atoms/RidgedButton'
+import RidgedButton from '../atoms/RidgedButton'
 
 const Text = styled.span`
   overflow: hidden;

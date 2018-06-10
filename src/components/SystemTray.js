@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import LightlyInsetBox from './atoms/LightlyInsetBox'
+import LightlyInsetBox from '../atoms/LightlyInsetBox'
 
 const Root = LightlyInsetBox.extend`
   display: flex;

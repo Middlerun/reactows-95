@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import GreyBox from './atoms/GreyBox'
+import GreyBox from '../atoms/GreyBox'
 import StartButton from './StartButton'
 import SystemTray from './SystemTray'
 
-import borderImage from './img/border.png'
+import borderImage from '../img/border.png'
 
 const Root = GreyBox.extend`
   width: 100%;

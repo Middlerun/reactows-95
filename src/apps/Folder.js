@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import Window from '../Window'
+import Window from '../components/Window'
 import RidgedBox from '../atoms/RidgedBox'
-import IconArea from '../IconArea'
+import IconArea from '../components/IconArea'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
 
 import icon from '../icons/16/icon-5.ico'
