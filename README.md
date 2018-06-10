@@ -22,6 +22,7 @@ yarn storybook
 - Start menu
 - Window menus
 - Documentation of components and their props
+- Use TypeScript?
 
 ## License
 
