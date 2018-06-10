@@ -24,7 +24,9 @@ storiesOf('Shell', module)
           <IconRegular label="A third icon" onDoubleClick={action('icon double clicked')}/>
         </IconArea>
         <WindowLayer>
-          <Folder title="A window" hasFocus/>
+          <Folder title="A window" hasFocus>
+            {(new Array(30)).fill(1).map((val, i) => <IconRegular label="And YOU get an icon!" key={i}/>)}
+          </Folder>
         </WindowLayer>
       </Desktop>
       <Taskbar onStartButtonClick={action('start button clicked')}>
@@ -70,4 +72,15 @@ storiesOf('RidgedButton', module)
     <RidgedButton disabled>
       <span>Button</span>
     </RidgedButton>
+  ))
+
+storiesOf('Scroll bars', module)
+  .add('horizontal and vertical', () => (
+    <Shell>
+      <div style={{width: 300, height: 300, overflow: 'scroll'}}>
+        <div style={{width: 600, height: 600, background: 'white'}}>
+          content
+        </div>
+      </div>
+    </Shell>
   ))

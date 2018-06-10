@@ -5,14 +5,14 @@ import GreyBox from './atoms/GreyBox'
 import StartButton from './StartButton'
 import SystemTray from './SystemTray'
 
-import borderImage from './img/taksbar-top.png'
+import borderImage from './img/border.png'
 
 const Root = GreyBox.extend`
   width: 100%;
   height: 28px;
   border-top-width: 2px;
   border-top-style: solid;
-  border-image: url('${borderImage}') 2 stretch;
+  border-image: url('${borderImage}') 2;
   padding: 2px;
   display: flex;
   align-items: stretch;

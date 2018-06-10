@@ -14,7 +14,7 @@ const Root = RidgedBox.extend`
   display: flex;
   flex-direction: column;
   position: absolute;
-  padding: 1px;
+  padding: 2px;
   pointer-events: all;
 `
 
@@ -27,7 +27,7 @@ const TitleBar = styled.div`
   background-color: ${({hasFocus}) => hasFocus ? '#000082' : '#808080'};
   color: ${({hasFocus}) => hasFocus ? 'white' : '#c0c0c0'};
   font-weight: bold;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
   user-select: none;
 `
 
@@ -61,8 +61,8 @@ class Window extends Component {
       geometry: {
         left: initialGeometry.left || 100,
         top: initialGeometry.top || 100,
-        width: initialGeometry.width || 400,
-        height: initialGeometry.height || 300,
+        width: initialGeometry.width || 420,
+        height: initialGeometry.height || 400,
       },
     }
   }

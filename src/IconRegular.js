@@ -47,10 +47,10 @@ const IconImage = styled.button`
 const IconText = styled.div`
   display: inline-block;
   margin-top: 3px;
-  padding: 0 2px;
+  padding: 1px 2px;
   max-width: calc(100% - 6px);
   line-height: 1.2em;
-  max-height: calc(2.4em + 4px);
+  max-height: calc(2.4em + 2px);
   text-align: center;
   overflow: hidden;
   user-select: none;

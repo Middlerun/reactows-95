@@ -1,6 +1,10 @@
-import RidgedBox, { borderImageInset } from './RidgedBox'
+import GreyBox from './GreyBox'
 
-export default RidgedBox.extend`
+import borderImage from '../img/border-button.png'
+import borderImageStrong from '../img/border-strong.png'
+import borderImageInset from '../img/border-inset.png'
+
+export default GreyBox.extend`
   display: flex;
   align-items: center;
   color: black;
@@ -10,6 +14,12 @@ export default RidgedBox.extend`
   font-family: "Microsoft Sans Serif", Arial, sans-serif;
   font-size: 12px;
   line-height: inherit;
+  
+  border-width: 2px;
+  border-style: solid;
+  border-image:
+    url('${({inset, strongBorder}) => inset ? borderImageInset : (strongBorder ? borderImageStrong : borderImage)}')
+    ${({inset, strongBorder}) => !inset && strongBorder ? 3 : 2};
   
   :disabled {
     color: #808080;

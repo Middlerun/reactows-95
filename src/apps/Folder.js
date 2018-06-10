@@ -16,26 +16,16 @@ const ContentRoot = RidgedBox.extend`
 
 class Folder extends Component {
   render() {
+    const {
+      children,
+      ...props
+    } = this.props
+
     return (
-      <Window {...this.props}>
+      <Window {...props}>
         <ContentRoot inset>
           <IconArea>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
-            <IconRegular label="herp"/>
+            {children}
           </IconArea>
         </ContentRoot>
       </Window>
