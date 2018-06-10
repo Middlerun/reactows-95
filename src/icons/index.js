@@ -1,13 +1,13 @@
-import icon1 from './32/icon-1.ico'
-import icon2 from './32/icon-2.ico'
-import icon3 from './32/icon-3.ico'
-import icon4 from './32/icon-4.ico'
-import icon5 from './32/icon-5.ico'
-import icon1Small from './16/icon-1.ico'
-import icon2Small from './16/icon-2.ico'
-import icon3Small from './16/icon-3.ico'
-import icon4Small from './16/icon-4.ico'
-import icon5Small from './16/icon-5.ico'
+import icon1 from './32/icon-1.png'
+import icon2 from './32/icon-2.png'
+import icon3 from './32/icon-3.png'
+import icon4 from './32/icon-4.png'
+import icon5 from './32/icon-5.png'
+import icon1Small from './16/icon-1.png'
+import icon2Small from './16/icon-2.png'
+import icon3Small from './16/icon-3.png'
+import icon4Small from './16/icon-4.png'
+import icon5Small from './16/icon-5.png'
 
 export const ICON_DEFAULT = 1
 export const ICON_RICH_TEXT = 2

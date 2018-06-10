@@ -5,7 +5,7 @@ import RidgedBox from '../atoms/RidgedBox'
 import IconArea from '../components/IconArea'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
 
-import icon from '../icons/16/icon-5.ico'
+import { getIcon, ICON_FOLDER_OPEN } from '../icons'
 
 const ContentRoot = RidgedBox.extend`
   position: absolute;
@@ -33,7 +33,7 @@ class Folder extends Component {
     </BottomContentArea>
 
     return (
-      <Window {...props} bottomAreaContent={bottomAreaContent} icon={icon}>
+      <Window {...props} bottomAreaContent={bottomAreaContent} icon={getIcon(ICON_FOLDER_OPEN, true)}>
         <ContentRoot inset>
           <IconArea>
             {children}
