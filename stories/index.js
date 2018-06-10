@@ -82,5 +82,8 @@ storiesOf('Scroll bars', module)
           content
         </div>
       </div>
+      <textarea style={{width: 300, height: 70}}>
+        herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp
+      </textarea>
     </Shell>
   ))

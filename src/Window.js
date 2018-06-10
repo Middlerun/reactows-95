@@ -7,8 +7,11 @@ import RidgedButton from './atoms/RidgedButton'
 import minimizeIcon from './img/minimize.png'
 import maximizeIcon from './img/maximize.png'
 import closeIcon from './img/close.png'
+import resizeHandleImage from './img/resize-handle.png'
 
 const LEFT_MOUSE_BUTTON = 0
+const MIN_WIDTH = 200
+const MIN_HEIGHT = 200
 
 const Root = RidgedBox.extend`
   display: flex;
@@ -59,6 +62,14 @@ const BottomArea = styled.div`
   position: relative;
   height: 17px;
   margin-top: 2px;
+  user-select: none;
+`
+
+const ResizeHandle = styled.img`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
 `
 
 class Window extends Component {
@@ -69,6 +80,7 @@ class Window extends Component {
 
     this.state = {
       dragging: false,
+      resizing: false,
       dragStart: {},
       geometry: {
         left: initialGeometry.left || 100,
@@ -116,6 +128,44 @@ class Window extends Component {
     removeEventListener('mouseup', this.onDragEnd)
   }
 
+  resizeStart = (e) => {
+    if (this.state.resizing || e.button !== LEFT_MOUSE_BUTTON) {
+      return
+    }
+    e.preventDefault()
+
+    const mouseCoords = { x: e.screenX, y: e.screenY }
+    this.setState(state => ({
+      resizing: true,
+      dragStart: {
+        mouseCoords,
+        geometry: state.geometry,
+      }
+    }))
+
+    addEventListener('mousemove', this.onResizeMove)
+    addEventListener('mouseup', this.onResizeEnd)
+  }
+
+  onResizeMove = (e) => {
+    const newX = e.screenX
+    const newY = e.screenY
+    this.setState(state => ({
+      geometry: {
+        ...state.geometry,
+        width:  Math.max(MIN_WIDTH,  state.dragStart.geometry.width  + (newX - state.dragStart.mouseCoords.x)),
+        height: Math.max(MIN_HEIGHT, state.dragStart.geometry.height + (newY - state.dragStart.mouseCoords.y)),
+      },
+    }))
+  }
+
+  onResizeEnd = () => {
+    this.setState({ resizing: false })
+
+    removeEventListener('mousemove', this.onResizeMove)
+    removeEventListener('mouseup', this.onResizeEnd)
+  }
+
   render() {
     const {
       title,
@@ -123,6 +173,7 @@ class Window extends Component {
       hasFocus,
       onClose,
       bottomAreaContent,
+      resizable,
       children,
     } = this.props
     const { geometry } = this.state
@@ -159,8 +210,13 @@ class Window extends Component {
           {children}
         </WindowContent>
 
-        {bottomAreaContent && <BottomArea>
+        {(bottomAreaContent || resizable) && <BottomArea>
           {bottomAreaContent}
+          {resizable && <ResizeHandle
+            src={resizeHandleImage}
+            draggable={false}
+            onMouseDown={this.resizeStart}
+          />}
         </BottomArea>}
       </Root>
     )

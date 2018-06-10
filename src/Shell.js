@@ -7,6 +7,7 @@ import scrollUp from './img/scroll-up.png'
 import scrollDown from './img/scroll-down.png'
 import scrollLeft from './img/scroll-left.png'
 import scrollRight from './img/scroll-right.png'
+import resizeHandle from './img/resize-handle.png'
 
 const Root = styled.div`
   position: absolute;
@@ -65,10 +66,6 @@ const Root = styled.div`
     border-width: 2px;
     border-style: solid;
     border-image: url('${borderImage}') 2;
-  }
-
-  *::-webkit-resizer {
-    background-color: #c0c0c0;
   }
 `
 
