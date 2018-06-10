@@ -13,19 +13,23 @@ import {
   Window,
   WindowLayer,
 } from '../src'
+import {
+  ICON_FOLDER,
+  ICON_RICH_TEXT,
+} from '../src/icons'
 
 storiesOf('Shell', module)
   .add('with a window', () => (
     <Shell>
       <Desktop>
         <IconArea desktop iconTextColor="white">
-          <IconRegular label="An icon" onDoubleClick={action('icon double clicked')}/>
+          <IconRegular label="An icon" icon={ICON_FOLDER} onDoubleClick={action('icon double clicked')}/>
           <IconRegular label="Another icon" onDoubleClick={action('icon double clicked')}/>
           <IconRegular label="A third icon" onDoubleClick={action('icon double clicked')}/>
         </IconArea>
         <WindowLayer>
           <Folder title="A window" hasFocus>
-            {(new Array(30)).fill(1).map((val, i) => <IconRegular label="And YOU get an icon!" key={i}/>)}
+            {(new Array(30)).fill(1).map((val, i) => <IconRegular label="And YOU get an icon!" icon={ICON_RICH_TEXT} key={i}/>)}
           </Folder>
         </WindowLayer>
       </Desktop>

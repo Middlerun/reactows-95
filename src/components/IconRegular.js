@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import image from '../icons/32/icon-1.ico'
+import { getIcon } from '../icons'
 
 const Root = styled.div`
   width: 75px;
@@ -24,7 +24,7 @@ const IconImage = styled.button`
   padding: 0;
   border: 0;
   background-color: transparent;
-  background-image: url('${image}');
+  background-image: url('${({image}) => image}');
   
   :focus {
     outline: 0;
@@ -38,7 +38,7 @@ const IconImage = styled.button`
       left: 0;
       right: 0;
       background: rgba(0,0,127, 0.5);
-      mask-image: url('${image}');
+      mask-image: url('${({image}) => image}');
       mask-size: 32px 32px;
     }
   }
@@ -92,13 +92,14 @@ class IconRegular extends Component {
   }
 
   render() {
-    const { label } = this.props
+    const { label, icon } = this.props
     const { hasFocus } = this.state
 
     return (
       <Root className="reactows95-Icon reactows95-IconRegular">
         <ImageContainer>
           <IconImage
+            image={getIcon(icon)}
             onClick={this.onClick}
             onFocus={this.onFocus}
             onBlur={this.onBlur}

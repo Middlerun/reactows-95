@@ -16,7 +16,6 @@ yarn storybook
 ## To do
 
 - More window types
-- System for selecting icon images
 - State container for window management
 - Example app
 - Start menu
