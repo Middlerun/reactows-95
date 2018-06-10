@@ -44,7 +44,7 @@ const WindowContent = styled.div`
 `
 
 const WindowButton = RidgedButton.extend`
-  padding: 1px 1px 0 2px;
+  padding: 0 1px 1px 2px;
   margin-left: ${({leftMargin}) => leftMargin ? '2px' : '0'};
 `
 

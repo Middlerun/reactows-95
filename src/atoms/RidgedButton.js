@@ -7,6 +7,9 @@ export default RidgedBox.extend`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-family: "Microsoft Sans Serif", Arial, sans-serif;
+  font-size: 12px;
+  line-height: inherit;
   
   :disabled {
     color: #808080;
@@ -14,7 +17,7 @@ export default RidgedBox.extend`
   }
   
   > * {
-    transform: translate(-1px, -1px);
+    transform: translate(-1px, 0);
   }
   
   :focus {
@@ -26,7 +29,7 @@ export default RidgedBox.extend`
     border-image: url('${borderImageInset}') 2;
     
     > * {
-      transform: translate(0, 0);
+      transform: translate(0, 1px);
     }
   }
 `.withComponent('button')
