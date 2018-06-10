@@ -1,6 +1,7 @@
 import RidgedButton from './atoms/RidgedButton'
 
 import Desktop from './Desktop'
+import Folder from './apps/Folder'
 import IconArea from './IconArea'
 import IconRegular from './IconRegular'
 import Shell from './Shell'
@@ -14,6 +15,7 @@ import WindowLayer from './WindowLayer'
 export {
   RidgedButton,
   Desktop,
+  Folder,
   IconArea,
   IconRegular,
   Shell,

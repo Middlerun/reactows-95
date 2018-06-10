@@ -10,7 +10,7 @@ import closeIcon from './img/close.png'
 
 const LEFT_MOUSE_BUTTON = 0
 
-const Root = RidgedBox.extend`+++
+const Root = RidgedBox.extend`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -41,6 +41,7 @@ const TitleWrapper = styled.div`
 const WindowContent = styled.div`
   width: 100%;
   flex: 1;
+  position: relative;
 `
 
 const WindowButton = RidgedButton.extend`
@@ -49,17 +50,20 @@ const WindowButton = RidgedButton.extend`
 `
 
 class Window extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+
+    const initialGeometry = props.initialGeometry || {}
+
     this.state = {
       dragging: false,
       dragStart: {},
       geometry: {
-        left: 100,
-        top: 100,
-        width: 300,
-        height: 300
-      }
+        left: initialGeometry.left || 100,
+        top: initialGeometry.top || 100,
+        width: initialGeometry.width || 400,
+        height: initialGeometry.height || 300,
+      },
     }
   }
 
@@ -101,7 +105,7 @@ class Window extends Component {
   }
 
   render() {
-    const { title, hasFocus, onClose } = this.props
+    const { title, hasFocus, onClose, children } = this.props
     const { geometry } = this.state
 
     return (
@@ -131,7 +135,7 @@ class Window extends Component {
         </TitleBar>
 
         <WindowContent>
-          Some content
+          {children}
         </WindowContent>
       </Root>
     )

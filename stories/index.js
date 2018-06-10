@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import {
   Desktop,
+  Folder,
   IconArea,
   IconRegular,
   RidgedButton,
@@ -23,7 +24,7 @@ storiesOf('Shell', module)
           <IconRegular label="A third icon" onDoubleClick={action('icon double clicked')}/>
         </IconArea>
         <WindowLayer>
-          <Window title="A window" hasFocus/>
+          <Folder title="A window" hasFocus/>
         </WindowLayer>
       </Desktop>
       <Taskbar onStartButtonClick={action('start button clicked')}>
