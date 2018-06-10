@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import image from './icons/icon-blank.ico'
+import image from './icons/32/icon-1.ico'
 
 const Root = styled.div`
   width: 75px;

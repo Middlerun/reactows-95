@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 import Window from '../Window'
 import RidgedBox from '../atoms/RidgedBox'
 import IconArea from '../IconArea'
-import IconRegular from '../IconRegular'
+import LightlyInsetBox from '../atoms/LightlyInsetBox'
+
+import icon from '../icons/16/icon-5.ico'
 
 const ContentRoot = RidgedBox.extend`
   position: absolute;
@@ -14,6 +16,11 @@ const ContentRoot = RidgedBox.extend`
   background-color: white;
 `
 
+const BottomContentArea = LightlyInsetBox.extend`
+  height: 100%;
+  padding: 0 3px;
+`
+
 class Folder extends Component {
   render() {
     const {
@@ -21,8 +28,12 @@ class Folder extends Component {
       ...props
     } = this.props
 
+    const bottomAreaContent = <BottomContentArea>
+      {children.length} object(s)
+    </BottomContentArea>
+
     return (
-      <Window {...props}>
+      <Window {...props} bottomAreaContent={bottomAreaContent} icon={icon}>
         <ContentRoot inset>
           <IconArea>
             {children}

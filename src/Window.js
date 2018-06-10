@@ -31,6 +31,12 @@ const TitleBar = styled.div`
   user-select: none;
 `
 
+const IconImage = styled.img`
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+`
+
 const TitleWrapper = styled.div`
   flex: 1;
   overflow: hidden;
@@ -47,6 +53,12 @@ const WindowContent = styled.div`
 const WindowButton = RidgedButton.extend`
   padding: 0 1px 1px 2px;
   margin-left: ${({leftMargin}) => leftMargin ? '2px' : '0'};
+`
+
+const BottomArea = styled.div`
+  position: relative;
+  height: 17px;
+  margin-top: 2px;
 `
 
 class Window extends Component {
@@ -105,12 +117,21 @@ class Window extends Component {
   }
 
   render() {
-    const { title, hasFocus, onClose, children } = this.props
+    const {
+      title,
+      icon,
+      hasFocus,
+      onClose,
+      bottomAreaContent,
+      children,
+    } = this.props
     const { geometry } = this.state
 
     return (
       <Root style={geometry}>
         <TitleBar hasFocus={hasFocus} onMouseDown={this.dragStart}>
+          {icon && <IconImage src={icon}/>}
+
           <TitleWrapper>{title}</TitleWrapper>
 
           <WindowButton
@@ -137,6 +158,10 @@ class Window extends Component {
         <WindowContent>
           {children}
         </WindowContent>
+
+        {bottomAreaContent && <BottomArea>
+          {bottomAreaContent}
+        </BottomArea>}
       </Root>
     )
   }
