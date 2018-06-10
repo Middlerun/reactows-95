@@ -2,6 +2,8 @@
 
 A set of React components for recreating everyone's favourite operating system as a webapp.
 
+[Demo app here](https://reactows-95-demo.herokuapp.com/) (not guaranteed to be up-to-date).
+
 Not yet available via NPM as it is in very early development.
 
 To try it out using [Storybook](https://storybook.js.org/):
@@ -17,7 +19,6 @@ yarn storybook
 
 - More window types
 - State container for window management
-- Example app
 - Start menu
 - Window menus
 - Documentation of components and their props

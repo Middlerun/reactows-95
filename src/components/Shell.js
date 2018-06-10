@@ -67,6 +67,10 @@ const Root = styled.div`
     border-style: solid;
     border-image: url('${borderImage}') 2;
   }
+  
+  button::-moz-focus-inner {
+    border: 0;
+  }
 `
 
 class Shell extends Component {
