@@ -5,6 +5,11 @@ import LightlyInsetBox from '../atoms/LightlyInsetBox'
 export default styled.div`
   margin-bottom: 3px;
   padding-left: 4px;
+  
+  ${({noWrap}) => noWrap && `
+    overflow: hidden;
+    white-space: nowrap;
+  `}
 `
 
 export const ToolbarDivider = LightlyInsetBox.extend`

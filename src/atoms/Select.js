@@ -11,7 +11,7 @@ export default styled.select`
   appearance: none;
   background: white url('${dropdownImage}') no-repeat right;
   padding: 0 17px 0 1px;
-  min-width: ${({minWidth}) => minWidth || '1px'};
+  ${({width}) => width && `width: ${width};`};
   
   :focus {
     outline: 0;

@@ -40,8 +40,48 @@ const BottomContentArea = styled.div`
   }
 `
 
-class Folder extends Component {
-  getMenuItems() {
+const fontCssMap = {
+  'Arial': 'Arial, sans-serif',
+  'Times New Roman': "'Times New Roman', serif",
+}
+const fonts = Object.keys(fontCssMap)
+const sizes = [8, 10, 12, 14, 16, 18, 20]
+
+class WordPad extends Component {
+  constructor() {
+    super()
+    this.state = {
+      font: 'Arial',
+      fontSize: 12,
+      bold: false,
+      italic: false,
+      underline: false,
+    }
+  }
+
+  getContentStyle() {
+    const {
+      font,
+      fontSize,
+    } = this.state
+
+    const style = {
+      fontFamily: fontCssMap[font],
+      fontSize,
+    }
+
+    return style
+  }
+
+  onFontChange = (e) => {
+    this.setState({ font: e.target.value })
+  }
+
+  onFontSizeChange = (e) => {
+    this.setState({ fontSize: parseInt(e.target.value) })
+  }
+
+  static getMenuItems() {
     return <Fragment>
       <WindowMenuItem label="File" underline={0}/>
       <WindowMenuItem label="Edit" underline={0}/>
@@ -59,6 +99,11 @@ class Folder extends Component {
       initialGeometry,
       ...props
     } = this.props
+
+    const {
+      font,
+      fontSize,
+    } = this.state
 
     const bottomAreaContent = <BottomContentArea>
       <LightlyInsetBox style={{width: 25}}/>
@@ -81,25 +126,27 @@ class Folder extends Component {
         bottomAreaContent={bottomAreaContent}
         icon={getIcon(ICON_RICH_TEXT, true)}>
         <WindowToolbar>
-          {this.getMenuItems()}
+          {WordPad.getMenuItems()}
         </WindowToolbar>
 
         <ToolbarDivider/>
 
-        <WindowToolbar>
-          <Select minWidth="240px">
-            <option>Arial</option>
-            <option>Times New Roman</option>
+        <WindowToolbar noWrap>
+          <Select width="240px" onChange={this.onFontChange} value={font}>
+            {fonts.map(fontOption => (
+              <option value={fontOption}>{fontOption}</option>
+            ))}
           </Select>
           <ToolbarSpacer/>
-          <Select minWidth="50px">
-            <option>12</option>
-            <option>14</option>
+          <Select width="50px" onChange={this.onFontSizeChange} value={fontSize}>
+            {sizes.map(sizeOption => (
+              <option value={sizeOption}>{sizeOption}</option>
+            ))}
           </Select>
         </WindowToolbar>
 
         <ContentRoot inset>
-          <Content>
+          <Content style={this.getContentStyle()}>
             {children}
           </Content>
         </ContentRoot>
@@ -108,4 +155,4 @@ class Folder extends Component {
   }
 }
 
-export default Folder
+export default WordPad

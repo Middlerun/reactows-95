@@ -22,7 +22,7 @@ const BottomContentArea = LightlyInsetBox.extend`
 `
 
 class Folder extends Component {
-  getMenuItems() {
+  static getMenuItems() {
     return <Fragment>
       <WindowMenuItem label="File" underline={0}/>
       <WindowMenuItem label="Edit" underline={0}/>
@@ -48,7 +48,7 @@ class Folder extends Component {
         icon={getIcon(ICON_FOLDER_OPEN, true)}
       >
         <WindowToolbar>
-          {this.getMenuItems()}
+          {Folder.getMenuItems()}
         </WindowToolbar>
         <ContentRoot inset>
           <IconArea>
