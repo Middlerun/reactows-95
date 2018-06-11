@@ -13,6 +13,14 @@ import Window from './components/Window'
 import WindowLayer from './components/WindowLayer'
 import WordPad from './apps/WordPad'
 
+import {
+  ICON_DEFAULT,
+  ICON_RICH_TEXT,
+  ICON_APPLICATION,
+  ICON_FOLDER,
+  ICON_FOLDER_OPEN,
+} from './icons'
+
 export {
   RidgedButton,
   Desktop,
@@ -27,4 +35,9 @@ export {
   Window,
   WindowLayer,
   WordPad,
+  ICON_DEFAULT,
+  ICON_RICH_TEXT,
+  ICON_APPLICATION,
+  ICON_FOLDER,
+  ICON_FOLDER_OPEN,
 }

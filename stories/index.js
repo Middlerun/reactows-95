@@ -13,11 +13,9 @@ import {
   Window,
   WindowLayer,
   WordPad,
-} from '../src'
-import {
   ICON_FOLDER,
   ICON_RICH_TEXT,
-} from '../src/icons'
+} from '../src'
 
 storiesOf('Shell', module)
   .add('with a window', () => (
