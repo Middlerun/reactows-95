@@ -42,6 +42,7 @@ const IconImage = styled.img`
   height: 16px;
   margin-right: 2px;
   image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
 `
 
 const TitleWrapper = styled.div`
@@ -61,6 +62,7 @@ const WindowButton = RidgedButton.extend`
   padding: 0 1px 1px 2px;
   margin-left: ${({leftMargin}) => leftMargin ? '2px' : '0'};
   image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
 `
 
 const BottomArea = styled.div`

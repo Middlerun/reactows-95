@@ -17,6 +17,7 @@ const ImageContainer = styled.div`
   height: 32px;
   margin-top: 2px;
   image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
 `
 
 const IconImage = styled.button`
