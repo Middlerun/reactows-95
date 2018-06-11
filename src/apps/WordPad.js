@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
+import styled from 'styled-components'
 
 import Window from '../components/Window'
 import WindowMenuItem from '../components/WindowMenuItem'
 import RidgedBox from '../atoms/RidgedBox'
-import IconArea from '../components/IconArea'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
 
-import { getIcon, ICON_FOLDER_OPEN } from '../icons'
+import { getIcon, ICON_RICH_TEXT } from '../icons'
 
 const ContentRoot = RidgedBox.extend`
   position: absolute;
@@ -15,11 +15,29 @@ const ContentRoot = RidgedBox.extend`
   left: 0;
   right: 0;
   background-color: white;
+  overflow: auto;
 `
 
-const BottomContentArea = LightlyInsetBox.extend`
+const Content = styled.div`
+  min-height: 100%;
+  max-width: 600px;
+  border-right: 1px solid lightgrey;
+  padding: 10px;
+  
+  > :first-child {
+    margin-top: 0;
+  }
+`
+
+const BottomContentArea = styled.div`
   height: 100%;
-  padding: 0 3px;
+  padding: 0 14px 0 3px;
+  display: flex;
+  justify-content: flex-end;
+  
+  > * + * {
+    margin-left: 2px;
+  }
 `
 
 class Folder extends Component {
@@ -28,6 +46,8 @@ class Folder extends Component {
       <WindowMenuItem label="File" underline={0}/>
       <WindowMenuItem label="Edit" underline={0}/>
       <WindowMenuItem label="View" underline={0}/>
+      <WindowMenuItem label="Insert" underline={0}/>
+      <WindowMenuItem label="Format" underline={1}/>
       <WindowMenuItem label="Help" underline={0}/>
     </Fragment>
   }
@@ -35,24 +55,36 @@ class Folder extends Component {
   render() {
     const {
       children,
+      title,
+      initialGeometry,
       ...props
     } = this.props
 
     const bottomAreaContent = <BottomContentArea>
-      {children.length} object(s)
+      <LightlyInsetBox style={{width: 25}}/>
+      <LightlyInsetBox style={{width: 29}}/>
     </BottomContentArea>
+
+    const windowTitle = (title || 'Untitled') + ' - WordPad'
+
+    const windowInitialGeometry = {
+      width: 600,
+      height: 500,
+      ...initialGeometry
+    }
 
     return (
       <Window
         {...props}
+        title={windowTitle}
+        initialGeometry={windowInitialGeometry}
         menuItems={this.getMenuItems()}
         bottomAreaContent={bottomAreaContent}
-        icon={getIcon(ICON_FOLDER_OPEN, true)}
-      >
+        icon={getIcon(ICON_RICH_TEXT, true)}>
         <ContentRoot inset>
-          <IconArea>
+          <Content>
             {children}
-          </IconArea>
+          </Content>
         </ContentRoot>
       </Window>
     )

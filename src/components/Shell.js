@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import borderImage from '../img/border.png'
+import borderImageInset from '../img/border-inset.png'
 import scrollbarTrack from '../img/scrollbar-track.png'
 import scrollUp from '../img/scroll-up.png'
 import scrollDown from '../img/scroll-down.png'
@@ -36,6 +37,10 @@ const Root = styled.div`
     border-width: 2px;
     border-style: solid;
     border-image: url('${borderImage}') 2;
+  }
+
+  *::-webkit-scrollbar-button:single-button:active {
+    border-image: url('${borderImageInset}') 2;
   }
 
   *::-webkit-scrollbar-button:single-button:vertical:decrement {

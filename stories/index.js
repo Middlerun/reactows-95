@@ -12,6 +12,7 @@ import {
   TaskbarItem,
   Window,
   WindowLayer,
+  WordPad,
 } from '../src'
 import {
   ICON_FOLDER,
@@ -31,6 +32,11 @@ storiesOf('Shell', module)
           <Folder title="A window" hasFocus>
             {(new Array(30)).fill(1).map((val, i) => <IconRegular label="And YOU get an icon!" icon={ICON_RICH_TEXT} key={i}/>)}
           </Folder>
+          <WordPad>
+            <h1>Content!</h1>
+            <p>Here's some content. Here's some content. Here's some content. Here's some content. Here's some content. Here's some content.</p>
+            <img src="http://lorempixel.com/400/300/cats/"/>
+          </WordPad>
         </WindowLayer>
       </Desktop>
       <Taskbar onStartButtonClick={action('start button clicked')}>

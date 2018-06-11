@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import RidgedBox from '../atoms/RidgedBox'
 import RidgedButton from '../atoms/RidgedButton'
+import WindowToolbar from './WindowToolbar'
 
 import minimizeIcon from '../img/minimize.png'
 import maximizeIcon from '../img/maximize.png'
@@ -205,6 +206,7 @@ class Window extends Component {
       icon,
       hasFocus,
       onClose,
+      menuItems,
       bottomAreaContent,
       children,
     } = this.props
@@ -249,6 +251,10 @@ class Window extends Component {
             <ButtonImage src={closeIcon}/>
           </WindowButton>
         </TitleBar>
+
+        {menuItems && <WindowToolbar>
+          {menuItems}
+        </WindowToolbar>}
 
         <WindowContent>
           {children}

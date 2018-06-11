@@ -11,6 +11,7 @@ import Taskbar from './components/Taskbar'
 import TaskbarItem from './components/TaskbarItem'
 import Window from './components/Window'
 import WindowLayer from './components/WindowLayer'
+import WordPad from './apps/WordPad'
 
 export {
   RidgedButton,
@@ -25,4 +26,5 @@ export {
   TaskbarItem,
   Window,
   WindowLayer,
+  WordPad,
 }
