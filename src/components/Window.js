@@ -57,6 +57,7 @@ const WindowContent = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  min-height: 0;
 `
 
 const WindowButton = RidgedButton.extend`
@@ -256,7 +257,7 @@ class Window extends Component {
           </WindowButton>
         </TitleBar>
 
-        <WindowContent >
+        <WindowContent>
           {children}
         </WindowContent>
 

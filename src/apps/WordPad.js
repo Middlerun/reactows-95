@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Window from '../components/Window'
 import WindowMenuItem from '../components/WindowMenuItem'
 import RidgedBox from '../atoms/RidgedBox'
-import RidgedButton from '../atoms/RidgedButton'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
 import WindowToolbar, { ToolbarDivider, ToolbarSpacer, ToolbarButton } from '../components/WindowToolbar'
 import Select from '../atoms/Select'
@@ -156,14 +155,14 @@ class WordPad extends Component {
 
         <WindowToolbar noWrap>
           <Select width="240px" onChange={this.onFontChange} value={font}>
-            {fonts.map(fontOption => (
-              <option value={fontOption}>{fontOption}</option>
+            {fonts.map((fontOption, i) => (
+              <option value={fontOption} key={i}>{fontOption}</option>
             ))}
           </Select>
           <ToolbarSpacer/>
           <Select width="50px" onChange={this.onFontSizeChange} value={fontSize}>
-            {sizes.map(sizeOption => (
-              <option value={sizeOption}>{sizeOption}</option>
+            {sizes.map((sizeOption, i) => (
+              <option value={sizeOption} key={i}>{sizeOption}</option>
             ))}
           </Select>
           <ToolbarSpacer/>

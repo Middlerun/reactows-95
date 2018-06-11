@@ -14,6 +14,7 @@ const ContentRoot = RidgedBox.extend`
   display: flex;
   width: 100%;
   background-color: white;
+  overflow: auto;
 `
 
 const BottomContentArea = LightlyInsetBox.extend`
