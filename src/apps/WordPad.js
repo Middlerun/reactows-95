@@ -5,7 +5,8 @@ import Window from '../components/Window'
 import WindowMenuItem from '../components/WindowMenuItem'
 import RidgedBox from '../atoms/RidgedBox'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
-import WindowToolbar from '../components/WindowToolbar'
+import WindowToolbar, { ToolbarDivider, ToolbarSpacer } from '../components/WindowToolbar'
+import Select from '../atoms/Select'
 
 import { getIcon, ICON_RICH_TEXT } from '../icons'
 
@@ -82,6 +83,21 @@ class Folder extends Component {
         <WindowToolbar>
           {this.getMenuItems()}
         </WindowToolbar>
+
+        <ToolbarDivider/>
+
+        <WindowToolbar>
+          <Select minWidth="240px">
+            <option>Arial</option>
+            <option>Times New Roman</option>
+          </Select>
+          <ToolbarSpacer/>
+          <Select minWidth="50px">
+            <option>12</option>
+            <option>14</option>
+          </Select>
+        </WindowToolbar>
+
         <ContentRoot inset>
           <Content>
             {children}

@@ -2,7 +2,7 @@ import GreyBox from './GreyBox'
 
 import borderImage from '../img/border-button.png'
 import borderImageStrong from '../img/border-strong.png'
-import borderImageInset from '../img/border-inset.png'
+import borderImageInset from '../img/border-button-inset.png'
 
 export default GreyBox.extend`
   display: flex;

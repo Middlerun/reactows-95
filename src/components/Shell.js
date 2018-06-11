@@ -75,6 +75,11 @@ const Root = styled.div`
   button::-moz-focus-inner {
     border: 0;
   }
+  
+  *::selection {
+    background-color: #000080;
+    color: white;
+  }
 `
 
 class Shell extends Component {
