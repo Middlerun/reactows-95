@@ -40,9 +40,9 @@ storiesOf('Shell', module)
         </WindowLayer>
       </Desktop>
       <Taskbar onStartButtonClick={action('start button clicked')}>
-        <TaskbarItem title="A taskbar item"/>
-        <TaskbarItem title="Another taskbar item"/>
-        <TaskbarItem title="Long title on another taskbar item"/>
+        <TaskbarItem title="A taskbar item" icon={ICON_FOLDER}/>
+        <TaskbarItem title="Another taskbar item" icon={ICON_FOLDER}/>
+        <TaskbarItem title="Long title on another taskbar item" icon={ICON_FOLDER}/>
       </Taskbar>
     </Shell>
   ))

@@ -7,7 +7,7 @@ import IconArea from '../components/IconArea'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
 import WindowToolbar from '../components/WindowToolbar'
 
-import { getIcon, ICON_FOLDER_OPEN } from '../icons'
+import { ICON_FOLDER_OPEN } from '../icons'
 
 const ContentRoot = RidgedBox.extend`
   flex: 1;
@@ -46,7 +46,7 @@ class Folder extends Component {
       <Window
         {...props}
         bottomAreaContent={bottomAreaContent}
-        icon={getIcon(ICON_FOLDER_OPEN, true)}
+        icon={ICON_FOLDER_OPEN}
       >
         <WindowToolbar>
           {Folder.getMenuItems()}
