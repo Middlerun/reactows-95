@@ -20,7 +20,6 @@ yarn storybook
 - More window types
 - State container for window management
 - Start menu
-- Window menus
 - Documentation of components and their props
 - Use TypeScript?
 

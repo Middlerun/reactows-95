@@ -4,8 +4,9 @@ import styled from 'styled-components'
 import Window from '../components/Window'
 import WindowMenuItem from '../components/WindowMenuItem'
 import RidgedBox from '../atoms/RidgedBox'
+import RidgedButton from '../atoms/RidgedButton'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
-import WindowToolbar, { ToolbarDivider, ToolbarSpacer } from '../components/WindowToolbar'
+import WindowToolbar, { ToolbarDivider, ToolbarSpacer, ToolbarButton } from '../components/WindowToolbar'
 import Select from '../atoms/Select'
 
 import { getIcon, ICON_RICH_TEXT } from '../icons'
@@ -21,7 +22,6 @@ const ContentRoot = RidgedBox.extend`
 const Content = styled.div`
   min-height: 100%;
   max-width: 600px;
-  border-right: 1px solid lightgrey;
   padding: 10px;
   
   > :first-child {
@@ -42,6 +42,8 @@ const BottomContentArea = styled.div`
 
 const fontCssMap = {
   'Arial': 'Arial, sans-serif',
+  'Courier New': "'Courier New', monospace",
+  'Helvetica': 'Helvetica, sans-serif',
   'Times New Roman': "'Times New Roman', serif",
 }
 const fonts = Object.keys(fontCssMap)
@@ -63,11 +65,23 @@ class WordPad extends Component {
     const {
       font,
       fontSize,
+      bold,
+      italic,
+      underline,
     } = this.state
 
     const style = {
       fontFamily: fontCssMap[font],
       fontSize,
+    }
+    if (bold) {
+      style.fontWeight = 'bold'
+    }
+    if (italic) {
+      style.fontStyle = 'italic'
+    }
+    if (underline) {
+      style.textDecoration = 'underline'
     }
 
     return style
@@ -79,6 +93,12 @@ class WordPad extends Component {
 
   onFontSizeChange = (e) => {
     this.setState({ fontSize: parseInt(e.target.value) })
+  }
+
+  toggleState(stateProperty) {
+    this.setState(state => ({
+      [stateProperty]: !state[stateProperty],
+    }))
   }
 
   static getMenuItems() {
@@ -103,6 +123,9 @@ class WordPad extends Component {
     const {
       font,
       fontSize,
+      bold,
+      italic,
+      underline,
     } = this.state
 
     const bottomAreaContent = <BottomContentArea>
@@ -143,6 +166,16 @@ class WordPad extends Component {
               <option value={sizeOption}>{sizeOption}</option>
             ))}
           </Select>
+          <ToolbarSpacer/>
+          <ToolbarButton onClick={() => {this.toggleState('bold')}} bold serif pressed={bold}>
+            B
+          </ToolbarButton>
+          <ToolbarButton onClick={() => {this.toggleState('italic')}} italic serif pressed={italic}>
+            I
+          </ToolbarButton>
+          <ToolbarButton onClick={() => {this.toggleState('underline')}} underline serif pressed={underline}>
+            U
+          </ToolbarButton>
         </WindowToolbar>
 
         <ContentRoot inset>
