@@ -5,15 +5,14 @@ import WindowMenuItem from '../components/WindowMenuItem'
 import RidgedBox from '../atoms/RidgedBox'
 import IconArea from '../components/IconArea'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
+import WindowToolbar from '../components/WindowToolbar'
 
 import { getIcon, ICON_FOLDER_OPEN } from '../icons'
 
 const ContentRoot = RidgedBox.extend`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  flex: 1;
+  display: flex;
+  width: 100%;
   background-color: white;
 `
 
@@ -45,10 +44,12 @@ class Folder extends Component {
     return (
       <Window
         {...props}
-        menuItems={this.getMenuItems()}
         bottomAreaContent={bottomAreaContent}
         icon={getIcon(ICON_FOLDER_OPEN, true)}
       >
+        <WindowToolbar>
+          {this.getMenuItems()}
+        </WindowToolbar>
         <ContentRoot inset>
           <IconArea>
             {children}

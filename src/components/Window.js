@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 import RidgedBox from '../atoms/RidgedBox'
 import RidgedButton from '../atoms/RidgedButton'
-import WindowToolbar from './WindowToolbar'
 
 import minimizeIcon from '../img/minimize.png'
 import maximizeIcon from '../img/maximize.png'
@@ -55,6 +54,8 @@ const TitleWrapper = styled.div`
 const WindowContent = styled.div`
   width: 100%;
   flex: 1;
+  display: flex;
+  flex-direction: column;
   position: relative;
 `
 
@@ -210,7 +211,6 @@ class Window extends Component {
       icon,
       hasFocus,
       onClose,
-      menuItems,
       bottomAreaContent,
       children,
     } = this.props
@@ -256,11 +256,7 @@ class Window extends Component {
           </WindowButton>
         </TitleBar>
 
-        {menuItems && <WindowToolbar>
-          {menuItems}
-        </WindowToolbar>}
-
-        <WindowContent>
+        <WindowContent >
           {children}
         </WindowContent>
 
