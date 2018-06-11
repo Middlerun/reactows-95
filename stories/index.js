@@ -33,7 +33,7 @@ storiesOf('Shell', module)
           <WordPad>
             <h1>Content!</h1>
             <p>Here's some content. Here's some content. Here's some content. Here's some content. Here's some content. Here's some content.</p>
-            <img src="http://lorempixel.com/400/300/cats/"/>
+            <img src="http://lorempixel.com/400/300/cats/" alt="Obligatory cat photo"/>
           </WordPad>
         </WindowLayer>
       </Desktop>
