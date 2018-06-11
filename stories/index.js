@@ -10,7 +10,6 @@ import {
   Shell,
   Taskbar,
   TaskbarItem,
-  Window,
   WindowLayer,
   WordPad,
   ICON_FOLDER,
@@ -30,7 +29,7 @@ storiesOf('Shell', module)
           <Folder title="A window" hasFocus>
             {(new Array(30)).fill(1).map((val, i) => <IconRegular label="And YOU get an icon!" icon={ICON_RICH_TEXT} key={i}/>)}
           </Folder>
-          <WordPad>
+          <WordPad hasFocus>
             <h1>Content!</h1>
             <p>Here's some content. Here's some content. Here's some content. Here's some content. Here's some content. Here's some content.</p>
             <img src="http://lorempixel.com/400/300/cats/" alt="Obligatory cat photo"/>
@@ -90,8 +89,5 @@ storiesOf('Scroll bars', module)
           content
         </div>
       </div>
-      <textarea style={{width: 300, height: 70}}>
-        herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp herp
-      </textarea>
     </Shell>
   ))

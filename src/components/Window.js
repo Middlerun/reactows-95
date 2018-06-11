@@ -11,6 +11,7 @@ import maximizeIcon from '../img/maximize.png'
 import unmaximizeIcon from '../img/unmaximize.png'
 import closeIcon from '../img/close.png'
 import resizeHandleImage from '../img/resize-handle.png'
+import resizeSW from '../img/resize-sw.png'
 
 const LEFT_MOUSE_BUTTON = 0
 const MIN_WIDTH = 200
@@ -78,9 +79,9 @@ const BottomArea = styled.div`
 
 const ResizeHandle = styled.img`
   position: absolute;
-  bottom: 0;
-  right: 0;
-  cursor: se-resize;
+  bottom: -4px;
+  right: -4px;
+  cursor: url('${resizeSW}') 7 7, se-resize;
 `
 
 const ButtonImage = styled.img`
