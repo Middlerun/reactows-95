@@ -46,11 +46,11 @@ module.exports = {
     alias: {
       'react': path.resolve(__dirname, './node_modules/react') ,
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+      'styled-components': path.resolve(__dirname, './node_modules/styled-components'),
       'assets': path.resolve(__dirname, 'assets'),
     },
   },
   externals: {
-    // Don't bundle react or react-dom
     react: {
       commonjs: "react",
       commonjs2: "react",
@@ -63,5 +63,6 @@ module.exports = {
       amd: "ReactDOM",
       root: "ReactDOM"
     },
+    "styled-components": "styled-components",
   },
 }
