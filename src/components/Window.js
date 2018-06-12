@@ -117,7 +117,8 @@ class Window extends Component {
   }
 
   dragStart = (e) => {
-    if (this.state.dragging || this.state.maximized || e.button !== LEFT_MOUSE_BUTTON) {
+    const clickedWindowButton = !!e.target.dataset.button
+    if (this.state.dragging || this.state.maximized || e.button !== LEFT_MOUSE_BUTTON || clickedWindowButton) {
       return
     }
 
@@ -217,6 +218,7 @@ class Window extends Component {
       onClose,
       bottomAreaContent,
       children,
+      ...otherProps
     } = this.props
     const {
       geometry,
@@ -231,29 +233,30 @@ class Window extends Component {
         style={maximized ? maximizedGeometry : geometry}
         maximized={maximized}
         minimized={minimized}
+        {...otherProps}
       >
         <TitleBar hasFocus={hasFocus} onMouseDown={this.dragStart}>
-          {icon && <IconImage src={getIcon(icon, true)}/>}
+          {icon && <IconImage src={getIcon(icon, true)} draggable={false}/>}
 
           <TitleWrapper>{title}</TitleWrapper>
 
           <WindowButton
             onClick={this.toggleMinimized}
-            onMouseDown={e => {e.stopPropagation()}}
+            data-button={true}
           >
             <ButtonImage src={minimizeIcon}/>
           </WindowButton>
 
           {isResizable && <WindowButton
             onClick={this.toggleMaximized}
-            onMouseDown={e => {e.stopPropagation()}}
+            data-button={true}
           >
             <ButtonImage src={maximized ? unmaximizeIcon : maximizeIcon}/>
           </WindowButton>}
 
           <WindowButton
             onClick={onClose}
-            onMouseDown={e => {e.stopPropagation()}}
+            data-button={true}
             leftMargin
           >
             <ButtonImage src={closeIcon}/>
