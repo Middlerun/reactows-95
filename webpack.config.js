@@ -46,6 +46,7 @@ module.exports = {
     alias: {
       'react': path.resolve(__dirname, './node_modules/react') ,
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+      'react-overlays': path.resolve(__dirname, './node_modules/react-overlays'),
       'styled-components': path.resolve(__dirname, './node_modules/styled-components'),
       'assets': path.resolve(__dirname, 'assets'),
     },
@@ -63,6 +64,7 @@ module.exports = {
       amd: "ReactDOM",
       root: "ReactDOM"
     },
+    "react-overlays": "react-overlays",
     "styled-components": "styled-components",
   },
 }
