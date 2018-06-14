@@ -12,7 +12,7 @@ const Root = RidgedButton.extend`
 const IconImage = styled.img`
   width: 16px;
   height: 16px;
-  margin-right: 2px;
+  margin-right: 3px;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
 `

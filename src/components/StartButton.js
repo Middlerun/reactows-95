@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
 import styled from 'styled-components'
+import { Overlay } from 'react-overlays'
+
+import StartMenu from './StartMenu'
 
 import RidgedButton from '../atoms/RidgedButton'
 
 import logo from '../img/logo-small.png'
 
+const Root = styled.div`
+  position: relative;
+`
+
 const StyledStartButton = RidgedButton.extend`
+  height: 100%;
   padding: 0 3px;
   font-weight: bold;
   white-space: nowrap;
@@ -18,14 +27,43 @@ const LogoImage = styled.img`
 `
 
 class StartButton extends Component {
-  render() {
-    const { onClick } = this.props
+  constructor() {
+    super()
+    this.state = { startMenuOpen: false }
+  }
 
-    return (
-      <StyledStartButton className="reactows95-StartButton" onClick={onClick}>
+  toggleStartMenuOpen = () => {
+    this.setState(state => ({
+      startMenuOpen: !state.startMenuOpen,
+    }))
+  }
+
+  render() {
+    const { startMenuOpen } = this.state
+
+    return <Root ref={el => this.root = el}>
+      <StyledStartButton
+        className="reactows95-StartButton"
+        onClick={this.toggleStartMenuOpen}
+        pressed={startMenuOpen}
+      >
         <span><LogoImage src={logo}/> Start</span>
       </StyledStartButton>
-    )
+
+      <Overlay
+        show={startMenuOpen}
+        onHide={this.toggleStartMenuOpen}
+        placement="top"
+        container={this}
+        target={props => findDOMNode(this.root)}
+        rootClose
+        rootCloseEvent="mousedown"
+      >
+        <div style={{position: 'absolute'}}>
+          <StartMenu/>
+        </div>
+      </Overlay>
+    </Root>
   }
 }
 

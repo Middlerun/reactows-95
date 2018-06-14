@@ -17,7 +17,7 @@ export default styled.div`
   }
 `
 
-export const ToolbarDivider = LightlyInsetBox.extend`
+export const Divider = LightlyInsetBox.extend`
   width: 100%;
   height: 2px;
   margin: 0;
@@ -25,7 +25,7 @@ export const ToolbarDivider = LightlyInsetBox.extend`
   border-width: 1px 0;
 `.withComponent('hr')
 
-export const ToolbarSpacer = styled.div`
+export const Spacer = styled.div`
   display: inline-block;
   width: 8px;
 `
@@ -37,5 +37,6 @@ export const ToolbarButton = RidgedButton.extend`
   padding: 0;
   justify-content: center;
   align-items: center;
+  font-size: 14px;
   ${({serif}) => serif && `font-family: 'Times New Roman', serif;`}
 `

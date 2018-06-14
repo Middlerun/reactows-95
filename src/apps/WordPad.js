@@ -5,7 +5,7 @@ import Window from '../components/Window'
 import WindowMenuItem from '../components/WindowMenuItem'
 import RidgedBox from '../atoms/RidgedBox'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
-import WindowToolbar, { ToolbarDivider, ToolbarSpacer, ToolbarButton } from '../components/WindowToolbar'
+import WindowToolbar, { Divider, Spacer, ToolbarButton } from '../components/WindowToolbar'
 import Select from '../atoms/Select'
 
 import { ICON_RICH_TEXT } from '../icons'
@@ -151,7 +151,7 @@ class WordPad extends Component {
           {WordPad.getMenuItems()}
         </WindowToolbar>
 
-        <ToolbarDivider/>
+        <Divider/>
 
         <WindowToolbar noWrap>
           <Select width="240px" onChange={this.onFontChange} value={font}>
@@ -159,21 +159,21 @@ class WordPad extends Component {
               <option value={fontOption} key={i}>{fontOption}</option>
             ))}
           </Select>
-          <ToolbarSpacer/>
+          <Spacer/>
           <Select width="50px" onChange={this.onFontSizeChange} value={fontSize}>
             {sizes.map((sizeOption, i) => (
               <option value={sizeOption} key={i}>{sizeOption}</option>
             ))}
           </Select>
-          <ToolbarSpacer/>
+          <Spacer/>
           <ToolbarButton onClick={() => {this.toggleState('bold')}} bold serif pressed={bold}>
-            B
+            <span>B</span>
           </ToolbarButton>
           <ToolbarButton onClick={() => {this.toggleState('italic')}} italic serif pressed={italic}>
-            I
+            <span>I</span>
           </ToolbarButton>
           <ToolbarButton onClick={() => {this.toggleState('underline')}} underline serif pressed={underline}>
-            U
+            <span>U</span>
           </ToolbarButton>
         </WindowToolbar>
 
