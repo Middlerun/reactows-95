@@ -21,6 +21,10 @@ const Root = styled.div`
 
 const Label = styled.div`
   flex: 1;
+  max-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `
 
 const SubMenuArrow = styled.img`
