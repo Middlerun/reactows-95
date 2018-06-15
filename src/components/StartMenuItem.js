@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
 
 import arrow from '../img/arrow-right.png'
+import defaultIcon from '../img/icon-default.png'
 
 const Root = styled.div`
   width: 100%;
@@ -10,25 +11,42 @@ const Root = styled.div`
   display: flex;
   align-items: center;
   white-space: nowrap;
-  padding-left: 40px;
   padding-right: 4px;
   
-  ${({selected}) => selected && `
+  ${({hovered}) => hovered && `
     background-color: #000080;
     color: white;
   `}
 `
 
+const IconContainer = styled.div`
+  width: ${({mainStartMenu}) => mainStartMenu ? '32px' : '16px'};
+  height: ${({mainStartMenu}) => mainStartMenu ? '32px' : '16px'};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 3px;
+  
+`
+
+const IconImage = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+`
+
 const Label = styled.div`
   flex: 1;
   max-width: 250px;
+  margin-left: 3px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 `
 
 const SubMenuArrow = styled.img`
-  filter: ${({selected}) => selected ? 'invert(100%)' : 'none'};
+  filter: ${({hovered}) => hovered ? 'invert(100%)' : 'none'};
   margin-left: ${({mainStartMenu}) => mainStartMenu ? '20px' : '8px'};
 `
 
@@ -41,9 +59,10 @@ export const Divider = LightlyInsetBox.extend`
 class StartMenuItem extends Component {
   render() {
     const {
-      selected,
+      hovered,
       mainStartMenu,
       renderSubMenuItems,
+      icon,
       label,
       onMouseEnter,
       onClick,
@@ -52,16 +71,19 @@ class StartMenuItem extends Component {
     return (
       <Root
         className="reactows95-StartMenuItem"
-        selected={selected}
+        hovered={hovered}
         mainStartMenu={mainStartMenu}
         onMouseEnter={onMouseEnter}
         onClick={onClick}
       >
+        <IconContainer mainStartMenu={mainStartMenu}>
+          <IconImage src={icon || defaultIcon}/>
+        </IconContainer>
         <Label>{label}</Label>
         {renderSubMenuItems && <SubMenuArrow
           src={arrow}
           mainStartMenu={mainStartMenu}
-          selected={selected}
+          hovered={hovered}
         />}
       </Root>
     )

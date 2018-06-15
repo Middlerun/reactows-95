@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import RidgedBox from '../atoms/RidgedBox'
 import StartMenuItem, { Divider } from './StartMenuItem'
+import isObject from '../util/isObject'
 
 const Root = RidgedBox.extend`
   display: flex;
@@ -38,8 +39,22 @@ const Main = styled.div`
   
 `
 
+function generateMenuContent(menuItems, mainStartMenu) {
+  return menuItems.map(item => {
+    if (item === 'divider') {
+      return <Divider/>
+    } else if (!isObject(item)) {
+      return null
+    } else {
+      const { label } = item
+      return <StartMenuItem mainStartMenu={mainStartMenu} label={label}/>
+    }
+  })
+}
+
 class StartMenu extends Component {
   render() {
+    const { items } = this.props
     return (
       <Root className="reactows95-StartMenu">
         <LeftStripe>
@@ -48,14 +63,7 @@ class StartMenu extends Component {
           </OSNameText>
         </LeftStripe>
         <Main>
-          <StartMenuItem mainStartMenu={true} label="Programs" renderSubMenuItems={true}/>
-          <StartMenuItem mainStartMenu={true} label="Documents" renderSubMenuItems={true}/>
-          <StartMenuItem mainStartMenu={true} label="Settings" renderSubMenuItems={true}/>
-          <StartMenuItem mainStartMenu={true} label="Find" renderSubMenuItems={true}/>
-          <StartMenuItem mainStartMenu={true} label="Help"/>
-          <StartMenuItem mainStartMenu={true} label="Run..."/>
-          <Divider/>
-          <StartMenuItem mainStartMenu={true} label="Shut down..."/>
+          {generateMenuContent(items, true)}
         </Main>
       </Root>
     )

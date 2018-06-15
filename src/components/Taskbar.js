@@ -38,11 +38,15 @@ const Inner = styled.div`
 
 class Taskbar extends Component {
   render() {
-    const { onStartButtonClick, children } = this.props
+    const {
+      onStartButtonClick,
+      startMenuItems,
+      children,
+    } = this.props
 
     return (
       <Root className="reactows95-Taskbar">
-        <StartButton onClick={onStartButtonClick}/>
+        <StartButton startMenuItems={startMenuItems}/>
         <Inner>
           {children}
         </Inner>

@@ -17,6 +17,19 @@ import {
 
 import folderIcon from './icon-folder.png'
 
+
+const startMenuItems = [
+  { label: 'Programs' },
+  { label: 'Documents' },
+  { label: 'Settings' },
+  { label: 'Find' },
+  { label: 'Help' },
+  { label: 'Run...' },
+  'divider',
+  { label: 'Shut down...' },
+]
+
+
 storiesOf('Shell', module)
   .add('with a window', () => (
     <Shell>
@@ -37,7 +50,7 @@ storiesOf('Shell', module)
           </WordPad>
         </WindowLayer>
       </Desktop>
-      <Taskbar onStartButtonClick={action('start button clicked')}>
+      <Taskbar startMenuItems={startMenuItems}>
         <TaskbarItem title="A taskbar item" icon={folderIcon}/>
         <TaskbarItem title="Another taskbar item" icon={folderIcon}/>
         <TaskbarItem title="Long title on another taskbar item" icon={folderIcon}/>

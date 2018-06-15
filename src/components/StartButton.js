@@ -39,6 +39,7 @@ class StartButton extends Component {
   }
 
   render() {
+    const { startMenuItems } = this.props
     const { startMenuOpen } = this.state
 
     return <Root ref={el => this.root = el}>
@@ -60,7 +61,7 @@ class StartButton extends Component {
         rootCloseEvent="mousedown"
       >
         <div style={{position: 'absolute'}}>
-          <StartMenu/>
+          <StartMenu items={startMenuItems}/>
         </div>
       </Overlay>
     </Root>
