@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import RidgedBox from '../atoms/RidgedBox'
 import RidgedButton from '../atoms/RidgedButton'
 
-import { getIcon } from '../icons'
-
 import minimizeIcon from '../img/minimize.png'
 import maximizeIcon from '../img/maximize.png'
 import unmaximizeIcon from '../img/unmaximize.png'
@@ -236,7 +234,7 @@ class Window extends Component {
         {...otherProps}
       >
         <TitleBar hasFocus={hasFocus} onMouseDown={this.dragStart}>
-          {icon && <IconImage src={getIcon(icon, true)} draggable={false}/>}
+          {icon && <IconImage src={icon} draggable={false}/>}
 
           <TitleWrapper>{title}</TitleWrapper>
 

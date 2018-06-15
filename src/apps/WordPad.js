@@ -8,8 +8,6 @@ import LightlyInsetBox from '../atoms/LightlyInsetBox'
 import WindowToolbar, { Divider, Spacer, ToolbarButton } from '../components/WindowToolbar'
 import Select from '../atoms/Select'
 
-import { ICON_RICH_TEXT } from '../icons'
-
 const ContentRoot = RidgedBox.extend`
   flex: 1;
   display: flex;
@@ -146,7 +144,7 @@ class WordPad extends Component {
         title={windowTitle}
         initialGeometry={windowInitialGeometry}
         bottomAreaContent={bottomAreaContent}
-        icon={ICON_RICH_TEXT}>
+      >
         <WindowToolbar>
           {WordPad.getMenuItems()}
         </WindowToolbar>

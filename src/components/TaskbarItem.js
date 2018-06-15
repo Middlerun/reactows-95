@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import RidgedButton from '../atoms/RidgedButton'
-import { getIcon } from '../icons'
 
 const Root = RidgedButton.extend`
   justify-content: flex-start;
@@ -32,7 +31,7 @@ class TaskbarItem extends Component {
 
     return (
       <Root className="TaskbarItem">
-        {icon && <IconImage src={getIcon(icon, true)}/>}
+        {icon && <IconImage src={icon}/>}
         <Text>{title}</Text>
       </Root>
     )

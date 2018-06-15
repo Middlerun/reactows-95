@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import { getIcon } from '../icons'
+import defaultIcon from '../img/icon-default.png'
 
 const Root = styled.div`
   width: 75px;
@@ -101,7 +101,7 @@ class IconRegular extends Component {
       <Root className="reactows95-Icon reactows95-IconRegular">
         <ImageContainer>
           <IconImage
-            image={getIcon(icon)}
+            image={icon || defaultIcon}
             onClick={this.onClick}
             onFocus={this.onFocus}
             onBlur={this.onBlur}
