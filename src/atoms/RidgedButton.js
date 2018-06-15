@@ -55,4 +55,8 @@ export default GreyBox.extend`
     }
     background-image: url('${pressedBackground}');
   }
+  
+  ::-moz-focus-inner {
+    border: 0;
+  }
 `.withComponent('button')

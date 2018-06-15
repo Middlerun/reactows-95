@@ -72,10 +72,6 @@ const Root = styled.div`
     border-image: url('${borderImage}') 2;
   }
   
-  button::-moz-focus-inner {
-    border: 0;
-  }
-  
   *::selection {
     background-color: #000080;
     color: white;

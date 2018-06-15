@@ -44,6 +44,10 @@ const IconImage = styled.button`
       mask-size: 32px 32px;
     }
   }
+  
+  ::-moz-focus-inner {
+    border: 0;
+  }
 `
 
 const IconText = styled.div`
