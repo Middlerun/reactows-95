@@ -4,10 +4,10 @@ import styled from 'styled-components'
 import borderImage from '../img/border.png'
 import borderImageInset from '../img/border-inset.png'
 import scrollbarTrack from '../img/scrollbar-track.png'
-import scrollUp from '../img/scroll-up.png'
-import scrollDown from '../img/scroll-down.png'
-import scrollLeft from '../img/scroll-left.png'
-import scrollRight from '../img/scroll-right.png'
+import scrollUp from '../img/arrow-up.png'
+import scrollDown from '../img/arrow-down.png'
+import scrollLeft from '../img/arrow-left.png'
+import scrollRight from '../img/arrow-right.png'
 
 const Root = styled.div`
   position: absolute;

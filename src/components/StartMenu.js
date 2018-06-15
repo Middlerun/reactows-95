@@ -48,14 +48,14 @@ class StartMenu extends Component {
           </OSNameText>
         </LeftStripe>
         <Main>
-          <StartMenuItem>Programs</StartMenuItem>
-          <StartMenuItem>Documents</StartMenuItem>
-          <StartMenuItem>Settings</StartMenuItem>
-          <StartMenuItem>Find</StartMenuItem>
-          <StartMenuItem>Help</StartMenuItem>
-          <StartMenuItem>Run...</StartMenuItem>
+          <StartMenuItem mainStartMenu={true} label="Programs" renderSubMenuItems={true}/>
+          <StartMenuItem mainStartMenu={true} label="Documents" renderSubMenuItems={true}/>
+          <StartMenuItem mainStartMenu={true} label="Settings" renderSubMenuItems={true}/>
+          <StartMenuItem mainStartMenu={true} label="Find" renderSubMenuItems={true}/>
+          <StartMenuItem mainStartMenu={true} label="Help"/>
+          <StartMenuItem mainStartMenu={true} label="Run..."/>
           <Divider/>
-          <StartMenuItem>Shut down...</StartMenuItem>
+          <StartMenuItem mainStartMenu={true} label="Shut down..."/>
         </Main>
       </Root>
     )
