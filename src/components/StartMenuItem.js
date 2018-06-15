@@ -13,7 +13,7 @@ const Root = styled.div`
   white-space: nowrap;
   padding-right: 4px;
   
-  ${({hovered}) => hovered && `
+  ${({highlighted}) => highlighted && `
     background-color: #000080;
     color: white;
   `}
@@ -46,7 +46,7 @@ const Label = styled.div`
 `
 
 const SubMenuArrow = styled.img`
-  filter: ${({hovered}) => hovered ? 'invert(100%)' : 'none'};
+  filter: ${({highlighted}) => highlighted ? 'invert(100%)' : 'none'};
   margin-left: ${({mainStartMenu}) => mainStartMenu ? '20px' : '8px'};
 `
 
@@ -59,7 +59,7 @@ export const Divider = LightlyInsetBox.extend`
 class StartMenuItem extends Component {
   render() {
     const {
-      hovered,
+      highlighted,
       mainStartMenu,
       renderSubMenuItems,
       icon,
@@ -71,7 +71,7 @@ class StartMenuItem extends Component {
     return (
       <Root
         className="reactows95-StartMenuItem"
-        hovered={hovered}
+        highlighted={highlighted}
         mainStartMenu={mainStartMenu}
         onMouseEnter={onMouseEnter}
         onClick={onClick}
@@ -83,7 +83,7 @@ class StartMenuItem extends Component {
         {renderSubMenuItems && <SubMenuArrow
           src={arrow}
           mainStartMenu={mainStartMenu}
-          hovered={hovered}
+          highlighted={highlighted}
         />}
       </Root>
     )

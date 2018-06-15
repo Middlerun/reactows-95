@@ -35,26 +35,39 @@ const OSName2 = styled.span`
   color: white;
 `
 
-const Main = styled.div`
-  
-`
-
-function generateMenuContent(menuItems, mainStartMenu) {
-  return menuItems.map(item => {
+function generateMenuContent(menuItems, isMainStartMenu, menu, highlightedItemKey) {
+  return menuItems.map((item, i) => {
     if (item === 'divider') {
-      return <Divider/>
+      return <Divider key={i}/>
     } else if (!isObject(item)) {
       return null
     } else {
       const { label } = item
-      return <StartMenuItem mainStartMenu={mainStartMenu} label={label}/>
+      return <StartMenuItem
+        mainStartMenu={isMainStartMenu}
+        label={label}
+        key={i}
+        itemKey={i}
+        onMouseEnter={menu.onMouseEnterItem(i)}
+        highlighted={i === highlightedItemKey}
+      />
     }
   })
 }
 
 class StartMenu extends Component {
+  constructor() {
+    super()
+    this.state = { highlightedItemKey: null }
+  }
+
+  onMouseEnterItem = (itemKey) => () => {
+    this.setState({ highlightedItemKey: itemKey })
+  }
+
   render() {
     const { items } = this.props
+    const { highlightedItemKey } = this.state
     return (
       <Root className="reactows95-StartMenu">
         <LeftStripe>
@@ -62,9 +75,9 @@ class StartMenu extends Component {
             <OSName1>Reactows</OSName1><OSName2>95</OSName2>
           </OSNameText>
         </LeftStripe>
-        <Main>
-          {generateMenuContent(items, true)}
-        </Main>
+        <div>
+          {generateMenuContent(items, true, this, highlightedItemKey)}
+        </div>
       </Root>
     )
   }
