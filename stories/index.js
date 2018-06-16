@@ -17,16 +17,26 @@ import {
 
 import folderIcon from './icon-folder.png'
 
+function startMenuItemSelected(item) {
+  action(item.label + ' selected')()
+}
 
 const startMenuItems = [
-  { label: 'Programs' },
-  { label: 'Documents' },
-  { label: 'Settings' },
-  { label: 'Find' },
-  { label: 'Help' },
-  { label: 'Run...' },
+  { label: 'Programs', subMenuItems: [
+      { label: 'Program 1', onSelect: startMenuItemSelected },
+      { label: 'Program 2', onSelect: startMenuItemSelected },
+      { label: 'Program 3', subMenuItems: [
+          { label: 'herp', onSelect: startMenuItemSelected },
+          { label: 'derp', onSelect: startMenuItemSelected },
+        ] },
+    ] },
+  { label: 'Documents', onSelect: startMenuItemSelected },
+  { label: 'Settings', onSelect: startMenuItemSelected },
+  { label: 'Find', onSelect: startMenuItemSelected },
+  { label: 'Help', onSelect: startMenuItemSelected },
+  { label: 'Run...', onSelect: startMenuItemSelected },
   'divider',
-  { label: 'Shut down...' },
+  { label: 'Shut down...', onSelect: startMenuItemSelected },
 ]
 
 

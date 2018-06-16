@@ -38,6 +38,10 @@ class StartButton extends Component {
     }))
   }
 
+  closeStartMenu = () => {
+    this.setState({ startMenuOpen: false })
+  }
+
   render() {
     const { startMenuItems } = this.props
     const { startMenuOpen } = this.state
@@ -51,7 +55,7 @@ class StartButton extends Component {
         <span><LogoImage src={logo}/> Start</span>
       </StyledStartButton>
 
-      <Overlay
+      {startMenuOpen && <Overlay
         show={startMenuOpen}
         onHide={this.toggleStartMenuOpen}
         placement="top"
@@ -61,9 +65,9 @@ class StartButton extends Component {
         rootCloseEvent="mousedown"
       >
         <div style={{position: 'absolute'}}>
-          <StartMenu items={startMenuItems}/>
+          <StartMenu items={startMenuItems} onItemSelected={this.closeStartMenu}/>
         </div>
-      </Overlay>
+      </Overlay>}
     </Root>
   }
 }
