@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { findDOMNode } from 'react-dom'
 import styled from 'styled-components'
-import { Overlay } from 'react-overlays'
+import { RootCloseWrapper } from 'react-overlays'
 
 import StartMenu from './StartMenu'
+import MenuOverlay from './MenuOverlay'
 
 import RidgedButton from '../atoms/RidgedButton'
 
@@ -46,29 +46,26 @@ class StartButton extends Component {
     const { startMenuItems } = this.props
     const { startMenuOpen } = this.state
 
-    return <Root ref={el => this.root = el}>
-      <StyledStartButton
-        className="reactows95-StartButton"
-        onClick={this.toggleStartMenuOpen}
-        pressed={startMenuOpen}
-      >
-        <span><LogoImage src={logo}/> Start</span>
-      </StyledStartButton>
+    return <RootCloseWrapper onRootClose={this.closeStartMenu} event="mousedown">
+      <Root ref={el => this.root = el}>
+        <StyledStartButton
+          className="reactows95-StartButton"
+          onClick={this.toggleStartMenuOpen}
+          pressed={startMenuOpen}
+        >
+          <span><LogoImage src={logo}/> Start</span>
+        </StyledStartButton>
 
-      {startMenuOpen && <Overlay
-        show={startMenuOpen}
-        onHide={this.toggleStartMenuOpen}
-        placement="top"
-        container={this}
-        target={props => findDOMNode(this.root)}
-        rootClose
-        rootCloseEvent="mousedown"
-      >
-        <div style={{position: 'absolute'}}>
+        {startMenuOpen && <MenuOverlay
+          show={startMenuOpen}
+          placement="top"
+          alignEdge="left"
+          container={this}
+        >
           <StartMenu items={startMenuItems} onItemSelected={this.closeStartMenu}/>
-        </div>
-      </Overlay>}
-    </Root>
+        </MenuOverlay>}
+      </Root>
+    </RootCloseWrapper>
   }
 }
 

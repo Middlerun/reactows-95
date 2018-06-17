@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { findDOMNode } from 'react-dom'
 import styled from 'styled-components'
-import { Overlay } from 'react-overlays'
 
 import StartMenu from './StartMenu'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
+import MenuOverlay from './MenuOverlay'
 
 import arrow from '../img/arrow-right.png'
 import defaultIcon from '../img/icon-default.png'
@@ -44,6 +43,7 @@ const Label = styled.div`
   flex: 1;
   max-width: 250px;
   margin-left: 3px;
+  margin-right: 3px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -55,7 +55,7 @@ const Label = styled.div`
 
 const SubMenuArrow = styled.img`
   filter: ${({highlighted}) => highlighted ? 'invert(100%)' : 'none'};
-  margin-left: ${({mainStartMenu}) => mainStartMenu ? '20px' : '8px'};
+  margin-left: ${({mainStartMenu}) => mainStartMenu ? '20px' : '5px'};
 `
 
 export const Divider = LightlyInsetBox.extend`
@@ -65,22 +65,43 @@ export const Divider = LightlyInsetBox.extend`
 `.withComponent('hr')
 
 class StartMenuItem extends Component {
-  onMouseEnter = (e) => {
-    const { onMouseEnter, onLinger } = this.props
-    onMouseEnter && onMouseEnter(e)
+  componentDidMount() {
+    if (this.props.highlighted) {
+      this.onGainHighlight()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.highlighted && this.props.highlighted) {
+      this.onGainHighlight()
+    } else if (prevProps.highlighted && !this.props.highlighted) {
+      this.onLoseHighlight()
+    }
+  }
+
+  onGainHighlight() {
+    const { onLinger } = this.props
     this.lingerTimeout = setTimeout(() => {
-      onLinger && onLinger(e)
+      onLinger && onLinger()
       delete this.lingerTimeout
     }, 500)
+  }
+
+  onLoseHighlight() {
+    if (this.lingerTimeout) {
+      clearTimeout(this.lingerTimeout)
+      delete this.lingerTimeout
+    }
+  }
+
+  onMouseEnter = (e) => {
+    const { onMouseEnter } = this.props
+    onMouseEnter && onMouseEnter(e)
   }
 
   onMouseLeave = (e) => {
     const { onMouseLeave } = this.props
     onMouseLeave && onMouseLeave(e)
-    if (this.lingerTimeout) {
-      clearTimeout(this.lingerTimeout)
-      delete this.lingerTimeout
-    }
   }
 
   onClick = (e) => {
@@ -134,22 +155,20 @@ class StartMenuItem extends Component {
           highlighted={highlighted}
         />}
 
-        {subMenuItems && <Overlay
+        {subMenuItems && <MenuOverlay
           show={subMenuOpen}
           placement="right"
+          placementOffset={-2}
+          alignEdge="top"
+          alignOffset={-3}
           container={this}
-          target={props => findDOMNode(this.root)}
-          rootClose
-          rootCloseEvent="mousedown"
         >
-          <div style={{position: 'absolute'}}>
-            <StartMenu
-              items={subMenuItems}
-              isSubMenu={true}
-              onItemSelected={onItemSelected}
-            />
-          </div>
-        </Overlay>}
+          <StartMenu
+            items={subMenuItems}
+            isSubMenu={true}
+            onItemSelected={onItemSelected}
+          />
+        </MenuOverlay>}
       </Root>
     )
   }
