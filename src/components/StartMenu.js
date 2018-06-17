@@ -24,6 +24,7 @@ const OSNameText = styled.div`
   transform: rotate(-90deg);
   transform-origin: 8px 8px;
   font-size: 20px;
+  line-height: 22px;
 `
 
 const OSName1 = styled.span`
