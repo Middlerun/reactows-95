@@ -144,7 +144,7 @@ class StartMenuItem extends Component {
         }}
       >
         <IconContainer mainStartMenu={mainStartMenu}>
-          <IconImage src={icon || defaultIcon}/>
+          <IconImage src={icon || defaultIcon} draggable={false}/>
         </IconContainer>
 
         <Label highlighted={highlighted}>{label}</Label>

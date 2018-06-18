@@ -31,7 +31,7 @@ class TaskbarItem extends Component {
 
     return (
       <Root className="TaskbarItem">
-        {icon && <IconImage src={icon}/>}
+        {icon && <IconImage src={icon} draggable={false}/>}
         <Text>{title}</Text>
       </Root>
     )

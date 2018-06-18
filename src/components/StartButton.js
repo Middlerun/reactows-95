@@ -53,7 +53,9 @@ class StartButton extends Component {
           onClick={this.toggleStartMenuOpen}
           pressed={startMenuOpen}
         >
-          <span><LogoImage src={logo}/> Start</span>
+          <span>
+            <LogoImage src={logo} draggable={false}/> Start
+          </span>
         </StyledStartButton>
 
         {startMenuOpen && <MenuOverlay
