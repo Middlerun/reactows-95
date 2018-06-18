@@ -9,8 +9,8 @@ Not yet available via NPM as it is in very early development.
 To try it out using [Storybook](https://storybook.js.org/):
 
 ```
-git clone https://github.com/Middlerun/react-win95.git
-cd react-win95
+git clone https://github.com/Middlerun/reactows-95.git
+cd reactows-95
 yarn install
 yarn storybook
 ```
@@ -19,7 +19,6 @@ yarn storybook
 
 - More window types
 - State container for window management
-- Start menu
 - Documentation of components and their props
 - Use TypeScript?
 

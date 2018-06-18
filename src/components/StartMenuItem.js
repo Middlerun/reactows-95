@@ -11,7 +11,7 @@ import defaultIcon from '../img/icon-default.png'
 const Root = styled.div`
   position: relative;
   width: 100%;
-  height: ${({mainStartMenu}) => mainStartMenu ? '36px' : '20px'};
+  height: ${({mainStartMenu}) => mainStartMenu ? '32px' : '20px'};
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -23,8 +23,8 @@ const Root = styled.div`
 `
 
 const IconContainer = styled.div`
-  width: ${({mainStartMenu}) => mainStartMenu ? '32px' : '16px'};
-  height: ${({mainStartMenu}) => mainStartMenu ? '32px' : '16px'};
+  width: ${({mainStartMenu}) => mainStartMenu ? '24px' : '16px'};
+  height: ${({mainStartMenu}) => mainStartMenu ? '24px' : '16px'};
   display: flex;
   align-items: center;
   justify-content: center;
