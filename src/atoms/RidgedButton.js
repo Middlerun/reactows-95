@@ -53,7 +53,6 @@ export default GreyBox.extend`
     > * {
       transform: translate(0, 1px);
     }
-    background-image: url('${pressedBackground}');
   }
   
   ::-moz-focus-inner {
