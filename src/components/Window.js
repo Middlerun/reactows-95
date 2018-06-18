@@ -9,7 +9,7 @@ import maximizeIcon from '../img/maximize.png'
 import unmaximizeIcon from '../img/unmaximize.png'
 import closeIcon from '../img/close.png'
 import resizeHandleImage from '../img/resize-handle.png'
-import resizeSW from '../img/resize-sw.png'
+import resizeSW from '../img/resize-se.png'
 
 const LEFT_MOUSE_BUTTON = 0
 const MIN_WIDTH = 200

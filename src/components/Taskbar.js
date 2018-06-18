@@ -39,7 +39,6 @@ const Inner = styled.div`
 class Taskbar extends Component {
   render() {
     const {
-      onStartButtonClick,
       startMenuItems,
       children,
     } = this.props
