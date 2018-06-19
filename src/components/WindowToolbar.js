@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
 import RidgedButton from '../atoms/RidgedButton'
@@ -7,7 +7,7 @@ export default styled.div`
   margin-bottom: 3px;
   padding-left: 4px;
   
-  ${({noWrap}) => noWrap && `
+  ${({noWrap}) => noWrap && css`
     overflow: hidden;
     white-space: nowrap;
   `}

@@ -35,6 +35,10 @@ const Label = styled.div`
   ${({ highlighted }) => highlighted && css`
     color: white;
   `}
+  
+  ${({ disabled }) => disabled && css`
+    color: #808080;
+  `}
 `
 
 const SubMenuArrow = styled.img`
@@ -79,17 +83,15 @@ class WindowMenuItem extends Component {
   }
 
   onMouseEnter = (e) => {
-    const { onMouseEnter } = this.props
-    onMouseEnter && onMouseEnter(e)
-  }
-
-  onMouseLeave = (e) => {
-    const { onMouseLeave } = this.props
-    onMouseLeave && onMouseLeave(e)
+    const { onMouseEnter, disabled } = this.props
+    !disabled && onMouseEnter && onMouseEnter(e)
   }
 
   onClick = (e) => {
-    const { items, onClick, onLinger, onSelect } = this.props
+    const { items, onClick, onLinger, onSelect, disabled } = this.props
+    if (disabled) {
+      return
+    }
     onClick && onClick(e)
     onLinger && onLinger(e)
     !items && onSelect && onSelect()
@@ -110,13 +112,13 @@ class WindowMenuItem extends Component {
       label,
       underline,
       onItemSelected,
+      disabled,
     } = this.props
 
     return (
       <Root
         highlighted={highlighted}
         onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
         ref={el => {
           if (el) {
@@ -124,7 +126,7 @@ class WindowMenuItem extends Component {
           }
         }}
       >
-        <Label highlighted={highlighted}>
+        <Label highlighted={highlighted} disabled={disabled}>
           {underlinedLabel(label, underline)}
           </Label>
 

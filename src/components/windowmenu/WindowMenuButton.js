@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import styled, { css } from 'styled-components'
-import { RootCloseWrapper } from 'react-overlays'
 
 import WindowMenu from './WindowMenu'
 import MenuOverlay from '../MenuOverlay'
@@ -38,44 +37,27 @@ const StyledWindowMenuButton = styled.button`
 `
 
 class WindowMenuButton extends Component {
-  constructor() {
-    super()
-    this.state = { windowMenuOpen: false }
-  }
-
-  toggleWindowMenuOpen = () => {
-    this.setState(state => ({
-      windowMenuOpen: !state.windowMenuOpen,
-    }))
-  }
-
-  closeWindowMenu = () => {
-    this.setState({ windowMenuOpen: false })
-  }
-
   render() {
-    const { label, underline, items } = this.props
-    const { windowMenuOpen } = this.state
+    const { label, underline, items, menuOpen, onMouseEnterButton, onItemSelected, onClick } = this.props
 
-    return <RootCloseWrapper onRootClose={this.closeWindowMenu} event="mousedown">
-      <Root ref={el => this.root = el}>
+    return <Root ref={el => this.root = el}>
         <StyledWindowMenuButton
-          onClick={this.toggleWindowMenuOpen}
-          pressed={windowMenuOpen}
+          onClick={onClick}
+          onMouseEnter={onMouseEnterButton}
+          pressed={menuOpen}
         >
           {underlinedLabel(label, underline)}
         </StyledWindowMenuButton>
 
-        {windowMenuOpen && <MenuOverlay
-          show={windowMenuOpen}
+        {menuOpen && <MenuOverlay
+          show={menuOpen}
           placement="bottom"
           alignEdge="left"
           container={this}
         >
-          <WindowMenu items={items} onItemSelected={this.closeWindowMenu}/>
+          <WindowMenu items={items} onItemSelected={onItemSelected}/>
         </MenuOverlay>}
       </Root>
-    </RootCloseWrapper>
   }
 }
 

@@ -213,7 +213,7 @@ class Window extends Component {
       title,
       icon,
       hasFocus,
-      onClose,
+      onRequestClose,
       bottomAreaContent,
       children,
       ...otherProps
@@ -253,7 +253,7 @@ class Window extends Component {
           </WindowButton>}
 
           <WindowButton
-            onClick={onClose}
+            onClick={onRequestClose}
             data-button={true}
             leftMargin
           >

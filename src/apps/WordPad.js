@@ -99,6 +99,7 @@ class WordPad extends Component {
   }
 
   getMenus() {
+    const { onRequestClose } = this.props
     return [
       { label: 'File', underline: 0, items: [
           { label: 'New...', underline: 0, disabled: true },
@@ -112,7 +113,7 @@ class WordPad extends Component {
           'divider',
           { label: 'Recent File', disabled: true },
           'divider',
-          { label: 'Exit', underline: 1 },
+          { label: 'Exit', underline: 1, onSelect: onRequestClose },
         ] },
       { label: 'Edit', underline: 0, items: [
           { label: 'Undo', underline: 0, disabled: true },

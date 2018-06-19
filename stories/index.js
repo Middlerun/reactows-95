@@ -50,10 +50,10 @@ storiesOf('Shell', module)
           <IconRegular label="A third icon" onDoubleClick={action('icon double clicked')}/>
         </IconArea>
         <WindowLayer>
-          <Folder icon={folderIcon} title="A window" hasFocus onMouseDown={action('folder mouse down')}>
+          <Folder icon={folderIcon} title="A window" hasFocus>
             {(new Array(30)).fill(1).map((val, i) => <IconRegular label="And YOU get an icon!" key={i}/>)}
           </Folder>
-          <WordPad icon={defaultIcon} hasFocus onMouseDown={action('WordPad mouse down')}>
+          <WordPad icon={defaultIcon} hasFocus onRequestClose={action('tried to close wordpad')}>
             <h1>Content!</h1>
             <p>Here's some content. Here's some content. Here's some content. Here's some content. Here's some content. Here's some content.</p>
             <img src="http://lorempixel.com/400/300/cats/" alt="Obligatory cat photo"/>

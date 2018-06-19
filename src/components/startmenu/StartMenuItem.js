@@ -99,11 +99,6 @@ class StartMenuItem extends Component {
     onMouseEnter && onMouseEnter(e)
   }
 
-  onMouseLeave = (e) => {
-    const { onMouseLeave } = this.props
-    onMouseLeave && onMouseLeave(e)
-  }
-
   onClick = (e) => {
     const { subMenuItems, onClick, onLinger, onSelect } = this.props
     onClick && onClick(e)
@@ -135,7 +130,6 @@ class StartMenuItem extends Component {
         highlighted={highlighted}
         mainStartMenu={mainStartMenu}
         onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
         ref={el => {
           if (el) {
