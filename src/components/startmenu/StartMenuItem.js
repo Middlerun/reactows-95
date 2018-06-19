@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import StartMenu from './StartMenu'
-import LightlyInsetBox from '../atoms/LightlyInsetBox'
-import MenuOverlay from './MenuOverlay'
+import LightlyInsetBox from '../../atoms/LightlyInsetBox'
+import MenuOverlay from '../MenuOverlay'
 
-import arrow from '../img/arrow-right.png'
-import defaultIcon from '../img/icon-default.png'
+import arrow from '../../img/arrow-right.png'
+import defaultIcon from '../../img/icon-default.png'
 
 const Root = styled.div`
   position: relative;

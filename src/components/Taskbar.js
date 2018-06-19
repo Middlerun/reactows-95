@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import GreyBox from '../atoms/GreyBox'
-import StartButton from './StartButton'
+import StartButton from './startmenu/StartButton'
 import SystemTray from './SystemTray'
 
 import borderImage from '../img/border.png'

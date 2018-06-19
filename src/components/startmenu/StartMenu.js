@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import RidgedBox from '../atoms/RidgedBox'
+import RidgedBox from '../../atoms/RidgedBox'
 import StartMenuItem, { Divider } from './StartMenuItem'
-import isObject from '../util/isObject'
+import isObject from '../../util/isObject'
 
 const Root = RidgedBox.extend`
   display: flex;
@@ -35,33 +35,6 @@ const OSName1 = styled.span`
 const OSName2 = styled.span`
   color: white;
 `
-
-function generateMenuContent(menuItems, isMainStartMenu, menu, highlightedItemKey, openedSubMenuItemKey) {
-  if (!Array.isArray(menuItems)) {
-    return null
-  }
-  return menuItems.map((item, i) => {
-    if (item === 'divider') {
-      return <Divider key={i}/>
-    } else if (!isObject(item)) {
-      return null
-    } else {
-      const { icon, label, subMenuItems } = item
-      return <StartMenuItem
-        mainStartMenu={isMainStartMenu}
-        icon={icon}
-        label={label}
-        subMenuItems={subMenuItems}
-        key={i}
-        itemKey={i}
-        onMouseEnter={menu.onMouseEnterItem(i)}
-        onClick={menu.onClickItem(i)}
-        highlighted={i === highlightedItemKey}
-        subMenuOpen={i === openedSubMenuItemKey}
-      />
-    }
-  })
-}
 
 class StartMenu extends Component {
   constructor() {

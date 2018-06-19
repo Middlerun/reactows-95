@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { RootCloseWrapper } from 'react-overlays'
 
 import StartMenu from './StartMenu'
-import MenuOverlay from './MenuOverlay'
+import MenuOverlay from '../MenuOverlay'
 
-import RidgedButton from '../atoms/RidgedButton'
+import RidgedButton from '../../atoms/RidgedButton'
 
-import logo from '../img/logo-small.png'
+import logo from '../../img/logo-small.png'
 
 const Root = styled.div`
   position: relative;
