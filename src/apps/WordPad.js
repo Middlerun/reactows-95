@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 
 import Window from '../components/Window'
-import WindowMenuItem from '../components/WindowMenuItem'
+import WindowMenuGroup from '../components/windowmenu/WindowMenuGroup'
 import RidgedBox from '../atoms/RidgedBox'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
 import WindowToolbar, { Divider, Spacer, ToolbarButton } from '../components/WindowToolbar'
@@ -98,15 +98,63 @@ class WordPad extends Component {
     }))
   }
 
-  static getMenuItems() {
-    return <Fragment>
-      <WindowMenuItem label="File" underline={0}/>
-      <WindowMenuItem label="Edit" underline={0}/>
-      <WindowMenuItem label="View" underline={0}/>
-      <WindowMenuItem label="Insert" underline={0}/>
-      <WindowMenuItem label="Format" underline={1}/>
-      <WindowMenuItem label="Help" underline={0}/>
-    </Fragment>
+  getMenus() {
+    return [
+      { label: 'File', underline: 0, items: [
+          { label: 'New...', underline: 0, disabled: true },
+          { label: 'Open...', underline: 0, disabled: true },
+          { label: 'Save', underline: 0, disabled: true },
+          { label: 'Save As...', underline: 5, disabled: true },
+          'divider',
+          { label: 'Print...', underline: 0, disabled: true },
+          { label: 'Print Preview', underline: 9, disabled: true },
+          { label: 'Page Setup', underline: 9, disabled: true },
+          'divider',
+          { label: 'Recent File', disabled: true },
+          'divider',
+          { label: 'Exit', underline: 1 },
+        ] },
+      { label: 'Edit', underline: 0, items: [
+          { label: 'Undo', underline: 0, disabled: true },
+          'divider',
+          { label: 'Cut', underline: 2, disabled: true },
+          { label: 'Copy', underline: 0, disabled: true },
+          { label: 'Paste', underline: 0, disabled: true },
+          { label: 'Paste Special...', underline: 6, disabled: true },
+          { label: 'Clear', underline: 3, disabled: true },
+          { label: 'Select All', underline: 8, disabled: true },
+          'divider',
+          { label: 'Find...', underline: 0, disabled: true },
+          { label: 'Find Next', underline: 5, disabled: true },
+          { label: 'Replace...', underline: 1, disabled: true },
+          'divider',
+          { label: 'Links...', underline: 3, disabled: true },
+          { label: 'Object Properties', underline: 8, disabled: true },
+          { label: 'Object', underline: 0, disabled: true },
+        ] },
+      { label: 'View', underline: 0, items: [
+          { label: 'Toolbar', underline: 0, disabled: true },
+          { label: 'Format Bar', underline: 0, disabled: true },
+          { label: 'Ruler', underline: 0, disabled: true },
+          { label: 'Status Bar', underline: 0, disabled: true },
+          'divider',
+          { label: 'Options...', underline: 0, disabled: true },
+        ] },
+      { label: 'Insert', underline: 0, items: [
+          { label: 'Date and Time...', underline: 0, disabled: true },
+          { label: 'Object...', underline: 0, disabled: true },
+        ] },
+      { label: 'Format', underline: 1, items: [
+          { label: 'Font...', underline: 0, disabled: true },
+          { label: 'Bullet Style', underline: 0, disabled: true },
+          { label: 'Paragraph...', underline: 0, disabled: true },
+          { label: 'Tabs...', underline: 0, disabled: true },
+        ] },
+      { label: 'Help', underline: 0, items: [
+          { label: 'Help Topics', underline: 0, disabled: true },
+          { label: 'About WordPad', underline: 0, disabled: true },
+        ] },
+    ]
   }
 
   render() {
@@ -145,9 +193,7 @@ class WordPad extends Component {
         initialGeometry={windowInitialGeometry}
         bottomAreaContent={bottomAreaContent}
       >
-        <WindowToolbar>
-          {WordPad.getMenuItems()}
-        </WindowToolbar>
+        <WindowMenuGroup menus={this.getMenus()}/>
 
         <Divider/>
 

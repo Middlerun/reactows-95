@@ -9,6 +9,7 @@ const Root = styled.div`
   ${({positioning}) => positioning.hasOwnProperty('bottom') && `bottom: ${positioning.bottom}px;`}
   ${({positioning}) => positioning.hasOwnProperty('left') && `left: ${positioning.left}px;`}
   ${({positioning}) => positioning.hasOwnProperty('right') && `right: ${positioning.right}px;`}
+  z-index: 1;
 `
 
 class MenuOverlay extends Component {
