@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import styled from 'styled-components'
 import { RootCloseWrapper } from 'react-overlays'
@@ -101,6 +102,17 @@ class MenuOverlay extends Component {
 
     return child
   }
+}
+
+MenuOverlay.propTypes = {
+  placement: PropTypes.oneOf(['top', 'bottom', 'left', 'right']).isRequired,
+  placementOffset: PropTypes.number,
+  alignEdge: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
+  alignOffset: PropTypes.number,
+  show: PropTypes.bool,
+  rootClose: PropTypes.bool,
+  rootCloseEvent: PropTypes.oneOf(['click', 'mousedown']),
+  onHide: PropTypes.func,
 }
 
 export default MenuOverlay

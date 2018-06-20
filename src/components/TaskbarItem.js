@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import RidgedButton from '../atoms/RidgedButton'
@@ -25,17 +26,22 @@ const Text = styled.span`
 class TaskbarItem extends Component {
   render() {
     const {
-      title,
+      label,
       icon,
     } = this.props
 
     return (
       <Root className="TaskbarItem">
         {icon && <IconImage src={icon} draggable={false}/>}
-        <Text>{title}</Text>
+        <Text>{label}</Text>
       </Root>
     )
   }
+}
+
+TaskbarItem.propTypes = {
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.string,
 }
 
 export default TaskbarItem

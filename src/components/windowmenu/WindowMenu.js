@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import RidgedBox from '../../atoms/RidgedBox'
 import WindowMenuItem, { Divider } from './WindowMenuItem'
@@ -69,6 +70,14 @@ class WindowMenu extends Component {
       </Root>
     )
   }
+}
+
+WindowMenu.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+  ])),
+  onItemSelected: PropTypes.func,
 }
 
 export default WindowMenu

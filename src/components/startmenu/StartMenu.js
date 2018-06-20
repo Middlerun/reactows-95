@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import RidgedBox from '../../atoms/RidgedBox'
@@ -103,6 +104,15 @@ class StartMenu extends Component {
       </Root>
     )
   }
+}
+
+StartMenu.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+  ])),
+  isSubMenu: PropTypes.bool,
+  onItemSelected: PropTypes.func,
 }
 
 export default StartMenu

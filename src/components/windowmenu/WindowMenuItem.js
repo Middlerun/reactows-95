@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import WindowMenu from './WindowMenu'
@@ -88,11 +89,10 @@ class WindowMenuItem extends Component {
   }
 
   onClick = (e) => {
-    const { items, onClick, onLinger, onSelect, disabled } = this.props
+    const { items, onLinger, onSelect, disabled } = this.props
     if (disabled) {
       return
     }
-    onClick && onClick(e)
     onLinger && onLinger(e)
     !items && onSelect && onSelect()
   }
@@ -152,6 +152,19 @@ class WindowMenuItem extends Component {
       </Root>
     )
   }
+}
+
+WindowMenuItem.propTypes = {
+  highlighted: PropTypes.bool,
+  items: PropTypes.array,
+  subMenuOpen: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  underline: PropTypes.number,
+  disabled: PropTypes.bool,
+  onItemSelected: PropTypes.func,
+  onLinger: PropTypes.func,
+  onSelect: PropTypes.func,
+  onMouseEnter: PropTypes.func,
 }
 
 export default WindowMenuItem

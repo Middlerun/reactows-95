@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import defaultIcon from '../img/icon-default.png'
@@ -124,6 +125,15 @@ class IconRegular extends Component {
       </Root>
     )
   }
+}
+
+IconRegular.propTypes = {
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+  onClick: PropTypes.func,
+  onDoubleClick: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 }
 
 export default IconRegular

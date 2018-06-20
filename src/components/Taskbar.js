@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import GreyBox from '../atoms/GreyBox'
@@ -53,6 +54,10 @@ class Taskbar extends Component {
       </Root>
     )
   }
+}
+
+Taskbar.propTypes = {
+  startMenuItems: PropTypes.array,
 }
 
 export default Taskbar

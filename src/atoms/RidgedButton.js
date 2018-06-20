@@ -1,11 +1,12 @@
 import GreyBox from './GreyBox'
+import PropTypes from 'prop-types'
 
 import borderImage from '../img/border-button.png'
 import borderImageStrong from '../img/border-strong.png'
 import borderImageInset from '../img/border-button-inset.png'
 import pressedBackground from '../img/scrollbar-track.png'
 
-export default GreyBox.extend`
+const RidgedButton = GreyBox.extend`
   display: flex;
   align-items: center;
   color: black;
@@ -59,3 +60,14 @@ export default GreyBox.extend`
     border: 0;
   }
 `.withComponent('button')
+
+RidgedButton.propTypes = {
+  bold: PropTypes.bool,
+  italic: PropTypes.bool,
+  underline: PropTypes.bool,
+  inset: PropTypes.bool,
+  strongBorder: PropTypes.bool,
+  pressed: PropTypes.bool,
+}
+
+export default RidgedButton

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import RidgedBox from '../atoms/RidgedBox'
@@ -276,6 +277,22 @@ class Window extends Component {
       </Root>
     )
   }
+}
+
+Window.propTypes = {
+  initialGeometry: PropTypes.shape({
+    left: PropTypes.number,
+    top: PropTypes.number,
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }),
+  startMaximized: PropTypes.bool,
+  resizable: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+  hasFocus: PropTypes.bool,
+  bottomAreaContent: PropTypes.node,
+  onRequestClose: PropTypes.func,
 }
 
 export default Window

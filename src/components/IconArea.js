@@ -1,6 +1,7 @@
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-export default styled.div`
+const IconArea = styled.div`
   width: 100%;
   max-height: 100%;
   flex: 1;
@@ -17,3 +18,10 @@ export default styled.div`
     `};
   }
 `
+
+IconArea.propTypes = {
+  desktop: PropTypes.bool,
+  iconTextColor: PropTypes.string,
+}
+
+export default IconArea

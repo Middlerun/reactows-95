@@ -1,4 +1,5 @@
 import GreyBox from './GreyBox'
+import PropTypes from 'prop-types'
 
 import borderImage from '../img/border.png'
 import borderImageStrong from '../img/border-strong.png'
@@ -18,11 +19,17 @@ function selectBorderWidth({inset, strongBorder}) {
   return !inset && strongBorder ? 3 : 2
 }
 
-export default GreyBox.extend`
+const RidgedBox = GreyBox.extend`
   border-width: 2px;
   border-style: solid;
   border-image: url('${selectBorderImage}') ${selectBorderWidth};
 `
 
+RidgedBox.propTypes = {
+  inset: PropTypes.bool,
+  strongBorder: PropTypes.bool,
+}
+
 export { borderImage }
 export { borderImageInset }
+export default RidgedBox

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import StartMenu from './StartMenu'
@@ -55,7 +56,7 @@ const Label = styled.div`
 
 const SubMenuArrow = styled.img`
   filter: ${({highlighted}) => highlighted ? 'invert(100%)' : 'none'};
-  margin-left: ${({mainStartMenu}) => mainStartMenu ? '20px' : '5px'};
+  margin-left: ${({mainStartMenu}) => mainStartMenu ? '26px' : '5px'};
 `
 
 export const Divider = LightlyInsetBox.extend`
@@ -100,8 +101,7 @@ class StartMenuItem extends Component {
   }
 
   onClick = (e) => {
-    const { subMenuItems, onClick, onLinger, onSelect } = this.props
-    onClick && onClick(e)
+    const { subMenuItems, onLinger, onSelect } = this.props
     onLinger && onLinger(e)
     !subMenuItems && onSelect && onSelect()
   }
@@ -166,6 +166,18 @@ class StartMenuItem extends Component {
       </Root>
     )
   }
+}
+
+StartMenuItem.propTypes = {
+  highlighted: PropTypes.bool,
+  mainStartMenu: PropTypes.bool,
+  subMenuItems: PropTypes.array,
+  subMenuOpen: PropTypes.bool,
+  icon: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  onItemSelected: PropTypes.func,
+  onLinger: PropTypes.func,
+  onSelect: PropTypes.func,
 }
 
 export default StartMenuItem

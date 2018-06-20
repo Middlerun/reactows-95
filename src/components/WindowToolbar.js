@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components'
+import PropTypes from 'prop-types'
 
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
 import RidgedButton from '../atoms/RidgedButton'
 
-export default styled.div`
+const WindowToolbar = styled.div`
   margin-bottom: 3px;
-  padding-left: 4px;
+  padding-left: ${({noLeftPad}) => noLeftPad ? '0' : '6px'};
   
   ${({noWrap}) => noWrap && css`
     overflow: hidden;
@@ -17,7 +18,7 @@ export default styled.div`
   }
 `
 
-export const Divider = LightlyInsetBox.extend`
+const Divider = LightlyInsetBox.extend`
   width: 100%;
   height: 2px;
   margin: 0;
@@ -25,12 +26,12 @@ export const Divider = LightlyInsetBox.extend`
   border-width: 1px 0;
 `.withComponent('hr')
 
-export const Spacer = styled.div`
+const Spacer = styled.div`
   display: inline-block;
   width: 8px;
 `
 
-export const ToolbarButton = RidgedButton.extend`
+const ToolbarButton = RidgedButton.extend`
   width: 23px;
   height: 22px;
   display: inline-flex;
@@ -40,3 +41,15 @@ export const ToolbarButton = RidgedButton.extend`
   font-size: 14px;
   ${({serif}) => serif && `font-family: 'Times New Roman', serif;`}
 `
+
+WindowToolbar.propTypes = {
+  noWrap: PropTypes.bool,
+  noLeftPad: PropTypes.bool,
+}
+
+ToolbarButton.propTypes = {
+  serif: PropTypes.bool,
+}
+
+export default WindowToolbar
+export { ToolbarButton, Spacer, Divider }

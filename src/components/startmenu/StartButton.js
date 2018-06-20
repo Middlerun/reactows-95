@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { RootCloseWrapper } from 'react-overlays'
 
@@ -69,6 +70,10 @@ class StartButton extends Component {
       </Root>
     </RootCloseWrapper>
   }
+}
+
+StartButton.propTypes = {
+  startMenuItems: PropTypes.array,
 }
 
 export default StartButton

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { RootCloseWrapper } from 'react-overlays'
 
 import WindowToolbar from '../WindowToolbar'
@@ -33,7 +34,7 @@ class WindowMenuGroup extends Component {
 
     return (
       <RootCloseWrapper onRootClose={this.closeWindowMenu} event="mousedown">
-        <WindowToolbar>
+        <WindowToolbar noLeftPad>
           {menus.map(({label, items, underline}, i) => <WindowMenuButton
             {...{label, items, underline}}
             key={i}
@@ -47,6 +48,10 @@ class WindowMenuGroup extends Component {
       </RootCloseWrapper>
     )
   }
+}
+
+WindowMenuGroup.propTypes = {
+  menus: PropTypes.array,
 }
 
 export default WindowMenuGroup

@@ -1,9 +1,10 @@
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import dropdownImage from '../img/dropdown.png'
 import borderImageInset from '../img/border-inset.png'
 
-export default styled.select`
+const Select = styled.select`
   height: 21px;
   border-width: 2px;
   border-style: solid;
@@ -32,3 +33,9 @@ export default styled.select`
     text-shadow: 0 0 0 #000;
   }
 `
+
+Select.propTypes = {
+  width: PropTypes.string,
+}
+
+export default Select

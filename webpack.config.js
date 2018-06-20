@@ -48,6 +48,7 @@ module.exports = {
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
       'react-overlays': path.resolve(__dirname, './node_modules/react-overlays'),
       'styled-components': path.resolve(__dirname, './node_modules/styled-components'),
+      'prop-types': path.resolve(__dirname, './node_modules/prop-types'),
       'assets': path.resolve(__dirname, 'assets'),
     },
   },
@@ -66,5 +67,6 @@ module.exports = {
     },
     "react-overlays": "react-overlays",
     "styled-components": "styled-components",
+    "prop-types": "prop-types",
   },
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import WindowMenu from './WindowMenu'
@@ -41,24 +42,34 @@ class WindowMenuButton extends Component {
     const { label, underline, items, menuOpen, onMouseEnterButton, onItemSelected, onClick } = this.props
 
     return <Root ref={el => this.root = el}>
-        <StyledWindowMenuButton
-          onClick={onClick}
-          onMouseEnter={onMouseEnterButton}
-          pressed={menuOpen}
-        >
-          {underlinedLabel(label, underline)}
-        </StyledWindowMenuButton>
+      <StyledWindowMenuButton
+        onClick={onClick}
+        onMouseEnter={onMouseEnterButton}
+        pressed={menuOpen}
+      >
+        {underlinedLabel(label, underline)}
+      </StyledWindowMenuButton>
 
-        {menuOpen && <MenuOverlay
-          show={menuOpen}
-          placement="bottom"
-          alignEdge="left"
-          container={this}
-        >
-          <WindowMenu items={items} onItemSelected={onItemSelected}/>
-        </MenuOverlay>}
-      </Root>
+      {menuOpen && <MenuOverlay
+        show={menuOpen}
+        placement="bottom"
+        alignEdge="left"
+        container={this}
+      >
+        <WindowMenu items={items} onItemSelected={onItemSelected}/>
+      </MenuOverlay>}
+    </Root>
   }
+}
+
+WindowMenuButton.propTypes = {
+  label: PropTypes.string.isRequired,
+  underline: PropTypes.number,
+  items: PropTypes.array,
+  menuOpen: PropTypes.bool,
+  onMouseEnterButton: PropTypes.func,
+  onItemSelected: PropTypes.func,
+  onClick: PropTypes.func,
 }
 
 export default WindowMenuButton
