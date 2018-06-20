@@ -13,7 +13,6 @@ class WindowMenuGroup extends Component {
   }
 
   onClickMenuButton = (menuKey) => () => {
-    console.log('fuck')
     this.setState(state => ({ openedMenuKey: state.openedMenuKey === menuKey ? null : menuKey }))
   }
 
@@ -24,7 +23,6 @@ class WindowMenuGroup extends Component {
   }
 
   closeWindowMenu = () => {
-    console.log('close menu')
     this.setState({ openedMenuKey: null })
   }
 
