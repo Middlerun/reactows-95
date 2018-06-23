@@ -10,6 +10,7 @@ import {
   Shell,
   Taskbar,
   TaskbarItem,
+  Window,
   WindowLayer,
   WordPad,
   defaultIcon,
@@ -104,6 +105,33 @@ storiesOf('RidgedButton', module)
     <RidgedButton disabled>
       <span>Button</span>
     </RidgedButton>
+  ))
+
+storiesOf('Taskbar', module)
+  .add('empty', () => (
+    <Taskbar/>
+  ))
+
+storiesOf('TaskbarItem', module)
+  .add('normal', () => (
+    <TaskbarItem label="A taskbar item" icon={folderIcon}/>
+  ))
+
+storiesOf('Window types', module)
+  .add('generic Window', () => (
+    <Shell>
+      <Window title="A window" hasFocus onRequestClose={action('tried to close window')}/>
+    </Shell>
+  ))
+  .add('Folder', () => (
+    <Shell>
+      <Folder icon={folderIcon} title="A folder" hasFocus onRequestClose={action('tried to close folder')}/>
+    </Shell>
+  ))
+  .add('WordPad', () => (
+    <Shell>
+      <WordPad icon={defaultIcon} hasFocus onRequestClose={action('tried to close wordpad')}/>
+    </Shell>
   ))
 
 storiesOf('Scroll bars', module)

@@ -65,7 +65,7 @@ class StartButton extends Component {
           alignEdge="left"
           container={this}
         >
-          <StartMenu items={startMenuItems} onItemSelected={this.closeStartMenu}/>
+          <StartMenu items={startMenuItems || []} onItemSelected={this.closeStartMenu}/>
         </MenuOverlay>}
       </Root>
     </RootCloseWrapper>

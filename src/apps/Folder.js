@@ -73,7 +73,7 @@ class Folder extends Component {
     } = this.props
 
     const bottomAreaContent = <BottomContentArea>
-      {children.length} object(s)
+      {(children || []).length} object(s)
     </BottomContentArea>
 
     return (
