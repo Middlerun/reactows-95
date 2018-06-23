@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import StartMenu from './StartMenu'
 import LightlyInsetBox from '../../atoms/LightlyInsetBox'
@@ -49,8 +49,16 @@ const Label = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
   
-  ${({ highlighted }) => highlighted && `
+  ${({ highlighted }) => highlighted && css`
     color: white;
+  `}
+  
+  ${({ disabled }) => disabled && css`
+    color: #808080;
+  `}
+  
+  ${({ disabled, highlighted }) => disabled && !highlighted && css`
+    text-shadow: white 1px 1px;
   `}
 `
 
@@ -120,7 +128,9 @@ class StartMenuItem extends Component {
       subMenuItems,
       subMenuOpen,
       icon,
+      noIcon,
       label,
+      disabled,
       onItemSelected,
     } = this.props
 
@@ -138,10 +148,10 @@ class StartMenuItem extends Component {
         }}
       >
         <IconContainer mainStartMenu={mainStartMenu}>
-          <IconImage src={icon || defaultIcon} draggable={false}/>
+          {noIcon || <IconImage src={icon || defaultIcon} draggable={false}/>}
         </IconContainer>
 
-        <Label highlighted={highlighted}>{label}</Label>
+        <Label {...{highlighted, disabled}}>{label}</Label>
 
         {subMenuItems && <SubMenuArrow
           src={arrow}

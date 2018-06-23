@@ -25,10 +25,11 @@ const startMenuItems = [
   { label: 'Programs', subMenuItems: [
       { label: 'Program 1', onSelect: startMenuItemSelected },
       { label: 'Program 2', onSelect: startMenuItemSelected },
-      { label: 'Program 3', subMenuItems: [
+      { label: 'Folder 1', subMenuItems: [
           { label: 'herp', onSelect: startMenuItemSelected },
           { label: 'derp', onSelect: startMenuItemSelected },
         ] },
+      { label: 'Folder 2', subMenuItems: [] },
     ] },
   { label: 'Documents', onSelect: startMenuItemSelected },
   { label: 'Settings', onSelect: startMenuItemSelected },

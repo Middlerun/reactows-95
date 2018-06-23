@@ -61,6 +61,24 @@ class StartMenu extends Component {
     if (!Array.isArray(items)) {
       return null
     }
+
+    if (items.length === 0) {
+      const i = 0
+      return [
+        <StartMenuItem
+          mainStartMenu={!isSubMenu}
+          label="(Empty)"
+          key={i}
+          itemKey={i}
+          disabled
+          noIcon
+          onMouseEnter={this.onMouseEnterItem(i)}
+          onLinger={this.onLingerItem(i)}
+          highlighted={i === highlightedItemKey}
+        />
+      ]
+    }
+
     return items.map((item, i) => {
       if (item === 'divider') {
         return <Divider key={i}/>
