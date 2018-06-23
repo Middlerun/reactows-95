@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import defaultIcon from '../img/icon-default.png'
 
@@ -62,7 +62,11 @@ const IconText = styled.div`
   overflow: hidden;
   user-select: none;
   background-color: ${({hasFocus}) => hasFocus ? '#00007b' : 'transparent'};
-  ${({hasFocus}) => hasFocus && 'color: white;'};
+  ${({hasFocus}) => hasFocus && css`
+    color: white;
+    outline: 1px dotted #ffff00;
+    outline-offset: -1px;
+  `};
 `
 
 const DOUBLE_CLICK_TIMEOUT = 500
