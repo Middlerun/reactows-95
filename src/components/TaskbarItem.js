@@ -43,7 +43,7 @@ class TaskbarItem extends Component {
 TaskbarItem.propTypes = {
   label: PropTypes.string.isRequired,
   icon: PropTypes.string,
-  onCLick: PropTypes.func,
+  onClick: PropTypes.func,
 }
 
 export default TaskbarItem
