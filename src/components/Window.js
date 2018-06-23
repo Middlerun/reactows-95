@@ -23,6 +23,7 @@ const Root = RidgedBox.extend`
   padding: 2px;
   pointer-events: all;
   ${({maximized}) => maximized && 'border: 0;'}
+  ${({zIndex}) => (typeof zIndex !== 'undefined') && `z-index: ${zIndex};`}
 `
 
 const TitleBar = styled.div`
@@ -291,6 +292,7 @@ Window.propTypes = {
   title: PropTypes.string.isRequired,
   icon: PropTypes.string,
   hasFocus: PropTypes.bool,
+  zIndex: PropTypes.number,
   bottomAreaContent: PropTypes.node,
   onRequestClose: PropTypes.func,
 }
