@@ -28,10 +28,11 @@ class TaskbarItem extends Component {
     const {
       label,
       icon,
+      ...props
     } = this.props
 
     return (
-      <Root className="TaskbarItem">
+      <Root className="reactows95-TaskbarItem" {...props}>
         {icon && <IconImage src={icon} draggable={false}/>}
         <Text>{label}</Text>
       </Root>
@@ -42,6 +43,7 @@ class TaskbarItem extends Component {
 TaskbarItem.propTypes = {
   label: PropTypes.string.isRequired,
   icon: PropTypes.string,
+  onCLick: PropTypes.func,
 }
 
 export default TaskbarItem
