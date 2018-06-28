@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 
 import StartMenu from './StartMenu'
 import LightlyInsetBox from '../../atoms/LightlyInsetBox'
-import MenuOverlay from '../MenuOverlay'
 
 import arrow from '../../img/arrow-right.png'
 import defaultIcon from '../../img/icon-default.png'
@@ -159,20 +158,15 @@ class StartMenuItem extends Component {
           highlighted={highlighted}
         />}
 
-        {subMenuItems && <MenuOverlay
-          show={subMenuOpen}
-          placement="right"
-          placementOffset={-2}
-          alignEdge="top"
-          alignOffset={-3}
-          container={this}
-        >
+        {subMenuItems &&
           <StartMenu
             items={subMenuItems}
+            isOpen={subMenuOpen}
             isSubMenu={true}
             onItemSelected={onItemSelected}
+            container={this}
           />
-        </MenuOverlay>}
+        }
       </Root>
     )
   }

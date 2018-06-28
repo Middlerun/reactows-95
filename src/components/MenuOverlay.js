@@ -113,6 +113,7 @@ MenuOverlay.propTypes = {
   rootClose: PropTypes.bool,
   rootCloseEvent: PropTypes.oneOf(['click', 'mousedown']),
   onHide: PropTypes.func,
+  container: PropTypes.any.isRequired,
 }
 
 export default MenuOverlay

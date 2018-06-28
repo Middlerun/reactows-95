@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import { RootCloseWrapper } from 'react-overlays'
 
 import StartMenu from './StartMenu'
-import MenuOverlay from '../MenuOverlay'
-
 import RidgedButton from '../../atoms/RidgedButton'
 
 import logo from '../../img/logo-small.png'
@@ -59,14 +57,12 @@ class StartButton extends Component {
           </span>
         </StyledStartButton>
 
-        {startMenuOpen && <MenuOverlay
-          show={startMenuOpen}
-          placement="top"
-          alignEdge="left"
+        <StartMenu
+          items={startMenuItems || []}
+          isOpen={startMenuOpen}
+          onItemSelected={this.closeStartMenu}
           container={this}
-        >
-          <StartMenu items={startMenuItems || []} onItemSelected={this.closeStartMenu}/>
-        </MenuOverlay>}
+        />
       </Root>
     </RootCloseWrapper>
   }

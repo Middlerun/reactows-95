@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import MenuOverlay from '../MenuOverlay'
 import RidgedBox from '../../atoms/RidgedBox'
 import StartMenuItem, { Divider } from './StartMenuItem'
 import isObject from '../../util/isObject'
@@ -108,18 +109,27 @@ class StartMenu extends Component {
   }
 
   render() {
-    const { isSubMenu } = this.props
+    const { isOpen, isSubMenu, container } = this.props
     return (
-      <Root className="reactows95-StartMenu">
-        {!isSubMenu && <LeftStripe>
-          <OSNameText>
-            <OSName1>Reactows</OSName1><OSName2>95</OSName2>
-          </OSNameText>
-        </LeftStripe>}
-        <div>
-          {this.generateMenuContent()}
-        </div>
-      </Root>
+      <MenuOverlay
+        show={isOpen}
+        placement={isSubMenu ? 'right' : 'top'}
+        alignEdge={isSubMenu ? 'top' : 'left'}
+        placementOffset={isSubMenu ? -2 : 0}
+        alignOffset={isSubMenu ? -3 : 0}
+        container={container}
+      >
+        <Root className="reactows95-StartMenu">
+          {!isSubMenu && <LeftStripe>
+            <OSNameText>
+              <OSName1>Reactows</OSName1><OSName2>95</OSName2>
+            </OSNameText>
+          </LeftStripe>}
+          <div>
+            {this.generateMenuContent()}
+          </div>
+        </Root>
+      </MenuOverlay>
     )
   }
 }
@@ -129,8 +139,15 @@ StartMenu.propTypes = {
     PropTypes.object,
     PropTypes.string,
   ])),
+  isOpen: PropTypes.bool,
   isSubMenu: PropTypes.bool,
   onItemSelected: PropTypes.func,
+  container: MenuOverlay.propTypes.container,
+}
+
+StartMenu.defaultProps = {
+  isOpen: false,
+  defaultDirectionIsLeft: false,
 }
 
 export default StartMenu
