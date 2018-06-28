@@ -126,6 +126,7 @@ class StartMenuItem extends Component {
       mainStartMenu,
       subMenuItems,
       subMenuOpen,
+      defaultDirectionIsLeft,
       icon,
       noIcon,
       label,
@@ -165,6 +166,7 @@ class StartMenuItem extends Component {
             isSubMenu={true}
             onItemSelected={onItemSelected}
             container={this}
+            defaultDirectionIsLeft={defaultDirectionIsLeft}
           />
         }
       </Root>
@@ -177,6 +179,7 @@ StartMenuItem.propTypes = {
   mainStartMenu: PropTypes.bool,
   subMenuItems: PropTypes.array,
   subMenuOpen: PropTypes.bool,
+  defaultDirectionIsLeft: PropTypes.bool,
   icon: PropTypes.string,
   label: PropTypes.string.isRequired,
   onItemSelected: PropTypes.func,

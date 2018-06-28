@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { findDOMNode } from 'react-dom'
 import styled from 'styled-components'
 
 import MenuOverlay from '../MenuOverlay'
 import RidgedBox from '../../atoms/RidgedBox'
 import StartMenuItem, { Divider } from './StartMenuItem'
 import isObject from '../../util/isObject'
+import { getWidth } from '../../util/getViewport'
 
 const Root = RidgedBox.extend`
   display: flex;
@@ -44,6 +46,44 @@ class StartMenu extends Component {
     this.state = {
       highlightedItemKey: null,
       openedSubMenuItemKey: null,
+      directionReversed: false,
+    }
+    this.directionReversalChecked = false
+  }
+
+  static getDerivedStateFromProps(props) {
+    if (!props.isOpen) {
+      return {
+        highlightedItemKey: null,
+        openedSubMenuItemKey: null,
+      }
+    }
+    return null
+  }
+
+  componentDidMount() {
+    if (this.props.isOpen) {
+      this.determineIfDirectionShouldReverse()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.isOpen && !prevProps.isOpen
+      && !this.directionReversalChecked) {
+      this.determineIfDirectionShouldReverse()
+    }
+  }
+
+  determineIfDirectionShouldReverse() {
+    const { defaultDirectionIsLeft } = this.props
+    if (this.root) {
+      const domNode = findDOMNode(this.root)
+      const rect = domNode.getBoundingClientRect()
+      if ((defaultDirectionIsLeft && rect.left < 0)
+        || (!defaultDirectionIsLeft && rect.right > getWidth())) {
+        this.setState({ directionReversed: true })
+      }
+      this.directionReversalChecked = true
     }
   }
 
@@ -92,6 +132,7 @@ class StartMenu extends Component {
           icon={icon}
           label={label}
           subMenuItems={subMenuItems}
+          defaultDirectionIsLeft={this.directionIsLeft()}
           key={i}
           itemKey={i}
           onMouseEnter={this.onMouseEnterItem(i)}
@@ -99,7 +140,7 @@ class StartMenu extends Component {
           highlighted={i === highlightedItemKey}
           subMenuOpen={i === openedSubMenuItemKey}
           onSelect={() => {
-            onItemSelected()
+            onItemSelected && onItemSelected()
             onSelect && onSelect(item)
           }}
           onItemSelected={onItemSelected}
@@ -108,18 +149,39 @@ class StartMenu extends Component {
     })
   }
 
+  directionIsLeft() {
+    const { defaultDirectionIsLeft } = this.props
+    const { directionReversed } = this.state
+
+    return !directionReversed !== !defaultDirectionIsLeft // Equivalent to XOR
+  }
+
   render() {
-    const { isOpen, isSubMenu, container } = this.props
+    const {
+      isOpen,
+      isSubMenu,
+      container,
+    } = this.props
+
+    const subMenuPlacement = this.directionIsLeft() ? 'left' : 'right'
+
     return (
       <MenuOverlay
         show={isOpen}
-        placement={isSubMenu ? 'right' : 'top'}
+        placement={isSubMenu ? subMenuPlacement : 'top'}
         alignEdge={isSubMenu ? 'top' : 'left'}
         placementOffset={isSubMenu ? -2 : 0}
         alignOffset={isSubMenu ? -3 : 0}
         container={container}
       >
-        <Root className="reactows95-StartMenu">
+        <Root
+          className="reactows95-StartMenu"
+          ref={el => {
+            if (el) {
+              this.root = el
+            }
+          }}
+        >
           {!isSubMenu && <LeftStripe>
             <OSNameText>
               <OSName1>Reactows</OSName1><OSName2>95</OSName2>
@@ -142,6 +204,7 @@ StartMenu.propTypes = {
   isOpen: PropTypes.bool,
   isSubMenu: PropTypes.bool,
   onItemSelected: PropTypes.func,
+  defaultDirectionIsLeft: PropTypes.bool,
   container: MenuOverlay.propTypes.container,
 }
 
