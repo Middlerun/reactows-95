@@ -7,12 +7,14 @@ import MenuOverlay from '../MenuOverlay'
 import RidgedBox from '../../atoms/RidgedBox'
 import StartMenuItem, { Divider } from './StartMenuItem'
 import isObject from '../../util/isObject'
-import { getWidth } from '../../util/getViewport'
+import { getWidth, getHeight } from '../../util/getViewport'
 
 const Root = RidgedBox.extend`
+  position: relative;
   display: flex;
   padding: 1px;
   user-select: none;
+  max-height: 100vh;
 `
 
 const LeftStripe = styled.div`
@@ -47,8 +49,9 @@ class StartMenu extends Component {
       highlightedItemKey: null,
       openedSubMenuItemKey: null,
       directionReversed: false,
+      verticalAdjustment: 0,
     }
-    this.directionReversalChecked = false
+    this.positioningDetermined = false
   }
 
   static getDerivedStateFromProps(props) {
@@ -63,27 +66,35 @@ class StartMenu extends Component {
 
   componentDidMount() {
     if (this.props.isOpen) {
-      this.determineIfDirectionShouldReverse()
+      this.determinePositioning()
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.isOpen && !prevProps.isOpen
-      && !this.directionReversalChecked) {
-      this.determineIfDirectionShouldReverse()
+      && !this.positioningDetermined) {
+      this.determinePositioning()
     }
   }
 
-  determineIfDirectionShouldReverse() {
+  determinePositioning() {
     const { defaultDirectionIsLeft } = this.props
     if (this.root) {
       const domNode = findDOMNode(this.root)
       const rect = domNode.getBoundingClientRect()
+
+      // Determine whether to reverse direction
       if ((defaultDirectionIsLeft && rect.left < 0)
         || (!defaultDirectionIsLeft && rect.right > getWidth())) {
         this.setState({ directionReversed: true })
       }
-      this.directionReversalChecked = true
+
+      // Determine if menu needs to be lifted up
+      if (rect.bottom > getHeight()) {
+        this.setState({ verticalAdjustment: getHeight() - rect.bottom })
+      }
+
+      this.positioningDetermined = true
     }
   }
 
@@ -162,6 +173,7 @@ class StartMenu extends Component {
       isSubMenu,
       container,
     } = this.props
+    const { verticalAdjustment } = this.state
 
     const subMenuPlacement = this.directionIsLeft() ? 'left' : 'right'
 
@@ -176,6 +188,7 @@ class StartMenu extends Component {
       >
         <Root
           className="reactows95-StartMenu"
+          style={{ top: verticalAdjustment }}
           ref={el => {
             if (el) {
               this.root = el

@@ -22,18 +22,21 @@ function startMenuItemSelected(item) {
   action(item.label + ' selected')()
 }
 
-const recursiveStartMenuFolder = { label: 'Recursive' }
+const recursiveStartMenuFolder = { label: 'Recursive Folder' }
 recursiveStartMenuFolder.subMenuItems = [recursiveStartMenuFolder]
 
 const startMenuItems = [
   { label: 'Programs', subMenuItems: [
       { label: 'Program 1', onSelect: startMenuItemSelected },
       { label: 'Program 2', onSelect: startMenuItemSelected },
-      { label: 'Folder 1', subMenuItems: [
+      { label: 'Folder', subMenuItems: [
           { label: 'herp', onSelect: startMenuItemSelected },
           { label: 'derp', onSelect: startMenuItemSelected },
         ] },
-      { label: 'Folder 2', subMenuItems: [] },
+      { label: 'Empty Folder', subMenuItems: [] },
+      { label: 'Big Folder', subMenuItems: (new Array(20)).fill(1).map((val, i) => (
+          { label: `Thing ${i+1}`, onSelect: startMenuItemSelected }
+        )) },
       recursiveStartMenuFolder,
     ] },
   { label: 'Documents', onSelect: startMenuItemSelected },

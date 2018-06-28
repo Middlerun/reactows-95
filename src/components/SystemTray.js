@@ -19,7 +19,10 @@ class SystemTray extends Component {
     if (hours === 0) {
       hours = 12
     }
-    const minutes = `${date.getMinutes()}`.padStart(2, '0')
+    let minutes = date.getMinutes()
+    if (minutes < 10) {
+      minutes = `0${minutes}`
+    }
     return `${hours}:${minutes} ${amPm}`
   }
 
