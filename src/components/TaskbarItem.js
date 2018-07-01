@@ -28,11 +28,12 @@ class TaskbarItem extends Component {
     const {
       label,
       icon,
+      focused,
       ...props
     } = this.props
 
     return (
-      <Root className="reactows95-TaskbarItem" {...props}>
+      <Root className="reactows95-TaskbarItem" pressed={focused} bold={focused} {...props}>
         {icon && <IconImage src={icon} draggable={false}/>}
         <Text>{label}</Text>
       </Root>
@@ -44,6 +45,7 @@ TaskbarItem.propTypes = {
   label: PropTypes.string.isRequired,
   icon: PropTypes.string,
   onClick: PropTypes.func,
+  focused: PropTypes.bool,
 }
 
 export default TaskbarItem

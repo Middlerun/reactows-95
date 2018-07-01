@@ -158,6 +158,9 @@ storiesOf('TaskbarItem', module)
   .add('normal', () => (
     <TaskbarItem label="A taskbar item" icon={folderIcon}/>
   ))
+  .add('focused', () => (
+    <TaskbarItem label="A taskbar item" icon={folderIcon} focused/>
+  ))
 
 storiesOf('Window types', module)
   .add('generic Window', () => (

@@ -1,5 +1,6 @@
 import GreyBox from './GreyBox'
 import PropTypes from 'prop-types'
+import { css } from 'styled-components'
 
 import borderImage from '../img/border-button.png'
 import borderImageStrong from '../img/border-strong.png'
@@ -17,9 +18,9 @@ const RidgedButton = GreyBox.extend`
   font-size: 12px;
   line-height: inherit;
   
-  ${({ bold }) => bold && 'font-weight: bold;'}
-  ${({ italic }) => italic && 'font-style: italic;'}
-  ${({ underline }) => underline && 'text-decoration: underline;'}
+  ${({ bold }) => bold && css`font-weight: bold;`}
+  ${({ italic }) => italic && css`font-style: italic;`}
+  ${({ underline }) => underline && css`text-decoration: underline;`}
   
   border-width: 2px;
   border-style: solid;
@@ -41,7 +42,7 @@ const RidgedButton = GreyBox.extend`
     outline-offset: -${({strongBorder}) => strongBorder ? 5 : 4}px;
   }
   
-  ${({pressed}) => pressed && `
+  ${({pressed}) => pressed && css`
     border-image: url('${borderImageInset}') 2;
     > * {
       transform: translate(0, 1px);
