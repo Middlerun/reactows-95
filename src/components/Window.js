@@ -111,14 +111,12 @@ class Window extends Component {
         width: initialGeometry.width || 420,
         height: initialGeometry.height || 400,
       },
-      maximized: props.startMaximized || false,
-      minimized: false,
     }
   }
 
   dragStart = (e) => {
     const clickedWindowButton = !!e.target.dataset.button
-    if (this.state.dragging || this.state.maximized || e.button !== LEFT_MOUSE_BUTTON || clickedWindowButton) {
+    if (this.state.dragging || this.props.maximized || e.button !== LEFT_MOUSE_BUTTON || clickedWindowButton) {
       return
     }
 
@@ -155,7 +153,7 @@ class Window extends Component {
   }
 
   resizeStart = (e) => {
-    if (this.state.resizing || this.state.maximized || e.button !== LEFT_MOUSE_BUTTON) {
+    if (this.state.resizing || this.props.maximized || e.button !== LEFT_MOUSE_BUTTON) {
       return
     }
     e.preventDefault()
@@ -194,20 +192,14 @@ class Window extends Component {
 
   toggleMaximized = (e) => {
     e.target.blur()
-    this.setState(state => ({
-      maximized: !state.maximized,
-    }))
+    const { maximized, setMaximized } = this.props
+    setMaximized && setMaximized(!maximized)
   }
 
   toggleMinimized = (e) => {
     e.target.blur()
-    this.setState(state => ({
-      minimized: !state.minimized,
-    }))
-  }
-
-  isResizable() {
-    return !this.props.hasOwnProperty('resizable') || this.props.resizable
+    const { minimized, setMinimized } = this.props
+    setMinimized && setMinimized(!minimized)
   }
 
   render() {
@@ -217,16 +209,14 @@ class Window extends Component {
       hasFocus,
       onRequestClose,
       bottomAreaContent,
+      maximized,
+      minimized,
+      resizable,
       children,
       ...otherProps
     } = this.props
-    const {
-      geometry,
-      maximized,
-      minimized,
-    } = this.state
 
-    const isResizable = this.isResizable()
+    const { geometry } = this.state
 
     return (
       <Root
@@ -247,7 +237,7 @@ class Window extends Component {
             <ButtonImage src={minimizeIcon}/>
           </WindowButton>
 
-          {isResizable && <WindowButton
+          {resizable && <WindowButton
             onClick={this.toggleMaximized}
             data-button={true}
           >
@@ -267,9 +257,9 @@ class Window extends Component {
           {children}
         </WindowContent>
 
-        {(bottomAreaContent || isResizable) && <BottomArea>
+        {(bottomAreaContent || resizable) && <BottomArea>
           {bottomAreaContent}
-          {isResizable && !maximized && <ResizeHandle
+          {resizable && !maximized && <ResizeHandle
             src={resizeHandleImage}
             draggable={false}
             onMouseDown={this.resizeStart}
@@ -287,14 +277,21 @@ Window.propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
   }),
-  startMaximized: PropTypes.bool,
+  maximized: PropTypes.bool,
+  minimized: PropTypes.bool,
   resizable: PropTypes.bool,
   title: PropTypes.string.isRequired,
   icon: PropTypes.string,
   hasFocus: PropTypes.bool,
   zIndex: PropTypes.number,
   bottomAreaContent: PropTypes.node,
+  setMaximized: PropTypes.func,
+  setMinimized: PropTypes.func,
   onRequestClose: PropTypes.func,
+}
+
+Window.defaultProps = {
+  resizable: true,
 }
 
 export default Window

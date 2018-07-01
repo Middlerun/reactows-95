@@ -97,19 +97,54 @@ storiesOf('Shell', module)
     </Shell>
   ))
 
+storiesOf('Window', module)
+  .add('standard', () => (
+    <Shell>
+      <Desktop>
+        <WindowLayer>
+          <Window title="Window" hasFocus>
+            Content
+          </Window>
+        </WindowLayer>
+      </Desktop>
+    </Shell>
+  ))
+  .add('non-resizable', () => (
+    <Shell>
+      <Desktop>
+        <WindowLayer>
+          <Window title="Window" resizable={false} hasFocus>
+            Content
+          </Window>
+        </WindowLayer>
+      </Desktop>
+    </Shell>
+  ))
+  .add('maximized', () => (
+    <Shell>
+      <Desktop>
+        <WindowLayer>
+          <Window title="Window" maximized={true} hasFocus>
+            Content
+          </Window>
+        </WindowLayer>
+      </Desktop>
+    </Shell>
+  ))
+
 storiesOf('RidgedButton', module)
   .add('normal', () => (
-    <RidgedButton>
+    <RidgedButton onClick={action('button clicked')}>
       <span>Button</span>
     </RidgedButton>
   ))
   .add('strong', () => (
-    <RidgedButton strongBorder>
+    <RidgedButton strongBorder onClick={action('button clicked')}>
       <span>Button</span>
     </RidgedButton>
   ))
   .add('disabled', () => (
-    <RidgedButton disabled>
+    <RidgedButton disabled onClick={action('button clicked')}>
       <span>Button</span>
     </RidgedButton>
   ))
