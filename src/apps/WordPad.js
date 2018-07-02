@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 
-import Window from '../components/Window'
+import Window from '../components/window/Window'
 import WindowMenuGroup from '../components/windowmenu/WindowMenuGroup'
 import RidgedBox from '../atoms/RidgedBox'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'

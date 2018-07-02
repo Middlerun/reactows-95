@@ -15,6 +15,7 @@ import {
   WordPad,
   defaultIcon,
 } from '../src'
+import WindowStateContainer from './helpers/WindowStateContainer'
 
 import folderIcon from './icon-folder.png'
 
@@ -130,6 +131,9 @@ storiesOf('Window', module)
         </WindowLayer>
       </Desktop>
     </Shell>
+  ))
+  .add('minimizable and maximizable', () => (
+    <WindowStateContainer/>
   ))
 
 storiesOf('RidgedButton', module)

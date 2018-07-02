@@ -1,16 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import RidgedBox from '../atoms/RidgedBox'
-import RidgedButton from '../atoms/RidgedButton'
+import RidgedBox from '../../atoms/RidgedBox'
+import RidgedButton from '../../atoms/RidgedButton'
+import WindowTitleBarTransition from './WindowTitleBarTransition'
+import { TitleBar, TitleWrapper, IconImage } from './WindowTitleBar'
 
-import minimizeIcon from '../img/minimize.png'
-import maximizeIcon from '../img/maximize.png'
-import unmaximizeIcon from '../img/unmaximize.png'
-import closeIcon from '../img/close.png'
-import resizeHandleImage from '../img/resize-handle.png'
-import resizeSW from '../img/resize-se.png'
+import minimizeIcon from '../../img/minimize.png'
+import maximizeIcon from '../../img/maximize.png'
+import unmaximizeIcon from '../../img/unmaximize.png'
+import closeIcon from '../../img/close.png'
+import resizeHandleImage from '../../img/resize-handle.png'
+import resizeSW from '../../img/resize-se.png'
 
 const LEFT_MOUSE_BUTTON = 0
 const MIN_WIDTH = 200
@@ -24,34 +26,6 @@ const Root = RidgedBox.extend`
   pointer-events: all;
   ${({maximized}) => maximized && 'border: 0;'}
   ${({zIndex}) => (typeof zIndex !== 'undefined') && `z-index: ${zIndex};`}
-`
-
-const TitleBar = styled.div`
-  height: 18px;
-  width: 100%;
-  padding: 0 2px;
-  display: flex;
-  align-items: center;
-  background-color: ${({hasFocus}) => hasFocus ? '#000082' : '#808080'};
-  color: ${({hasFocus}) => hasFocus ? 'white' : '#c0c0c0'};
-  font-weight: bold;
-  margin-bottom: 2px;
-  user-select: none;
-`
-
-const IconImage = styled.img`
-  width: 16px;
-  height: 16px;
-  margin-right: 2px;
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-`
-
-const TitleWrapper = styled.div`
-  flex: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 `
 
 const WindowContent = styled.div`
@@ -111,6 +85,28 @@ class Window extends Component {
         width: initialGeometry.width || 420,
         height: initialGeometry.height || 400,
       },
+      transitionType: null,
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.minimized && prevProps.maximized && this.props.minimized) {
+      this.setState({ transitionType: 'FromMaximizedToMinimized' })
+    }
+    else if (prevProps.minimized && !this.props.minimized && this.props.maximized) {
+      this.setState({ transitionType: 'FromMinimizedToMaximized' })
+    }
+    else if (!prevProps.minimized && this.props.minimized) {
+      this.setState({ transitionType: 'FromNormalToMinimized' })
+    }
+    else if (prevProps.minimized && !this.props.minimized) {
+      this.setState({ transitionType: 'FromMinimizedToNormal' })
+    }
+    else if (!prevProps.maximized && this.props.maximized) {
+      this.setState({ transitionType: 'FromNormalToMaximized' })
+    }
+    else if (prevProps.maximized && !this.props.maximized) {
+      this.setState({ transitionType: 'FromMaximizedToNormal' })
     }
   }
 
@@ -202,6 +198,15 @@ class Window extends Component {
     setMinimized && setMinimized(!minimized)
   }
 
+  clearTransition = () => {
+    this.setState({ transitionType: null })
+  }
+
+  matchTransition(regex) {
+    const { transitionType } = this.state
+    return transitionType && transitionType.match(regex)
+  }
+
   render() {
     const {
       title,
@@ -212,17 +217,26 @@ class Window extends Component {
       maximized,
       minimized,
       resizable,
+      taskbarItemId,
       children,
       ...otherProps
     } = this.props
 
-    const { geometry } = this.state
+    const {
+      geometry,
+      transitionType,
+    } = this.state
 
-    return (
+    const displayAsMaximized = (maximized && !this.matchTransition(/ToMaximized/))
+      || this.matchTransition(/FromMaximized/)
+    const displayAsMinimized = (minimized && !this.matchTransition(/ToMinimized/))
+      || this.matchTransition(/FromMinimized/)
+
+    return <Fragment>
       <Root
-        style={maximized ? maximizedGeometry : geometry}
-        maximized={maximized}
-        minimized={minimized}
+        style={displayAsMaximized ? maximizedGeometry : geometry}
+        maximized={displayAsMaximized}
+        minimized={displayAsMinimized}
         {...otherProps}
       >
         <TitleBar hasFocus={hasFocus} onMouseDown={this.dragStart}>
@@ -241,7 +255,7 @@ class Window extends Component {
             onClick={this.toggleMaximized}
             data-button={true}
           >
-            <ButtonImage src={maximized ? unmaximizeIcon : maximizeIcon}/>
+            <ButtonImage src={displayAsMaximized ? unmaximizeIcon : maximizeIcon}/>
           </WindowButton>}
 
           <WindowButton
@@ -259,14 +273,24 @@ class Window extends Component {
 
         {(bottomAreaContent || resizable) && <BottomArea>
           {bottomAreaContent}
-          {resizable && !maximized && <ResizeHandle
+          {resizable && !displayAsMaximized && <ResizeHandle
             src={resizeHandleImage}
             draggable={false}
             onMouseDown={this.resizeStart}
           />}
         </BottomArea>}
       </Root>
-    )
+
+      {transitionType && <WindowTitleBarTransition
+        key={transitionType}
+        windowGeometry={geometry}
+        type={transitionType}
+        icon={icon}
+        title={title}
+        taskbarItemId={taskbarItemId}
+        onTransitionEnd={this.clearTransition}
+      />}
+    </Fragment>
   }
 }
 
@@ -288,6 +312,7 @@ Window.propTypes = {
   setMaximized: PropTypes.func,
   setMinimized: PropTypes.func,
   onRequestClose: PropTypes.func,
+  taskbarItemId: PropTypes.string,
 }
 
 Window.defaultProps = {
