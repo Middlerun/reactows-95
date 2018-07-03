@@ -4,8 +4,11 @@ import PropTypes from 'prop-types'
 import { TitleBar, IconImage, TitleWrapper } from './WindowTitleBar'
 import { getWidth, getHeight } from '../../util/getViewport'
 
+const MAX_Z_INDEX = 2147483647
+
 const Root = TitleBar.extend`
   position: absolute;
+  z-index: ${MAX_Z_INDEX};
   pointer-events: none;
   transition: left .2s linear, top .2s linear, width .2s linear;
 `
