@@ -31,7 +31,7 @@ class WindowTitleBarTransition extends Component {
   }
 
   componentDidMount() {
-    window.requestAnimationFrame(() => {
+    setTimeout(() => {
       let geometry
 
       if (this.props.type.match(/ToMaximized/)) {
@@ -49,7 +49,7 @@ class WindowTitleBarTransition extends Component {
 
       // Fallback, in case the CSS `transitionend` event somehow doesn't fire
       setTimeout(this.onTransitionEnd, 250)
-    })
+    }, 10)
   }
 
   maximizedGeometry() {
