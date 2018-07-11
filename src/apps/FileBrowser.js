@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 import Window from '../components/window/Window'
 import WindowMenuGroup from '../components/windowmenu/WindowMenuGroup'

@@ -304,7 +304,7 @@ class Window extends Component {
         windowGeometry={geometry}
         type={transitionType}
         icon={icon}
-        title={title}
+        title={title || fileName}
         taskbarItemId={taskbarItemId}
         onTransitionEnd={this.clearTransition}
       />}
