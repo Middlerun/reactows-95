@@ -93,6 +93,15 @@ class Window extends Component {
     }
   }
 
+  setTitle() {
+    const { fileName, onSetTitle } = this.props
+    fileName && onSetTitle && onSetTitle(fileName)
+  }
+
+  componentDidMount() {
+    this.setTitle()
+  }
+
   componentDidUpdate(prevProps) {
     if (!prevProps.minimized && prevProps.maximized && this.props.minimized) {
       this.setState({ transitionType: 'FromMaximizedToMinimized' })
@@ -111,6 +120,10 @@ class Window extends Component {
     }
     else if (prevProps.maximized && !this.props.maximized) {
       this.setState({ transitionType: 'FromMaximizedToNormal' })
+    }
+
+    if (this.props.fileName !== prevProps.fileName) {
+      this.setTitle()
     }
   }
 
@@ -213,6 +226,7 @@ class Window extends Component {
 
   render() {
     const {
+      fileName,
       title,
       icon,
       hasFocus,
@@ -246,7 +260,7 @@ class Window extends Component {
         <TitleBar hasFocus={hasFocus} onMouseDown={this.dragStart}>
           {icon && <IconImage src={icon} draggable={false}/>}
 
-          <TitleWrapper>{title}</TitleWrapper>
+          <TitleWrapper>{title || fileName}</TitleWrapper>
 
           <WindowButton
             onClick={this.toggleMinimized}

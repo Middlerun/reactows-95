@@ -58,6 +58,25 @@ class WordPad extends Component {
     }
   }
 
+  setTitle() {
+    const { onSetTitle } = this.props
+    onSetTitle && onSetTitle(this.generateTitle())
+  }
+
+  componentDidMount() {
+    this.setTitle()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.fileName !== prevProps.fileName) {
+      this.setTitle()
+    }
+  }
+
+  generateTitle() {
+    return (this.props.fileName || 'Untitled') + ' - WordPad'
+  }
+
   getContentStyle() {
     const {
       font,
@@ -162,6 +181,8 @@ class WordPad extends Component {
     const {
       children,
       title,
+      fileName,
+      onSetTitle,
       initialGeometry,
       ...props
     } = this.props
@@ -179,8 +200,6 @@ class WordPad extends Component {
       <LightlyInsetBox style={{width: 29}}/>
     </BottomContentArea>
 
-    const windowTitle = (title || 'Untitled') + ' - WordPad'
-
     const windowInitialGeometry = {
       width: 600,
       height: 500,
@@ -190,7 +209,7 @@ class WordPad extends Component {
     return (
       <Window
         {...props}
-        title={windowTitle}
+        title={title || this.generateTitle()}
         initialGeometry={windowInitialGeometry}
         bottomAreaContent={bottomAreaContent}
       >
