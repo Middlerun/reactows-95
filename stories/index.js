@@ -99,6 +99,15 @@ storiesOf('Shell', module)
       </Taskbar>
     </Shell>
   ))
+  .add('with semi-busy state', () => (
+    <Shell semiBusy>
+      <Desktop>
+        <IconArea desktop/>
+      </Desktop>
+      <Taskbar>
+      </Taskbar>
+    </Shell>
+  ))
 
 storiesOf('Window', module)
   .add('standard', () => (

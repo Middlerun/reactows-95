@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import borderImage from '../img/border.png'
 import borderImageInset from '../img/border-inset.png'
@@ -8,6 +9,9 @@ import scrollUp from '../img/arrow-up.png'
 import scrollDown from '../img/arrow-down.png'
 import scrollLeft from '../img/arrow-left.png'
 import scrollRight from '../img/arrow-right.png'
+import pointer from '../img/pointer.png'
+import semiBusyCursor from '../img/semi-busy.png'
+import Select from '../atoms/Select'
 
 const Root = styled.div`
   position: absolute;
@@ -21,6 +25,11 @@ const Root = styled.div`
   font-family: "Microsoft Sans Serif", Arial, sans-serif;
   font-size: 12px;
   overflow: hidden;
+  cursor: url('${({semiBusy}) => semiBusy ? semiBusyCursor : pointer}') 0 0, auto;
+  
+  button {
+    cursor: url('${({semiBusy}) => semiBusy ? semiBusyCursor : pointer}') 0 0, auto;
+  }
   
   * {
     box-sizing: border-box;
@@ -80,12 +89,17 @@ const Root = styled.div`
 
 class Shell extends Component {
   render() {
+    const { semiBusy, children } = this.props
     return (
-      <Root className="reactows95-Shell">
-        {this.props.children}
+      <Root className="reactows95-Shell" semiBusy={semiBusy}>
+        {children}
       </Root>
     )
   }
+}
+
+Select.propTypes = {
+  semiBusy: PropTypes.bool,
 }
 
 export default Shell

@@ -7,6 +7,7 @@ import RidgedBox from '../atoms/RidgedBox'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
 import WindowToolbar, { Divider, Spacer, ToolbarButton } from '../components/WindowToolbar'
 import Select from '../atoms/Select'
+import textCursor from '../img/text-cursor.png'
 
 const ContentRoot = RidgedBox.extend`
   flex: 1;
@@ -20,6 +21,7 @@ const Content = styled.div`
   min-height: 100%;
   max-width: 600px;
   padding: 10px;
+  cursor: url('${textCursor}') 3 9, auto;
   
   > :first-child {
     margin-top: 0;

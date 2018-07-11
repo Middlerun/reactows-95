@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import dropdownImage from '../img/dropdown.png'
 import borderImageInset from '../img/border-inset.png'
+import pointer from '../img/pointer.png'
 
 const Select = styled.select`
   height: 21px;
@@ -12,6 +13,7 @@ const Select = styled.select`
   appearance: none;
   background: white url('${dropdownImage}') no-repeat right;
   padding: 0 17px 0 1px;
+  cursor: url('${pointer}') 0 0, auto;
   ${({width}) => width && `width: ${width};`};
   
   :focus {
