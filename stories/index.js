@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import {
   Desktop,
-  Folder,
+  FileBrowser,
   IconArea,
   IconRegular,
   RidgedButton,
@@ -60,9 +60,9 @@ storiesOf('Shell', module)
           <IconRegular label="A third icon" onDoubleClick={action('icon double clicked')}/>
         </IconArea>
         <WindowLayer>
-          <Folder icon={folderIcon} title="A window" hasFocus>
+          <FileBrowser icon={folderIcon} title="A window" hasFocus>
             {(new Array(30)).fill(1).map((val, i) => <IconRegular label="And YOU get an icon!" key={i}/>)}
-          </Folder>
+          </FileBrowser>
           <WordPad icon={defaultIcon} hasFocus onRequestClose={action('tried to close wordpad')}>
             <h1>Content!</h1>
             <p>Here's some content. Here's some content. Here's some content. Here's some content. Here's some content. Here's some content.</p>
@@ -172,9 +172,9 @@ storiesOf('Window types', module)
       <Window title="A window" hasFocus onRequestClose={action('tried to close window')}/>
     </Shell>
   ))
-  .add('Folder', () => (
+  .add('FileBrowser', () => (
     <Shell>
-      <Folder icon={folderIcon} title="A folder" hasFocus onRequestClose={action('tried to close folder')}/>
+      <FileBrowser icon={folderIcon} title="A folder" hasFocus onRequestClose={action('tried to close file browser')}/>
     </Shell>
   ))
   .add('WordPad', () => (

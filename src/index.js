@@ -1,7 +1,7 @@
 import RidgedButton from './atoms/RidgedButton'
 
 import Desktop from './components/Desktop'
-import Folder from './apps/Folder'
+import FileBrowser from './apps/FileBrowser'
 import IconArea from './components/IconArea'
 import IconRegular from './components/IconRegular'
 import Shell from './components/Shell'
@@ -17,7 +17,7 @@ import defaultIcon from './img/icon-default.png'
 export {
   RidgedButton,
   Desktop,
-  Folder,
+  FileBrowser,
   IconArea,
   IconRegular,
   Shell,

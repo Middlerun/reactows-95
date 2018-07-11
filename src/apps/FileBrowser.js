@@ -19,7 +19,7 @@ const BottomContentArea = LightlyInsetBox.extend`
   padding: 0 3px;
 `
 
-class Folder extends Component {
+class FileBrowser extends Component {
   getMenus() {
     const { onRequestClose } = this.props
     return [
@@ -92,4 +92,4 @@ class Folder extends Component {
   }
 }
 
-export default Folder
+export default FileBrowser

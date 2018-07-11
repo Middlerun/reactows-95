@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import RidgedBox from '../../atoms/RidgedBox'
 import RidgedButton from '../../atoms/RidgedButton'
@@ -24,8 +24,12 @@ const Root = RidgedBox.extend`
   position: absolute;
   padding: 2px;
   pointer-events: all;
-  ${({maximized}) => maximized && 'border: 0;'}
-  ${({zIndex}) => (typeof zIndex !== 'undefined') && `z-index: ${zIndex};`}
+  ${({maximized}) => maximized && css`
+    border: 0;
+  `}
+  ${({zIndex}) => (typeof zIndex !== 'undefined') && css`
+    z-index: ${zIndex};
+  `}
 `
 
 const WindowContent = styled.div`
