@@ -8,7 +8,7 @@ import borderImageInset from '../img/border-button-inset.png'
 import pressedBackground from '../img/scrollbar-track.png'
 
 const RidgedButton = GreyBox.extend`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   color: black;
   overflow: hidden;
@@ -18,19 +18,33 @@ const RidgedButton = GreyBox.extend`
   font-size: 12px;
   line-height: inherit;
   
+  ${({standardFormat}) => standardFormat && css`
+    width: 75px;
+    height: 23px;
+    justify-content: center;
+  `}
+  
   ${({ bold }) => bold && css`font-weight: bold;`}
   ${({ italic }) => italic && css`font-style: italic;`}
   ${({ underline }) => underline && css`text-decoration: underline;`}
   
-  border-width: 2px;
+  border-width: ${({inset, strongBorder}) => !inset && strongBorder ? '3px' : '2px'};
   border-style: solid;
   border-image:
     url('${({inset, strongBorder}) => inset ? borderImageInset : (strongBorder ? borderImageStrong : borderImage)}')
     ${({inset, strongBorder}) => !inset && strongBorder ? 3 : 2};
   
+  img {
+    pointer-events: none;
+  }
+  
   :disabled {
     color: #808080;
     text-shadow: white 1px 1px;
+    
+    img {
+      filter: brightness(0%) invert(100%) brightness(50%) drop-shadow(1px 1px 0 white);
+    }
   }
   
   > * {
@@ -63,6 +77,7 @@ const RidgedButton = GreyBox.extend`
 `.withComponent('button')
 
 RidgedButton.propTypes = {
+  standardFormat: PropTypes.bool,
   bold: PropTypes.bool,
   italic: PropTypes.bool,
   underline: PropTypes.bool,

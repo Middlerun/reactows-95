@@ -15,8 +15,8 @@ import resizeHandleImage from '../../img/resize-handle.png'
 import resizeSW from '../../img/resize-se.png'
 
 const LEFT_MOUSE_BUTTON = 0
-const MIN_WIDTH = 200
-const MIN_HEIGHT = 200
+const DEFAULT_MIN_WIDTH = 200
+const DEFAULT_MIN_HEIGHT = 200
 
 const Root = RidgedBox.extend`
   display: ${({minimized}) => minimized ? 'none' : 'flex'};
@@ -60,10 +60,6 @@ const ResizeHandle = styled.img`
   bottom: -4px;
   right: -4px;
   cursor: url('${resizeSW}') 7 7, se-resize;
-`
-
-const ButtonImage = styled.img`
-  pointer-events: none;
 `
 
 const maximizedGeometry = {
@@ -185,15 +181,20 @@ class Window extends Component {
   }
 
   onResizeMove = (e) => {
+    const { minWidth, minHeight } = this.props
     const newX = e.screenX
     const newY = e.screenY
-    this.setState(state => ({
-      geometry: {
-        ...state.geometry,
-        width:  Math.max(MIN_WIDTH,  state.dragStart.geometry.width  + (newX - state.dragStart.mouseCoords.x)),
-        height: Math.max(MIN_HEIGHT, state.dragStart.geometry.height + (newY - state.dragStart.mouseCoords.y)),
-      },
-    }))
+    this.setState(state => {
+      const draggedWidth  = state.dragStart.geometry.width  + (newX - state.dragStart.mouseCoords.x)
+      const draggedHeight = state.dragStart.geometry.height + (newY - state.dragStart.mouseCoords.y)
+      return {
+        geometry: {
+          ...state.geometry,
+          width: Math.max((minWidth || DEFAULT_MIN_WIDTH), draggedWidth),
+          height: Math.max((minHeight || DEFAULT_MIN_HEIGHT), draggedHeight),
+        },
+      }
+    })
   }
 
   onResizeEnd = () => {
@@ -234,6 +235,7 @@ class Window extends Component {
       bottomAreaContent,
       maximized,
       minimized,
+      minimizable,
       resizable,
       taskbarItemId,
       children,
@@ -262,26 +264,27 @@ class Window extends Component {
 
           <TitleWrapper>{title || fileName}</TitleWrapper>
 
-          <WindowButton
+          {minimizable && <WindowButton
             onClick={this.toggleMinimized}
             data-button={true}
           >
-            <ButtonImage src={minimizeIcon}/>
-          </WindowButton>
+            <img src={minimizeIcon}/>
+          </WindowButton>}
 
           {resizable && <WindowButton
             onClick={this.toggleMaximized}
             data-button={true}
           >
-            <ButtonImage src={displayAsMaximized ? unmaximizeIcon : maximizeIcon}/>
+            <img src={displayAsMaximized ? unmaximizeIcon : maximizeIcon}/>
           </WindowButton>}
 
           <WindowButton
             onClick={onRequestClose}
             data-button={true}
             leftMargin
+            disabled={!onRequestClose}
           >
-            <ButtonImage src={closeIcon}/>
+            <img src={closeIcon}/>
           </WindowButton>
         </TitleBar>
 
@@ -321,6 +324,7 @@ Window.propTypes = {
   }),
   maximized: PropTypes.bool,
   minimized: PropTypes.bool,
+  minimizable: PropTypes.bool,
   resizable: PropTypes.bool,
   title: PropTypes.string.isRequired,
   icon: PropTypes.string,
@@ -329,11 +333,14 @@ Window.propTypes = {
   bottomAreaContent: PropTypes.node,
   setMaximized: PropTypes.func,
   setMinimized: PropTypes.func,
+  minWidth: PropTypes.number,
+  minHeight: PropTypes.number,
   onRequestClose: PropTypes.func,
   taskbarItemId: PropTypes.string,
 }
 
 Window.defaultProps = {
+  minimizable: true,
   resizable: true,
 }
 

@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import {
   Desktop,
+  Dialog,
   FileBrowser,
   IconArea,
   IconRegular,
@@ -191,6 +192,13 @@ storiesOf('Window types', module)
   .add('WordPad', () => (
     <Shell>
       <WordPad icon={defaultIcon} hasFocus onRequestClose={action('tried to close wordpad')}/>
+    </Shell>
+  ))
+  .add('Dialog', () => (
+    <Shell>
+      <Dialog title="Error" hasFocus onRequestClose={action('tried to close dialog')}>
+        There was an error
+      </Dialog>
     </Shell>
   ))
 

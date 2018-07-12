@@ -19,8 +19,10 @@ const ContentRoot = RidgedBox.extend`
 
 const Content = styled.div`
   min-height: 100%;
-  max-width: 600px;
+  width: 600px;
+  max-width: 100%;
   padding: 10px;
+  overflow-wrap: break-word;
   cursor: url('${textCursor}') 3 9, auto;
   
   > :first-child {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 import borderImage from '../img/border.png'
@@ -13,6 +13,11 @@ import pointer from '../img/pointer.png'
 import semiBusyCursor from '../img/semi-busy.png'
 import Select from '../atoms/Select'
 
+function getCursor(semiBusy) {
+  if (semiBusy) return css`url('${semiBusyCursor}') 0 0, progress`
+  return css`url('${pointer}') 0 0, auto`
+}
+
 const Root = styled.div`
   position: absolute;
   top: 0;
@@ -25,10 +30,10 @@ const Root = styled.div`
   font-family: "Microsoft Sans Serif", Arial, sans-serif;
   font-size: 12px;
   overflow: hidden;
-  cursor: url('${({semiBusy}) => semiBusy ? semiBusyCursor : pointer}') 0 0, auto;
+  cursor: ${({semiBusy}) => getCursor(semiBusy)};
   
   button {
-    cursor: url('${({semiBusy}) => semiBusy ? semiBusyCursor : pointer}') 0 0, auto;
+    cursor: ${({semiBusy}) => getCursor(semiBusy)};
   }
   
   * {
