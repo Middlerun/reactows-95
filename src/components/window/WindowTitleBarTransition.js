@@ -57,9 +57,9 @@ class WindowTitleBarTransition extends Component {
 
   maximizedGeometry() {
     return {
-      top: 2,
-      left: 2,
-      width: getWidth() - 4,
+      top: 0,
+      left: 0,
+      width: getWidth(),
     }
   }
 

@@ -22,7 +22,7 @@ const Root = RidgedBox.extend`
   display: ${({minimized}) => minimized ? 'none' : 'flex'};
   flex-direction: column;
   position: absolute;
-  padding: 2px;
+  padding: ${({maximized}) => maximized ? '0' : '2px'};
   pointer-events: all;
   ${({maximized}) => maximized && css`
     border: 0;
