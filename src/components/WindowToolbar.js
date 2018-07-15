@@ -5,12 +5,19 @@ import LightlyInsetBox from '../atoms/LightlyInsetBox'
 import RidgedButton from '../atoms/RidgedButton'
 
 const WindowToolbar = styled.div`
-  margin-bottom: 3px;
+  margin-bottom: 2px;
   padding-left: ${({noLeftPad}) => noLeftPad ? '0' : '6px'};
   
   ${({noWrap}) => noWrap && css`
-    overflow: hidden;
+    overflow-x: hidden;
     white-space: nowrap;
+  `}
+  
+  ${({verticalOverflowSpace}) => verticalOverflowSpace && css`
+    margin-top: ${-verticalOverflowSpace}px;
+    margin-bottom: ${-verticalOverflowSpace + 2}px;
+    padding-top: ${verticalOverflowSpace}px;
+    padding-bottom: ${verticalOverflowSpace}px;
   `}
   
   > * {
@@ -22,6 +29,7 @@ const Divider = LightlyInsetBox.extend`
   width: 100%;
   height: 2px;
   margin: 0;
+  margin-top: 1px;
   margin-bottom: 3px;
   border-width: 1px 0;
 `.withComponent('hr')
@@ -45,6 +53,7 @@ const ToolbarButton = RidgedButton.extend`
 WindowToolbar.propTypes = {
   noWrap: PropTypes.bool,
   noLeftPad: PropTypes.bool,
+  verticalOverflowSpace: PropTypes.number,
 }
 
 ToolbarButton.propTypes = {

@@ -5,9 +5,16 @@ import Window from '../components/window/Window'
 import WindowMenuGroup from '../components/windowmenu/WindowMenuGroup'
 import RidgedBox from '../atoms/RidgedBox'
 import LightlyInsetBox from '../atoms/LightlyInsetBox'
+import LightBorderBox from '../atoms/LightBorderBox'
 import WindowToolbar, { Divider, Spacer, ToolbarButton } from '../components/WindowToolbar'
 import Select from '../atoms/Select'
 import textCursor from '../img/text-cursor.png'
+import rulerBg from '../img/ruler.png'
+import rulerMarker1 from '../img/ruler-marker-1.png'
+import rulerMarker2 from '../img/ruler-marker-2.png'
+import rulerMarker3 from '../img/ruler-marker-3.png'
+import justifyLeft from '../img/justify-left.png'
+import justifyCenter from '../img/justify-center.png'
 
 const ContentRoot = RidgedBox.extend`
   flex: 1;
@@ -19,7 +26,7 @@ const ContentRoot = RidgedBox.extend`
 
 const Content = styled.div`
   min-height: 100%;
-  width: 600px;
+  width: 598px;
   max-width: 100%;
   padding: 10px;
   overflow-wrap: break-word;
@@ -41,6 +48,64 @@ const BottomContentArea = styled.div`
   }
 `
 
+const RulerMain = styled(RidgedBox)`
+  display: inline-block;
+  position: relative;
+  width: 576px;
+  height: 17px;
+  margin-left: 6px;
+  border-left: 1px solid black;
+  border-right: 0;
+  background-color: white;
+  background-image: url('${rulerBg}');
+  background-position: left center;
+  background-repeat: repeat-x;
+  padding-left: 47px;
+  user-select: none;
+  
+  > div {
+    display: inline-flex;
+    width: 96px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+  }
+`
+
+const RulerExtra = styled(LightBorderBox)`
+  display: inline-block;
+  width: 120px;
+  height: 17px;
+  border-right: 0;
+  background-image: url('${rulerBg}');
+  background-position: left center;
+  background-repeat: repeat-x;
+  padding-left: 47px;
+  user-select: none;
+  
+  > div {
+    display: inline-flex;
+    width: 96px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+  }
+`
+
+const RulerRightBorder = styled.div`
+  display: inline-block;
+  width: 1px;
+  height: 17px;
+  background-color: #808080;
+  border-bottom: 1px solid white;
+`
+
+const RulerMarker = styled.img`
+  position: absolute;
+`
+
 const fontCssMap = {
   'Arial': 'Arial, sans-serif',
   'Courier New': "'Courier New', monospace",
@@ -59,6 +124,7 @@ class WordPad extends Component {
       bold: false,
       italic: false,
       underline: false,
+      textAlign: 'left',
     }
   }
 
@@ -88,11 +154,13 @@ class WordPad extends Component {
       bold,
       italic,
       underline,
+      textAlign,
     } = this.state
 
     const style = {
       fontFamily: fontCssMap[font],
       fontSize,
+      textAlign,
     }
     if (bold) {
       style.fontWeight = 'bold'
@@ -113,6 +181,10 @@ class WordPad extends Component {
 
   onFontSizeChange = (e) => {
     this.setState({ fontSize: parseInt(e.target.value) })
+  }
+
+  setTextAlign(textAlign) {
+    this.setState({ textAlign })
   }
 
   toggleState(stateProperty) {
@@ -197,6 +269,7 @@ class WordPad extends Component {
       bold,
       italic,
       underline,
+      textAlign,
     } = this.state
 
     const bottomAreaContent = <BottomContentArea>
@@ -243,6 +316,37 @@ class WordPad extends Component {
           <ToolbarButton onClick={() => {this.toggleState('underline')}} underline serif pressed={underline}>
             <span>U</span>
           </ToolbarButton>
+          <Spacer/>
+          <ToolbarButton onClick={() => {this.setTextAlign('left')}} pressed={textAlign === 'left'}>
+            <img src={justifyLeft} draggable="false"/>
+          </ToolbarButton>
+          <ToolbarButton onClick={() => {this.setTextAlign('center')}} pressed={textAlign === 'center'}>
+            <img src={justifyCenter} draggable="false"/>
+          </ToolbarButton>
+          <ToolbarButton onClick={() => {this.setTextAlign('right')}} pressed={textAlign === 'right'}>
+            <img src={justifyLeft} draggable="false" style={{transform: 'scaleX(-1)'}}/>
+          </ToolbarButton>
+        </WindowToolbar>
+
+        <Divider/>
+
+        <WindowToolbar noWrap verticalOverflowSpace={6}>
+          <RulerMain inset>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <RulerMarker src={rulerMarker1} draggable="false" style={{top: -3, left: -5}}/>
+            <RulerMarker src={rulerMarker2} draggable="false" style={{bottom: -2, left: -5}}/>
+            <RulerMarker src={rulerMarker3} draggable="false" style={{bottom: -8, left: -5}}/>
+            <RulerMarker src={rulerMarker2} draggable="false" style={{bottom: -2, right: -6}}/>
+          </RulerMain>
+          <RulerRightBorder/>
+          <RulerExtra>
+            <div>7</div>
+          </RulerExtra>
+          <RulerRightBorder/>
         </WindowToolbar>
 
         <ContentRoot inset>
