@@ -13,6 +13,10 @@ module.exports = {
     publicPath: '/dist/',
     umdNamedDefine: true,
   },
+  devtool: "source-map",
+  optimization: {
+    minimize: false,
+  },
   node: {
     net: 'empty',
     tls: 'empty',
