@@ -4,8 +4,6 @@ A set of React components for recreating everyone's favourite operating system a
 
 [Demo app here](https://reactows-95-demo.herokuapp.com/) (not guaranteed to be up-to-date).
 
-Not yet available via NPM as it is in very early development.
-
 To try it out using [Storybook](https://storybook.js.org/):
 
 ```
@@ -18,7 +16,7 @@ yarn storybook
 ## To do
 
 - More window types
-- State container for window management
+- State container for window management (currently being developed within the example app, but I'll probably move it into this library at some point)
 - Documentation of components and their props
 - Use TypeScript?
 

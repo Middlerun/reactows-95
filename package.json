@@ -1,6 +1,6 @@
 {
-  "name": "react-win95",
-  "version": "0.1.0",
+  "name": "reactows-95",
+  "version": "0.0.1",
   "description": "Everyone's favourite OS, now in React!",
   "main": "dist/index.js",
   "scripts": {
