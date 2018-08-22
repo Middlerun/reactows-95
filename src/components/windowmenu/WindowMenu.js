@@ -42,9 +42,9 @@ class WindowMenu extends Component {
       } else if (!isObject(item)) {
         return null
       } else {
-        const { label, underline, items, disabled, onSelect } = item
+        const { label, underline, items, disabled, checked, onSelect } = item
         return <WindowMenuItem
-          {...{label, underline, items, disabled}}
+          {...{label, underline, items, disabled, checked}}
           key={i}
           itemKey={i}
           onMouseEnter={this.onMouseEnterItem(i)}

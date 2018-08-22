@@ -8,6 +8,7 @@ import MenuOverlay from '../MenuOverlay'
 
 import underlinedLabel from '../../util/underlinedLabel'
 
+import tick from '../../img/tick.png'
 import arrow from '../../img/arrow-right.png'
 
 const Root = styled.div`
@@ -22,6 +23,12 @@ const Root = styled.div`
   ${({highlighted}) => highlighted && css`
     background-color: #000080;
   `}
+`
+
+const Tick = styled.img`
+  position: absolute;
+  left: 6px;
+  filter: ${({highlighted}) => highlighted ? 'invert(100%)' : 'none'};
 `
 
 const Label = styled.div`
@@ -107,6 +114,7 @@ class WindowMenuItem extends Component {
   render() {
     const {
       highlighted,
+      checked,
       items,
       subMenuOpen,
       label,
@@ -126,6 +134,8 @@ class WindowMenuItem extends Component {
           }
         }}
       >
+        {checked && <Tick src={tick} draggable="false" highlighted={highlighted}/>}
+
         <Label highlighted={highlighted} disabled={disabled}>
           {underlinedLabel(label, underline)}
           </Label>
@@ -156,6 +166,7 @@ class WindowMenuItem extends Component {
 
 WindowMenuItem.propTypes = {
   highlighted: PropTypes.bool,
+  checked: PropTypes.bool,
   items: PropTypes.array,
   subMenuOpen: PropTypes.bool,
   label: PropTypes.string.isRequired,

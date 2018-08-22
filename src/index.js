@@ -5,6 +5,7 @@ import Dialog from './apps/Dialog'
 import FileBrowser from './apps/FileBrowser'
 import IconArea from './components/IconArea'
 import IconRegular from './components/IconRegular'
+import Notepad from './apps/Notepad'
 import Shell from './components/Shell'
 import StartButton from './components/startmenu/StartButton'
 import SystemTray from './components/SystemTray'
@@ -22,6 +23,7 @@ export {
   FileBrowser,
   IconArea,
   IconRegular,
+  Notepad,
   Shell,
   StartButton,
   SystemTray,

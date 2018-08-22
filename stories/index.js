@@ -7,6 +7,7 @@ import {
   FileBrowser,
   IconArea,
   IconRegular,
+  Notepad,
   RidgedButton,
   Shell,
   Taskbar,
@@ -192,6 +193,14 @@ storiesOf('Window types', module)
   .add('WordPad', () => (
     <Shell>
       <WordPad icon={defaultIcon} hasFocus onRequestClose={action('tried to close wordpad')}/>
+    </Shell>
+  ))
+  .add('Notepad', () => (
+    <Shell>
+      <Notepad icon={defaultIcon} hasFocus onRequestClose={action('tried to close wordpad')}>
+{`All work and no play makes Jack a dull boy
+`.repeat(100)}
+      </Notepad>
     </Shell>
   ))
   .add('Dialog', () => (
