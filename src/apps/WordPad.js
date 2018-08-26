@@ -102,7 +102,9 @@ const RulerRightBorder = styled.div`
   border-bottom: 1px solid white;
 `
 
-const RulerMarker = styled.img`
+const RulerMarker = styled.img.attrs({
+  draggable: false,
+})`
   position: absolute;
 `
 
@@ -337,10 +339,10 @@ class WordPad extends Component {
             <div>3</div>
             <div>4</div>
             <div>5</div>
-            <RulerMarker src={rulerMarker1} draggable="false" style={{top: -3, left: -5}}/>
-            <RulerMarker src={rulerMarker2} draggable="false" style={{bottom: -2, left: -5}}/>
-            <RulerMarker src={rulerMarker3} draggable="false" style={{bottom: -8, left: -5}}/>
-            <RulerMarker src={rulerMarker2} draggable="false" style={{bottom: -2, right: -6}}/>
+            <RulerMarker src={rulerMarker1} style={{top: -3, left: -5}}/>
+            <RulerMarker src={rulerMarker2} style={{bottom: -2, left: -5}}/>
+            <RulerMarker src={rulerMarker3} style={{bottom: -8, left: -5}}/>
+            <RulerMarker src={rulerMarker2} style={{bottom: -2, right: -6}}/>
           </RulerMain>
           <RulerRightBorder/>
           <RulerExtra>

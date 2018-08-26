@@ -9,7 +9,9 @@ const Root = RidgedButton.extend`
   padding: 1px 4px;
 `
 
-const IconImage = styled.img`
+const IconImage = styled.img.attrs({
+  draggable: false,
+})`
   width: 16px;
   height: 16px;
   margin-right: 3px;
@@ -34,7 +36,7 @@ class TaskbarItem extends Component {
 
     return (
       <Root className="reactows95-TaskbarItem" pressed={focused} bold={focused} {...props}>
-        {icon && <IconImage src={icon} draggable={false}/>}
+        {icon && <IconImage src={icon}/>}
         <Text>{label}</Text>
       </Root>
     )

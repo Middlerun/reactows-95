@@ -55,11 +55,15 @@ const BottomArea = styled.div`
   user-select: none;
 `
 
-const ResizeHandle = styled.img`
+const ResizeHandle = styled.img.attrs({
+  src: resizeHandleImage,
+  draggable: false,
+})`
   position: absolute;
-  bottom: -4px;
-  right: -4px;
+  bottom: -2px;
+  right: -2px;
   cursor: url('${resizeSW}') 7 7, se-resize;
+  opacity: ${({visible}) => visible ? 1 : 0}
 `
 
 const maximizedGeometry = {
@@ -292,14 +296,14 @@ class Window extends Component {
           {children}
         </WindowContent>
 
-        {(bottomAreaContent || resizable) && <BottomArea>
+        {bottomAreaContent && <BottomArea>
           {bottomAreaContent}
-          {resizable && !displayAsMaximized && <ResizeHandle
-            src={resizeHandleImage}
-            draggable={false}
-            onMouseDown={this.resizeStart}
-          />}
         </BottomArea>}
+
+        {resizable && !displayAsMaximized && <ResizeHandle
+          onMouseDown={this.resizeStart}
+          visible={bottomAreaContent}
+        />}
       </Root>
 
       {transitionType && <WindowTitleBarTransition

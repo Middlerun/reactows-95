@@ -21,7 +21,9 @@ const StyledStartButton = RidgedButton.extend`
   image-rendering: -moz-crisp-edges;
 `
 
-const LogoImage = styled.img`
+const LogoImage = styled.img.attrs({
+  draggable: false,
+})`
   vertical-align: bottom;
 `
 
@@ -53,7 +55,7 @@ class StartButton extends Component {
           pressed={startMenuOpen}
         >
           <span>
-            <LogoImage src={logo} draggable={false}/> Start
+            <LogoImage src={logo}/> Start
           </span>
         </StyledStartButton>
 

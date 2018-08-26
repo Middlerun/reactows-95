@@ -25,7 +25,10 @@ const Root = styled.div`
   `}
 `
 
-const Tick = styled.img`
+const Tick = styled.img.attrs({
+  src: tick,
+  draggable: false,
+})`
   position: absolute;
   left: 6px;
   filter: ${({highlighted}) => highlighted ? 'invert(100%)' : 'none'};
@@ -134,7 +137,7 @@ class WindowMenuItem extends Component {
           }
         }}
       >
-        {checked && <Tick src={tick} draggable="false" highlighted={highlighted}/>}
+        {checked && <Tick highlighted={highlighted}/>}
 
         <Label highlighted={highlighted} disabled={disabled}>
           {underlinedLabel(label, underline)}

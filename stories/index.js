@@ -192,14 +192,17 @@ storiesOf('Window types', module)
   ))
   .add('WordPad', () => (
     <Shell>
-      <WordPad icon={defaultIcon} hasFocus onRequestClose={action('tried to close wordpad')}/>
+      <WordPad icon={defaultIcon} hasFocus onRequestClose={action('tried to close wordpad')}>
+        {(new Array(100)).fill(1).map((val, i) => <p key={i}>
+          All work and no play makes Jack a dull boy
+        </p>)}
+      </WordPad>
     </Shell>
   ))
   .add('Notepad', () => (
     <Shell>
-      <Notepad icon={defaultIcon} hasFocus onRequestClose={action('tried to close wordpad')}>
-{`All work and no play makes Jack a dull boy
-`.repeat(100)}
+      <Notepad icon={defaultIcon} hasFocus onRequestClose={action('tried to close notepad')}>
+        {'All work and no play makes Jack a dull boy\n'.repeat(100)}
       </Notepad>
     </Shell>
   ))

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
 import styled, { css } from 'styled-components'
 
 import Window from '../components/window/Window'
 import WindowMenuGroup from '../components/windowmenu/WindowMenuGroup'
 import RidgedBox from '../atoms/RidgedBox'
 import textCursor from '../img/text-cursor.png'
+import resizeHandleImage from '../img/resize-handle.png'
 
 const ContentRoot = RidgedBox.extend`
   flex: 1;
@@ -35,10 +37,26 @@ const Content = styled.div`
   }
 `
 
-class WordPad extends Component {
+const ResizeHandleContainer = styled.div`
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: ${({size}) => size}px;
+  height: ${({size}) => size}px;
+  background-color: #c0c0c0;
+  ${({showHandle}) => showHandle && css`
+    background: #c0c0c0 url(${resizeHandleImage}) no-repeat;
+    background-position: ${({size}) => size - 12}px ${({size}) => size - 12}px;
+  `}
+`
+
+class Notepad extends Component {
   constructor() {
     super()
-    this.state = { wordWrap: true }
+    this.state = {
+      wordWrap: true,
+      scrollbarSize: null,
+    }
   }
 
   setTitle() {
@@ -48,12 +66,25 @@ class WordPad extends Component {
 
   componentDidMount() {
     this.setTitle()
+    this.updateScrollbarSizeIfNeeded()
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.fileName !== prevProps.fileName) {
       this.setTitle()
     }
+    this.updateScrollbarSizeIfNeeded()
+  }
+
+  updateScrollbarSizeIfNeeded() {
+    if (!this.contentDiv || !this.contentPre) {
+      return
+    }
+    const scrollbarSize = findDOMNode(this.contentDiv).getBoundingClientRect().width -
+      findDOMNode(this.contentPre).getBoundingClientRect().width - 4
+    this.setState(state => (
+      state.scrollbarSize !== scrollbarSize ? { scrollbarSize } : null
+    ))
   }
 
   generateTitle() {
@@ -115,7 +146,12 @@ class WordPad extends Component {
       ...props
     } = this.props
 
-    const { wordWrap } = this.state
+    const {
+      maximized,
+      resizable,
+    } = this.props
+
+    const { wordWrap, scrollbarSize } = this.state
 
     const windowInitialGeometry = {
       width: 600,
@@ -123,25 +159,37 @@ class WordPad extends Component {
       ...initialGeometry
     }
 
+    console.log(resizable, maximized, this.props)
+
     // TODO: Remove bottom content area while keeping window resizable
     return (
       <Window
         {...props}
         title={title || this.generateTitle()}
         initialGeometry={windowInitialGeometry}
+        showResizeHandle={!wordWrap}
       >
         <WindowMenuGroup menus={this.getMenus()}/>
 
         <ContentRoot inset>
-          <Content wordWrap={wordWrap}>
-            <pre>
+          <Content wordWrap={wordWrap} ref={el => this.contentDiv = el}>
+            <pre ref={el => this.contentPre = el}>
               {children}
             </pre>
           </Content>
+
+          {!wordWrap && <ResizeHandleContainer
+            size={scrollbarSize}
+            showHandle={resizable && !maximized}
+          />}
         </ContentRoot>
       </Window>
     )
   }
 }
 
-export default WordPad
+Notepad.defaultProps = {
+  resizable: true,
+}
+
+export default Notepad

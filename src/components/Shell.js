@@ -42,6 +42,7 @@ const Root = styled.div`
   
   *::-webkit-scrollbar {
     width: 16px;
+    height: 16px;
   }
 
   *::-webkit-scrollbar-button:single-button {
@@ -80,7 +81,6 @@ const Root = styled.div`
 
   *::-webkit-scrollbar-thumb {
     background-color: #c0c0c0;
-    width: 16px;
     border-width: 2px;
     border-style: solid;
     border-image: url('${borderImage}') 2;

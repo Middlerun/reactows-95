@@ -32,7 +32,9 @@ const IconContainer = styled.div`
   
 `
 
-const IconImage = styled.img`
+const IconImage = styled.img.attrs({
+  draggable: false,
+})`
   max-width: 100%;
   max-height: 100%;
   image-rendering: pixelated;
@@ -148,7 +150,7 @@ class StartMenuItem extends Component {
         }}
       >
         <IconContainer mainStartMenu={mainStartMenu}>
-          {noIcon || <IconImage src={icon || defaultIcon} draggable={false}/>}
+          {noIcon || <IconImage src={icon || defaultIcon}/>}
         </IconContainer>
 
         <Label {...{highlighted, disabled}}>{label}</Label>
