@@ -33,6 +33,7 @@ const Content = styled.div`
     ${({wordWrap}) => wordWrap && css`
       max-width: 100%;
       white-space: pre-wrap;
+      overflow-wrap: break-word;
     `}
   }
 `

@@ -203,6 +203,7 @@ storiesOf('Window types', module)
     <Shell>
       <Notepad icon={defaultIcon} hasFocus onRequestClose={action('tried to close notepad')}>
         {'All work and no play makes Jack a dull boy\n'.repeat(100)}
+        dlkfjal;sdkjf;laksjdl;fkja;sldkfjl;aksdjf;klajsd
       </Notepad>
     </Shell>
   ))
