@@ -1,6 +1,6 @@
 {
   "name": "reactows-95",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Everyone's favourite OS, now in React!",
   "main": "dist/index.js",
   "scripts": {
