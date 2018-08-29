@@ -7,6 +7,7 @@ import LightlyInsetBox from '../../atoms/LightlyInsetBox'
 
 import arrow from '../../img/arrow-right.png'
 import defaultIcon from '../../img/icon-default.png'
+import defaultIcon24 from '../../img/icon-default-24.png'
 
 const Root = styled.div`
   position: relative;
@@ -23,8 +24,8 @@ const Root = styled.div`
 `
 
 const IconContainer = styled.div`
-  width: ${({mainStartMenu}) => mainStartMenu ? '24px' : '16px'};
-  height: ${({mainStartMenu}) => mainStartMenu ? '24px' : '16px'};
+  width: ${({mainStartMenu}) => mainStartMenu ? '32px' : '16px'};
+  height: ${({mainStartMenu}) => mainStartMenu ? '32px' : '16px'};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,7 +151,7 @@ class StartMenuItem extends Component {
         }}
       >
         <IconContainer mainStartMenu={mainStartMenu}>
-          {noIcon || <IconImage src={icon || defaultIcon}/>}
+          {noIcon || <IconImage src={icon || (mainStartMenu ? defaultIcon24 : defaultIcon)}/>}
         </IconContainer>
 
         <Label {...{highlighted, disabled}}>{label}</Label>
