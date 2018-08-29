@@ -52,7 +52,6 @@ const BottomArea = styled.div`
   position: relative;
   height: 17px;
   margin-top: 2px;
-  user-select: none;
 `
 
 const ResizeHandle = styled.img.attrs({

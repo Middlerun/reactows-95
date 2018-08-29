@@ -31,6 +31,7 @@ const Content = styled.div`
   padding: 10px;
   overflow-wrap: break-word;
   cursor: url('${textCursor}') 3 9, auto;
+  user-select: text;
   
   > :first-child {
     margin-top: 0;

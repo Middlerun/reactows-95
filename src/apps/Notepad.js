@@ -23,6 +23,7 @@ const Content = styled.div`
   cursor: url('${textCursor}') 3 9, auto;
   overflow-y: scroll;
   overflow-x:  ${({wordWrap}) => wordWrap ? 'hidden' : 'scroll'};
+  user-select: text;
   
   > pre {
     margin: 0;

@@ -13,7 +13,6 @@ const Root = RidgedBox.extend`
   position: relative;
   display: flex;
   padding: 1px;
-  user-select: none;
   max-height: 100vh;
 `
 

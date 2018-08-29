@@ -10,7 +10,6 @@ export const TitleBar = styled.div`
   color: ${({hasFocus}) => hasFocus ? 'white' : '#c0c0c0'};
   font-weight: bold;
   margin-bottom: 2px;
-  user-select: none;
 `
 
 export const IconImage = styled.img`

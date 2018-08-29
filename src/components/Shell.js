@@ -30,6 +30,7 @@ const Root = styled.div`
   font-family: "Microsoft Sans Serif", Arial, sans-serif;
   font-size: 12px;
   overflow: hidden;
+  user-select: none;
   cursor: ${({semiBusy}) => getCursor(semiBusy)};
   
   button {

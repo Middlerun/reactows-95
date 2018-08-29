@@ -9,7 +9,6 @@ import isObject from '../../util/isObject'
 const Root = RidgedBox.extend`
   display: flex;
   padding: 1px;
-  user-select: none;
 `
 
 class WindowMenu extends Component {

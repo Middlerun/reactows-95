@@ -60,7 +60,6 @@ const IconText = styled.div`
   max-height: calc(2.4em + 2px);
   text-align: center;
   overflow: hidden;
-  user-select: none;
   background-color: ${({hasFocus}) => hasFocus ? '#00007b' : 'transparent'};
   ${({hasFocus}) => hasFocus && css`
     color: white;

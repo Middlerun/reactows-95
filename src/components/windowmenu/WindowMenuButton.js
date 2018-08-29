@@ -20,7 +20,6 @@ const StyledWindowMenuButton = styled.button`
   height: 18px;
   padding: 0 6px;
   background-color: transparent;
-  user-select: none;
   white-space: nowrap;
   
   ${({pressed}) => pressed && css`
